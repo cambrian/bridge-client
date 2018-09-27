@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "eg2.tslint",
+    "steoates.autoimport",
+    "amatiasq.sort-imports",
+    "freebroccolo.reasonml"
+  ]
+}
