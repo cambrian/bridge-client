@@ -7,8 +7,11 @@ import { fromEvent } from 'most-from-event'
 import { hold } from './hold'
 import { newDefaultScheduler } from '@most/scheduler'
 
-// An imperative stream that holds its most recent value (even after the stream is closed).
-export function heldPushStream<T> (): [(value: T) => void, () => void, Stream<T>] {
+// Type is (push, close, stream).
+export type PushableStream<T> = [(value: T) => void, () => void, Stream<T>]
+
+// An imperative stream that holds its most recent value.
+export function heldPushStream<T> (): PushableStream<T> {
   let emitter = new Events.EventEmitter()
   let push = (item: T) => emitter.emit('pushEvent', item)
   let close = () => emitter.emit('closeEvent')
@@ -17,7 +20,7 @@ export function heldPushStream<T> (): [(value: T) => void, () => void, Stream<T>
 }
 
 // Drains the stream to completion or error (promise rejection).
-function drain<T> (stream: Stream<T>): Promise<void> {
+export function drain<T> (stream: Stream<T>): Promise<void> {
   return runEffects(stream, newDefaultScheduler())
 }
 

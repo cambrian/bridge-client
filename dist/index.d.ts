@@ -1,9 +1,11 @@
 #!/usr/bin/env node
 import * as WebSocket from 'ws';
-import { heldPushStream, observe } from './streams';
-export { heldPushStream, observe };
+import { PushableStream, observe } from './streams';
+import { BridgeClient } from './index';
+import { Stream } from '@most/types';
+export { observe, Stream };
 export interface BridgeClient {
     socketClient: WebSocket;
-    responses: Map<Text_<'RequestId'>, ResponseMessage>;
+    responseStreams: Map<Text_<'RequestId'>, PushableStream<Text_<'Response'>>>;
 }
 export declare function makeBridgeClient(socketClient: WebSocket): BridgeClient;
