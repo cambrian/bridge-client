@@ -3,11 +3,11 @@
   "version": "0.0.1",
   "description": "A TypeScript module for interfacing with our Haskell-based backend.",
   "private": true,
-  "main": "dist/index.js",
   "scripts": {
-    "build": "rm -rf dist && ./node_modules/.bin/tsc",
+    "build": "rm -rf dist && ./node_modules/.bin/tsc && chmod +x ./dist/*.js ./dist/**/*.js",
     "clean": "rm -rf dist",
     "lint": "tslint --project tsconfig.json --format stylish",
+    "start": "./dist/index.js",
     "test": "echo"
   },
   "repository": {
@@ -35,7 +35,9 @@
   "dependencies": {
     "@most/core": "^1.3.2",
     "@most/scheduler": "^1.2.1",
+    "@most/types": "^1.0.1",
     "mocha": "^5.2.0",
+    "most-from-event": "^1.1.2",
     "source-map-support": "^0.5.8",
     "tslib": "^1.9.3",
     "ws": "^6.0.0"
