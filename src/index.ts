@@ -5,16 +5,21 @@ import * as Queue from 'better-queue'
 import * as UUIDV4 from 'uuid/v4'
 import * as WebSocket from 'ws'
 
-import { isResOrExc, isResponseMessage, safeParse } from './parsers'
+import { AddIntsSignedRequest, IResult, RequestMessage, SerializationFormat, Text }
+  from './generated/types'
+
+// IMPORTANT: If this line errors, make sure JSON schema is re-run on updated types, THEN update
+// this version type to match the actual type in generated/types.
+export { V215401 } from './generated/types'
 
 export interface BridgeClient {
   socketClient: WebSocket
-  responseQueues: Map<Text_<'RequestId'>, Queue<Text_<'Response'>, void>>
+  responseQueues: Map<Text<'RequestId'>, Queue<Text<'Response'>, void>>
 }
 
 // MAJOR TODO: Find an automated way to type check JSON.parse results.
 export function makeBridgeClient (socketClient: WebSocket): BridgeClient {
-  let responseQueues = new Map<Text_<'RequestId'>, Queue<Text_<'Response'>, void>>()
+  let responseQueues = new Map<Text<'RequestId'>, Queue<Text<'Response'>, void>>()
 
   socketClient.on('message', (data: WebSocket.Data) => {
     let message = data.toString()
@@ -39,9 +44,9 @@ function callAddIntsSigned (
   bridgeClient: BridgeClient,
   request: AddIntsSignedRequest
 ): Promise<number> {
-  let id = UUIDV4() as Text_<'RequestId'>
-  let route = 'addSignedInts' as Text_<'Route'>
-  let reqText = JSON.stringify(request) as Text_<'Request'>
+  let id = UUIDV4() as Text<'RequestId'>
+  let route = 'addSignedInts' as Text<'Route'>
+  let reqText = JSON.stringify(request) as Text<'Request'>
   let headers = { format: 'JSON' as SerializationFormat }
 
   let requestMessage: RequestMessage = { id, route, reqText, headers }
