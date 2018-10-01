@@ -22,11 +22,6 @@
   "bugs": {
     "url": "https://github.com/1protocol/bridge-client/issues"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run-script build"
-    }
-  },
   "homepage": "https://github.com/1protocol/bridge-client#readme",
   "devDependencies": {
     "@types/better-queue": "^3.8.0",
