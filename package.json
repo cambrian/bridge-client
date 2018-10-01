@@ -4,7 +4,7 @@
   "description": "A TypeScript module for interfacing with our Haskell-based backend.",
   "private": true,
   "scripts": {
-    "build": "rm -rf dist && ./node_modules/.bin/ttsc && chmod +x ./dist/*.js ./dist/**/*.js",
+    "build": "rm -rf dist && ./node_modules/.bin/tsc && chmod +x ./dist/*.js ./dist/**/*.js",
     "clean": "rm -rf dist",
     "lint": "tslint --project tsconfig.json --format stylish",
     "start": "./dist/index.js",
@@ -22,6 +22,11 @@
   "bugs": {
     "url": "https://github.com/1protocol/bridge-client/issues"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run-script build"
+    }
+  },
   "homepage": "https://github.com/1protocol/bridge-client#readme",
   "devDependencies": {
     "@types/better-queue": "^3.8.0",
@@ -29,6 +34,7 @@
     "@types/node": "^10.11.2",
     "@types/uuid": "^3.4.4",
     "@types/ws": "^6.0.1",
+    "husky": "^1.0.1",
     "tslint": "^5.11.0",
     "tslint-config-standard": "^7.1.0",
     "tslint-eslint-rules": "^5.3.1",

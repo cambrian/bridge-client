@@ -22,5 +22,3 @@ export function validate<T> (schema: SchemaRefs, value: any): value is T {
     return validator.validate(prefix + schema, value) as boolean
   } catch { return false }
 }
-
-export { Schemas }
