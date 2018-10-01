@@ -1,11 +1,12 @@
 #!/usr/bin/env node
+import * as Queue from 'better-queue';
 import * as WebSocket from 'ws';
-import { PushableStream, observe } from './streams';
-import { BridgeClient } from './index';
-import { Stream } from '@most/types';
-export { observe, Stream };
+import { Text } from './generated/types';
+export { V215401 } from './generated/types';
 export interface BridgeClient {
     socketClient: WebSocket;
-    responseStreams: Map<Text_<'RequestId'>, PushableStream<Text_<'Response'>>>;
+    responseQueues: Map<Text<'RequestId'>, Queue<Text<'Response'>, void>>;
 }
 export declare function makeBridgeClient(socketClient: WebSocket): BridgeClient;
+export { observe } from './streams';
+export { Stream } from '@most/types';

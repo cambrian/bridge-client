@@ -4,7 +4,7 @@
   "description": "A TypeScript module for interfacing with our Haskell-based backend.",
   "private": true,
   "scripts": {
-    "build": "rm -rf dist && ./node_modules/.bin/tsc && chmod +x ./dist/*.js ./dist/**/*.js",
+    "build": "rm -rf dist && ./node_modules/.bin/ttsc && chmod +x ./dist/*.js ./dist/**/*.js",
     "clean": "rm -rf dist",
     "lint": "tslint --project tsconfig.json --format stylish",
     "start": "./dist/index.js",
@@ -39,6 +39,7 @@
     "@most/core": "^1.3.2",
     "@most/scheduler": "^1.2.1",
     "@most/types": "^1.0.1",
+    "ajv": "^6.5.4",
     "better-queue": "^3.8.10",
     "mocha": "^5.2.0",
     "most-from-event": "^1.1.2",

@@ -1,43 +1,51 @@
-declare type SerializationFormat = 'Haskell' | 'JSON';
-declare type Headers = IHeaders;
-declare class Nominal<T extends string> {
-    private as;
-}
-interface IHeaders {
+export declare type V215401 = 'Bridge Typings Version 215401';
+export declare type Tagged<T extends string, K> = {
+    TagDoNotUse: T;
+} | K;
+export declare type Text<T extends string> = Tagged<T, string>;
+export declare type SerializationFormat = 'Haskell' | 'JSON';
+export declare type Headers = IHeaders;
+export interface IHeaders {
     format: SerializationFormat;
-    token?: Text_<'AuthToken'>;
+    token?: Text<'AuthToken'>;
 }
-declare type Text_<T> = Nominal<IText_<T>>;
-declare type IText_<T> = string;
-declare type RpcClientException = IBadAuth | IBadCall;
-interface IBadAuth {
+export declare type RpcClientException = IBadAuth | IBadCall;
+export interface IBadAuth {
     tag: 'BadAuth';
 }
-interface IBadCall {
+export interface IBadCall {
     tag: 'BadCall';
-    contents: [SerializationFormat, string];
+    contents: [SerializationFormat, Text<'Request'>];
 }
-declare type Either<T1, T2> = Left<T1> | Right<T2>;
-interface Left<T> {
+export declare type Either<T1, T2> = Left<T1> | Right<T2>;
+export interface Left<T> {
     Left: T;
 }
-interface Right<T> {
+export interface Right<T> {
     Right: T;
 }
-declare type RequestMessage = IRequestMessage;
-interface IRequestMessage {
-    id: Text_<'RequestId'>;
+export declare type ResultItem<T> = IResult<T> | IEndOfResults;
+export interface IResult<T> {
+    tag: 'Result';
+    contents: T;
+}
+export interface IEndOfResults {
+    tag: 'EndOfResults';
+}
+export declare type RequestMessage = IRequestMessage;
+export interface IRequestMessage {
+    id: Text<'RequestId'>;
     headers: Headers;
-    route: Text_<'Route'>;
-    reqText: Text_<'Request'>;
+    route: Text<'Route'>;
+    reqText: Text<'Request'>;
 }
-declare type ResponseMessage = IResponseMessage;
-interface IResponseMessage {
-    requestId: Text_<'RequestId'>;
-    resText: Text_<'Response'>;
+export declare type ResponseMessage = IResponseMessage;
+export interface IResponseMessage {
+    requestId: Text<'RequestId'>;
+    resText: Text<'Response'>;
 }
-declare type AddIntsSignedRequest = IAddIntsSignedRequest;
-interface IAddIntsSignedRequest {
+export declare type AddIntsSignedRequest = IAddIntsSignedRequest;
+export interface IAddIntsSignedRequest {
     a: number;
     b: number;
     sign: boolean;
