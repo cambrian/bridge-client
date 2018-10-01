@@ -16,9 +16,9 @@ export function safeParse (value: any): any {
 
 // Ideally the static parameters above would be moved into a higher-order function that returns a
 // polymorphic validator, but TypeScript cannot currently do the necessary type inference.
-export function validate<T> (schema: SchemaRefs, value: any): value is T {
+export function validate<T> (schemaRef: SchemaRefs, value: any): value is T {
   try {
-    if (typeof value === schema) return true // For primitive types.
-    return validator.validate(prefix + schema, value) as boolean
+    if (typeof value === schemaRef) return true // For primitive types.
+    return validator.validate(prefix + schemaRef, value) as boolean
   } catch { return false }
 }

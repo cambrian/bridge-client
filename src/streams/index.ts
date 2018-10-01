@@ -12,10 +12,10 @@ export type PushableStream<T> = [(value: T) => void, () => void, Stream<T>]
 
 // An imperative stream that holds its most recent value.
 export function heldPushStream<T> (): PushableStream<T> {
-  let emitter = new Events.EventEmitter()
-  let push = (item: T) => emitter.emit('pushEvent', item)
-  let close = () => emitter.emit('closeEvent')
-  let stream = hold(until(fromEvent('closeEvent', emitter), fromEvent('pushEvent', emitter)))
+  const emitter = new Events.EventEmitter()
+  const push = (item: T) => emitter.emit('pushEvent', item)
+  const close = () => emitter.emit('closeEvent')
+  const stream = hold(until(fromEvent('closeEvent', emitter), fromEvent('pushEvent', emitter)))
   return [push, close, stream]
 }
 

@@ -1,9 +1,11 @@
-export type SchemaRefs = 'AddIntsSignedRequest'
+export type SchemaRefs = 'AddIntsRequest'
+  | 'ConcatTextAuthRequest'
   | 'Either'
   | 'Headers'
-  | 'IAddIntsSignedRequest'
+  | 'IAddIntsRequest'
   | 'IBadAuth'
   | 'IBadCall'
+  | 'IConcatTextAuthRequest'
   | 'IEndOfResults'
   | 'IHeaders'
   | 'IRequestMessage'
@@ -28,7 +30,7 @@ export type SchemaRefs = 'AddIntsSignedRequest'
   | 'T_3'
   | 'Tagged'
   | 'Text'
-  | 'V215401'
+  | 'V251066'
   | 'string'
   | 'number'
   | 'boolean'
@@ -36,16 +38,24 @@ export type SchemaRefs = 'AddIntsSignedRequest'
 export const Schemas = {
   '$schema': 'http://json-schema.org/draft-07/schema#',
   'definitions': {
-    'AddIntsSignedRequest': {
+    'AddIntsRequest': {
       'properties': {
         'a': {
           'type': 'number'
         },
         'b': {
           'type': 'number'
+        }
+      },
+      'type': 'object'
+    },
+    'ConcatTextAuthRequest': {
+      'properties': {
+        'a': {
+          'type': 'string'
         },
-        'sign': {
-          'type': 'boolean'
+        'b': {
+          'type': 'string'
         }
       },
       'type': 'object'
@@ -86,16 +96,13 @@ export const Schemas = {
       },
       'type': 'object'
     },
-    'IAddIntsSignedRequest': {
+    'IAddIntsRequest': {
       'properties': {
         'a': {
           'type': 'number'
         },
         'b': {
           'type': 'number'
-        },
-        'sign': {
-          'type': 'boolean'
         }
       },
       'type': 'object'
@@ -177,6 +184,17 @@ export const Schemas = {
           'enum': [
             'BadCall'
           ],
+          'type': 'string'
+        }
+      },
+      'type': 'object'
+    },
+    'IConcatTextAuthRequest': {
+      'properties': {
+        'a': {
+          'type': 'string'
+        },
+        'b': {
           'type': 'string'
         }
       },
@@ -569,9 +587,9 @@ export const Schemas = {
         }
       ]
     },
-    'V215401': {
+    'V251066': {
       'enum': [
-        'Bridge Typings Version 215401'
+        'Bridge Typings Version 251066'
       ],
       'type': 'string'
     }
