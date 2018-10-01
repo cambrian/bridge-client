@@ -1,8 +1,8 @@
-export declare type SchemaRefs = 'AddIntsSignedRequest' | 'Either' | 'Headers' | 'IAddIntsSignedRequest' | 'IBadAuth' | 'IBadCall' | 'IEndOfResults' | 'IHeaders' | 'IRequestMessage' | 'IResponseMessage' | 'IResult' | 'IResult<T>' | 'K' | 'Left' | 'Left<T1>' | 'RequestMessage' | 'ResponseMessage' | 'ResultItem' | 'Right' | 'Right<T2>' | 'RpcClientException' | 'SerializationFormat' | 'T' | 'T1' | 'T2' | 'T_1' | 'T_2' | 'T_3' | 'Tagged' | 'Text' | 'V215401' | 'string' | 'number' | 'boolean' | 'symbol';
+export declare type SchemaRef = 'AddIntsRequest' | 'ConcatTextAuthRequest' | 'ConcatTextAuthResponse' | 'Either' | 'Headers' | 'IAddIntsRequest' | 'IBadAuth' | 'IBadCall' | 'IConcatTextAuthRequest' | 'IConcatTextAuthResponse' | 'IEndOfResults' | 'IHeaders' | 'IRequestMessage' | 'IResponseMessage' | 'IResult' | 'IResult<T>' | 'K' | 'Left' | 'Left<T1>' | 'RequestMessage' | 'ResponseMessage' | 'ResultItem' | 'Right' | 'Right<T2>' | 'RpcClientException' | 'SerializationFormat' | 'T' | 'T1' | 'T2' | 'T_1' | 'T_2' | 'T_3' | 'Tagged' | 'Text' | 'V555894' | 'string' | 'number' | 'boolean' | 'symbol';
 export declare const Schemas: {
     '$schema': string;
     'definitions': {
-        'AddIntsSignedRequest': {
+        'AddIntsRequest': {
             'properties': {
                 'a': {
                     'type': string;
@@ -10,7 +10,23 @@ export declare const Schemas: {
                 'b': {
                     'type': string;
                 };
-                'sign': {
+            };
+            'type': string;
+        };
+        'ConcatTextAuthRequest': {
+            'properties': {
+                'a': {
+                    'type': string;
+                };
+                'b': {
+                    'type': string;
+                };
+            };
+            'type': string;
+        };
+        'ConcatTextAuthResponse': {
+            'properties': {
+                'result': {
                     'type': string;
                 };
             };
@@ -43,15 +59,12 @@ export declare const Schemas: {
             };
             'type': string;
         };
-        'IAddIntsSignedRequest': {
+        'IAddIntsRequest': {
             'properties': {
                 'a': {
                     'type': string;
                 };
                 'b': {
-                    'type': string;
-                };
-                'sign': {
                     'type': string;
                 };
             };
@@ -116,6 +129,25 @@ export declare const Schemas: {
                 };
                 'tag': {
                     'enum': string[];
+                    'type': string;
+                };
+            };
+            'type': string;
+        };
+        'IConcatTextAuthRequest': {
+            'properties': {
+                'a': {
+                    'type': string;
+                };
+                'b': {
+                    'type': string;
+                };
+            };
+            'type': string;
+        };
+        'IConcatTextAuthResponse': {
+            'properties': {
+                'result': {
                     'type': string;
                 };
             };
@@ -259,9 +291,7 @@ export declare const Schemas: {
             };
             'type': string;
         };
-        'K': {
-            'type': string;
-        };
+        'K': {};
         'Left': {
             'properties': {
                 'Left': {
@@ -391,24 +421,12 @@ export declare const Schemas: {
             'enum': string[];
             'type': string;
         };
-        'T': {
-            'type': string;
-        };
-        'T1': {
-            'type': string;
-        };
-        'T2': {
-            'type': string;
-        };
-        'T_1': {
-            'type': string;
-        };
-        'T_2': {
-            'type': string;
-        };
-        'T_3': {
-            'type': string;
-        };
+        'T': {};
+        'T1': {};
+        'T2': {};
+        'T_1': {};
+        'T_2': {};
+        'T_3': {};
         'Tagged': {
             'anyOf': ({
                 'properties': {
@@ -443,7 +461,7 @@ export declare const Schemas: {
                 'properties'?: undefined;
             })[];
         };
-        'V215401': {
+        'V555894': {
             'enum': string[];
             'type': string;
         };

@@ -1,3 +1,0 @@
-[submodule "src/generated"]
-	path = src/generated
-	url = https://github.com/1protocol/bridge-client-generated

@@ -20,4 +20,4 @@ if (typeof schemas !== 'object' || !schemas.definitions) {
 const props = Object.getOwnPropertyNames(schemas.definitions)
 const propsAll = props.concat(['string', 'number', 'boolean', 'symbol']) // Add primitive types.
 const quoted = propsAll.map(prop => '\'' + prop + '\'')
-console.log('export type SchemaRefs = ' + quoted.join('\n  | '))
+console.log('export type SchemaRef = ' + quoted.join('\n  | '))

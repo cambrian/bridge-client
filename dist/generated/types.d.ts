@@ -1,4 +1,4 @@
-export declare type V215401 = 'Bridge Typings Version 215401';
+export declare type V555894 = 'Bridge Typings Version 555894';
 export declare type Tagged<T extends string, K> = {
     TagDoNotUse: T;
 } | K;
@@ -44,9 +44,17 @@ export interface IResponseMessage {
     requestId: Text<'RequestId'>;
     resText: Text<'Response'>;
 }
-export declare type AddIntsSignedRequest = IAddIntsSignedRequest;
-export interface IAddIntsSignedRequest {
+export declare type AddIntsRequest = IAddIntsRequest;
+export interface IAddIntsRequest {
     a: number;
     b: number;
-    sign: boolean;
+}
+export declare type ConcatTextAuthRequest = IConcatTextAuthRequest;
+export interface IConcatTextAuthRequest {
+    a: string;
+    b: string;
+}
+export declare type ConcatTextAuthResponse = IConcatTextAuthResponse;
+export interface IConcatTextAuthResponse {
+    result: string;
 }

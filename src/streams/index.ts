@@ -28,3 +28,5 @@ export function drain<T> (stream: Stream<T>): Promise<void> {
 export function observe<T> (f: ((item: T) => void), stream: Stream<T>): Promise<void> {
   return drain(tap(f, stream))
 }
+
+export { Stream }

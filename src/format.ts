@@ -1,7 +1,7 @@
 import * as Ajv from 'ajv'
 
 // Statically load schemas. See note below.
-import { SchemaRefs, Schemas } from './schemas'
+import { SchemaRef, Schemas } from './generated/schema'
 
 export const props = Object.getOwnPropertyNames(Schemas.definitions)
 
@@ -16,7 +16,7 @@ export function safeParse (value: any): any {
 
 // Ideally the static parameters above would be moved into a higher-order function that returns a
 // polymorphic validator, but TypeScript cannot currently do the necessary type inference.
-export function validate<T> (schemaRef: SchemaRefs, value: any): value is T {
+export function validate<T> (schemaRef: SchemaRef, value: any): value is T {
   try {
     if (typeof value === schemaRef) return true // For primitive types.
     return validator.validate(prefix + schemaRef, value) as boolean
