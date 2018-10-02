@@ -2,6 +2,7 @@
   "name": "bridge-client",
   "version": "0.1.0",
   "description": "A TypeScript module for interfacing with our Haskell-based backend.",
+  "main": "dist/index.js",
   "private": true,
   "scripts": {
     "build": "rm -rf dist && ./node_modules/.bin/tsc && chmod +x ./dist/**/*.js",
