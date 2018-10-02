@@ -1,4 +1,4 @@
-  export async function {{ spec.route }} (
+  export function {{ spec.route }} (
     bridgeClient: BridgeClient.T,
     request: {{ spec.req }}{% if spec.auth %},
     token: Text<'AuthToken'>{% endif %}

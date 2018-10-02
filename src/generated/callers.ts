@@ -12,7 +12,7 @@ import { Stream } from '../streams'
 export { V555894 } from './types'
 
 export namespace Call {
-  export async function addInts (
+  export function addInts (
     bridgeClient: BridgeClient.T,
     request: AddIntsRequest
   ): Promise<number> {
@@ -26,7 +26,7 @@ export namespace Call {
     )
   }
 
-  export async function echoThrice (
+  export function echoThrice (
     bridgeClient: BridgeClient.T,
     request: number
   ): Promise<Stream<number>> {
@@ -40,7 +40,7 @@ export namespace Call {
     )
   }
 
-  export async function concatTextAuth (
+  export function concatTextAuth (
     bridgeClient: BridgeClient.T,
     request: ConcatTextAuthRequest,
     token: Text<'AuthToken'>
@@ -55,7 +55,7 @@ export namespace Call {
     )
   }
 
-  export async function echoThriceAuth (
+  export function echoThriceAuth (
     bridgeClient: BridgeClient.T,
     request: string,
     token: Text<'AuthToken'>
