@@ -1,0 +1,14 @@
+  export async function {{ spec.route }} (
+    bridgeClient: BridgeClient.T,
+    request: {{ spec.req }}{% if spec.auth %},
+    token: Text<'AuthToken'>{% endif %}
+  ): Promise<{% include "return.ede" %}> {
+    return call<{{ spec.req }}, {% include "return.ede" %}>(
+      bridgeClient,
+      makeRequestOfAuth({% if spec.auth %}token{% endif %}),
+      {% if spec.streaming %}makeStreamingHandler{% else %}makeDirectHandler{% endif %},
+      '{{ spec.route }}',
+      '{{ spec.res }}',
+      request
+    )
+  }

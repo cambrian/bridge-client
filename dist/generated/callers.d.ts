@@ -1,6 +1,7 @@
 import { AddIntsRequest, ConcatTextAuthRequest, ConcatTextAuthResponse, Text } from './types';
 import { BridgeClient } from '../client';
 import { Stream } from '../streams';
+export { V555894 } from './types';
 export declare namespace Call {
     function addInts(bridgeClient: BridgeClient.T, request: AddIntsRequest): Promise<number>;
     function echoThrice(bridgeClient: BridgeClient.T, request: number): Promise<Stream<number>>;

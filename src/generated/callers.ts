@@ -4,6 +4,13 @@ import { call, makeDirectHandler, makeRequestOfAuth, makeStreamingHandler } from
 import { BridgeClient } from '../client'
 import { Stream } from '../streams'
 
+// IMPORTANT: If this line errors, do the following.
+// 1. Fix the error in ../call.ts before anything else.
+// 2. Fix the callers.ede template based on the new types.
+// 3. Change this type string to match the new types version.
+// 4. Re-run the caller generation script and commit.
+export { V555894 } from './types'
+
 export namespace Call {
   export async function addInts (
     bridgeClient: BridgeClient.T,

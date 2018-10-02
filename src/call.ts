@@ -18,9 +18,9 @@ import { BridgeClient } from './client'
 import { SchemaRef } from './generated/schema'
 
 // IMPORTANT: If this line errors, do the following.
-// 1. Run ./types.sh from the root of the repo.
-// 2. See if anything needs to be fixed in this file.
-// 3. Change this type string to match the new type version.
+// 1. Run ./types.sh from the root of the client repo.
+// 2. Fix this file (if necessary) based on the new types.
+// 3. Change this type string to match the new types version.
 export { V555894 } from './generated/types'
 
 const failedRequest: string = 'failed to send request'
