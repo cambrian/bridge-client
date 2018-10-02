@@ -6,9 +6,9 @@
   "scripts": {
     "build": "rm -rf dist && ./node_modules/.bin/tsc && chmod +x ./dist/**/*.js",
     "clean": "rm -rf dist",
-    "lint": "tslint --project tsconfig.json --format stylish",
+    "lint": "./node_modules/.bin/tslint --project tsconfig.json --format stylish",
     "start": "./dist/src/index.js",
-    "test": "./node_modules/.bin/mocha spec"
+    "test": "./node_modules/.bin/mocha -r ts-node/register -r tsconfig-paths/register ./test/**/*.ts"
   },
   "repository": {
     "type": "git",
@@ -25,10 +25,15 @@
   "homepage": "https://github.com/1protocol/bridge-client#readme",
   "devDependencies": {
     "@types/better-queue": "^3.8.0",
+    "@types/chai": "^4.1.6",
     "@types/mocha": "^5.2.5",
     "@types/node": "^10.11.2",
     "@types/uuid": "^3.4.4",
     "@types/ws": "^6.0.1",
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "ts-node": "^7.0.1",
+    "tsconfig-paths": "^3.6.0",
     "tslint": "^5.11.0",
     "tslint-config-standard": "^7.1.0",
     "tslint-eslint-rules": "^5.3.1",
@@ -41,7 +46,6 @@
     "@most/types": "^1.0.1",
     "ajv": "^6.5.4",
     "better-queue": "^3.8.10",
-    "mocha": "^5.2.0",
     "module-alias": "^2.1.0",
     "most-from-event": "^1.1.2",
     "source-map-support": "^0.5.8",
