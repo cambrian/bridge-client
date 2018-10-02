@@ -63,7 +63,6 @@ Copy the code from the previous section into a file `bridge-test/main.ts`. Then 
 `bridge-client` subdirectory):
 ```
 ./node_modules/.bin/tsc --lib 'es2018' main.ts
-chmod +x main.js
 ./node_modules/.bin/node main.js
 ```
 And you should see the desired output.
