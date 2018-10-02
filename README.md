@@ -52,7 +52,7 @@ implementation, such as [this](https://github.com/pladaria/reconnecting-websocke
 
 ## Toy Setup
 Run the Manager executable as before. Then open a separate Terminal from any directory and
-run the following commands, which will populate a new subdirectory `bridge-test`:
+run these commands, which will populate a new subdirectory `bridge-test`:
 ```bash
 mkdir -p bridge-test
 cd bridge-test
