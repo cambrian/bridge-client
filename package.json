@@ -4,11 +4,11 @@
   "description": "A TypeScript module for interfacing with our Haskell-based backend.",
   "private": true,
   "scripts": {
-    "build": "rm -rf dist && ./node_modules/.bin/tsc && chmod +x ./dist/*.js ./dist/**/*.js",
+    "build": "rm -rf dist && ./node_modules/.bin/tsc && chmod +x ./dist/**/*.js",
     "clean": "rm -rf dist",
     "lint": "tslint --project tsconfig.json --format stylish",
-    "start": "./dist/index.js",
-    "test": "echo"
+    "start": "./dist/src/index.js",
+    "test": "./node_modules/.bin/mocha spec"
   },
   "repository": {
     "type": "git",
@@ -42,10 +42,14 @@
     "ajv": "^6.5.4",
     "better-queue": "^3.8.10",
     "mocha": "^5.2.0",
+    "module-alias": "^2.1.0",
     "most-from-event": "^1.1.2",
     "source-map-support": "^0.5.8",
     "tslib": "^1.9.3",
     "uuid": "^3.3.2",
     "ws": "^6.0.0"
+  },
+  "_moduleAliases": {
+    "@src": "dist/src"
   }
 }

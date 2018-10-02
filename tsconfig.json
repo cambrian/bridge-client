@@ -16,8 +16,16 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "outDir": "dist",
+    "paths": {
+      "@src": [
+        "src/index"
+      ],
+      "@src/*": [
+        "src/*"
+      ],
+    },
     "pretty": true,
-    "rootDir": "./src",
+    "rootDir": ".",
     "strict": true,
     "target": "es2018",
     "traceResolution": false
@@ -26,6 +34,7 @@
     "node_modules"
   ],
   "include": [
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "test/**/*.ts"
   ]
 }
