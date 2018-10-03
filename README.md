@@ -5,9 +5,9 @@ A TypeScript module for interfacing with our Haskell-based backend.
 
 ## Installation
 ```bash
-npm install https://github.com/1protocol/bridge-client#bdd59a9 --save
+npm install https://github.com/1protocol/bridge-client --save
 ```
-The version given here is tied to a particular [Manager](https://github.com/1protocol/vest-hs/tree/2fb90119d4e00f5053087627b1f879618deffa0a) commit, which
+The version given here is tied to a particular [Manager](https://github.com/1protocol/vest-hs/tree/5df3500012a3f54225c9cbc6561253b13ce2250f) commit, which
 will enable you to complete the following demo.
 
 ## Usage
@@ -74,7 +74,7 @@ work, ensure that parent directories do not contain a `node_modules` folder):
 mkdir -p bridge-test
 cd bridge-test
 # You must have NPM installed at the very least...
-npm install ws @types/ws https://github.com/1protocol/bridge-client#bdd59a9 typescript node
+npm install ws @types/ws https://github.com/1protocol/bridge-client typescript node
 ```
 Copy the code from the previous section into a file `bridge-test/main.ts`. Then (from the
 `bridge-test` subdirectory):
