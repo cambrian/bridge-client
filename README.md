@@ -74,7 +74,7 @@ work, ensure that parent directories do not contain a `node_modules` folder):
 mkdir -p bridge-test
 cd bridge-test
 # You must have NPM installed at the very least...
-npm install ws @types/ws https://github.com/1protocol/bridge-client#8c0ca92 typescript node
+npm install ws @types/ws https://github.com/1protocol/bridge-client#bdd59a9 typescript node
 ```
 Copy the code from the previous section into a file `bridge-test/main.ts`. Then (from the
 `bridge-test` subdirectory):
