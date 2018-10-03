@@ -2,7 +2,7 @@ import { heldPushStream, observe, toList } from '@src/streams'
 
 import { expect } from 'chai'
 
-function sleep (ms: number): Promise<{}> {
+function sleep (ms: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
 
