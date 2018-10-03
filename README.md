@@ -83,16 +83,16 @@ Copy the code from the previous section into a file `bridge-test/main.ts`. Then 
 And you should see the desired output.
 
 ## Concept
-Our back-end codebase relies on Haskell's type safety to prevent errors of all kinds. We want to
-have the same type discipline when we communicate with the front-end. But since we're using a
-different language (TypeScript) to build out the front-end, and since all data is text-serialized
+Our back-end codebase relies on Haskell's type safety to prevent errors of all kinds. Naturally, we
+want to use a common set of types when we handle front-end requests. Since we're using a different
+language (TypeScript) to build out the front-end, however, and since all data is text-serialized
 when it goes over the network, we can't just copy our request and response types from back-end to
 front-end.
 
 Fortunately, Haskell magic lets us generate RPC functions and types for the TypeScript front-end to
-use. This requires only some up-front work to create the right templates. Now whenever the back-end
-API changes, our RPC functions can be automatically re-generated from boilerplate—with no room for
-manual translation errors.
+use. This requires only some up-front work to create the right boilerplate. Now whenever the
+back-end API changes, our RPC functions can be automatically re-generated from templates—with no
+room for manual translation errors.
 
 In more concrete terms, let's say that the back-end had the following API:
 - Route `foo` from a `FooRequest` to a single `FooResponse`.
