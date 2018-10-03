@@ -84,10 +84,10 @@ And you should see the desired output.
 
 ## Concept
 Our back-end codebase relies on Haskell's type safety to prevent errors of all kinds. Naturally, we
-want to use a common set of types when we handle front-end requests. Since we're using a different
-language (TypeScript) to build out the front-end, however, and since all data is text-serialized
-when it goes over the network, we can't just copy our request and response types from back-end to
-front-end.
+want our front-end RPC callers to use the same types as our back-end RPC handlers. Since we're using
+a different language (TypeScript) to build out the front-end, however, and since all data is
+text-serialized when it goes over the network, we can't just copy our request and response types
+from back-end to front-end.
 
 Fortunately, Haskell magic lets us generate RPC functions and types for the TypeScript front-end to
 use. This requires only some up-front work to create the right boilerplate. Now whenever the
