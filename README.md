@@ -1,29 +1,6 @@
 # bridge-client
 A TypeScript module for interfacing with our Haskell-based backend.
 
-## Concept
-Our back-end codebase relies on Haskell's type safety to prevent errors of all kinds. We want to have
-the same type discipline when we communicate with the front-end. Since we're using a different language
-(TypeScript) to build out the front-end, however, and since all data is text-serialized when it goes over
-the network, we can't just copy our request and response types from back-end to front-end.
-
-Fortunately, some Haskell templating magic lets us generate RPC functions and types for the TypeScript
-front-end to use. This requires only some up-front work to create the right templates. Now whenever the
-back-end API changes, our RPC functions can be automatically re-generated from boilerplate—with no room
-for manual translation errors.
-
-In more concrete terms, let's say that the back-end had the following API:
-- Route `foo` from a `FooRequest` to a single `FooResponse`.
-- Route `bar` from a `BarRequest` to a single `BarResponse`.
-- Route `baz` from a `BazRequest` to streaming `BazResponse`.
-
-After we generate this module, it will contain these three functions (roughly):
-- `foo (webSocket: WebSocket, request: FooRequest): Promise<FooResponse>`
-- `bar (webSocket: WebSocket, request: BarRequest): Promise<BarResponse>`
-- `baz (webSocket: WebSocket, request: BazRequest): Stream<BazResponse>`
-
-This module exports a namespace `Call` with our actual generated functions.
-
 ## Installation
 ```bash
 npm install https://github.com/1protocol/bridge-client#a93d2b0 --save
@@ -104,3 +81,26 @@ Copy the code from the previous section into a file `bridge-test/main.ts`. Then 
 ./node_modules/.bin/node main.js
 ```
 And you should see the desired output.
+
+## Concept
+Our back-end codebase relies on Haskell's type safety to prevent errors of all kinds. We want to have
+the same type discipline when we communicate with the front-end. Since we're using a different language
+(TypeScript) to build out the front-end, however, and since all data is text-serialized when it goes over
+the network, we can't just copy our request and response types from back-end to front-end.
+
+Fortunately, some Haskell magic lets us generate RPC functions and types for the TypeScript
+front-end to use. This requires only some up-front work to create the right templates. Now whenever the
+back-end API changes, our RPC functions can be automatically re-generated from boilerplate—with no room
+for manual translation errors.
+
+In more concrete terms, let's say that the back-end had the following API:
+- Route `foo` from a `FooRequest` to a single `FooResponse`.
+- Route `bar` from a `BarRequest` to a single `BarResponse`.
+- Route `baz` from a `BazRequest` to streaming `BazResponse`.
+
+After we generate this module, it will contain these three functions (roughly):
+- `foo (webSocket: WebSocket, request: FooRequest): Promise<FooResponse>`
+- `bar (webSocket: WebSocket, request: BarRequest): Promise<BarResponse>`
+- `baz (webSocket: WebSocket, request: BazRequest): Stream<BazResponse>`
+
+This module exports a namespace `Call` with our actual generated functions.
