@@ -3,13 +3,13 @@ A TypeScript module for interfacing with our Haskell-based backend.
 
 ## Installation
 ```bash
-npm install https://github.com/1protocol/bridge-client#a93d2b0 --save
+npm install https://github.com/1protocol/bridge-client#1a67a97 --save
 ```
-This version is tied to a [particular](https://github.com/1protocol/vest-hs/tree/5df3500012a3f54225c9cbc6561253b13ce2250f)
+This version is tied to a [particular](https://github.com/1protocol/vest-hs/tree/caf3cef10acaca5c2991ab8b25f9c625066a7807)
 Manager commit, which will enable you to complete the following demo.
 
 ## Demo
-The Manager [executable](https://github.com/1protocol/vest-hs/releases/tag/v0.1-manager-dummy) must
+The Manager [executable](https://github.com/1protocol/vest-hs/releases/tag/v0.1-dummy-manager) must
 be running in its own shell. If you want to try out `bridge-client` but do not already have a
 TypeScript project, see the next section for a toy setup.
 ```typescript
@@ -72,7 +72,7 @@ that parent directories do not contain such a folder):
 mkdir -p bridge-test
 cd bridge-test
 # You must have NPM installed at the very least...
-npm install ws @types/ws https://github.com/1protocol/bridge-client#a93d2b0 typescript node
+npm install ws @types/ws https://github.com/1protocol/bridge-client#1a67a97 typescript node
 ```
 Copy the code from the previous section into a file `bridge-test/main.ts`. Then (from the
 `bridge-test` subdirectory):
