@@ -1,4 +1,3 @@
-// @ts-ignore
 import { heldPushStream, observe, toList } from '@src/streams'
 
 import { expect } from 'chai'

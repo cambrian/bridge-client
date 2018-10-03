@@ -2,8 +2,8 @@ import { AddIntsRequest, ConcatTextAuthRequest, ConcatTextAuthResponse, Text } f
 import { BridgeClient } from '../client';
 import { Stream } from '@most/types';
 export declare namespace Call {
-    function addInts(bridgeClient: BridgeClient.T, request: AddIntsRequest): Promise<number>;
-    function echoThrice(bridgeClient: BridgeClient.T, request: number): Stream<number>;
-    function concatTextAuth(bridgeClient: BridgeClient.T, request: ConcatTextAuthRequest, token: Text<'AuthToken'>): Promise<ConcatTextAuthResponse>;
-    function echoThriceAuth(bridgeClient: BridgeClient.T, request: string, token: Text<'AuthToken'>): Stream<string>;
+    function addInts(bridgeClient: BridgeClient.T, timeout: number | undefined, request: AddIntsRequest): Promise<number>;
+    function echoThrice(bridgeClient: BridgeClient.T, timeout: number | undefined, request: number): Stream<number>;
+    function concatTextAuth(bridgeClient: BridgeClient.T, timeout: number | undefined, token: Text<'AuthToken'>, request: ConcatTextAuthRequest): Promise<ConcatTextAuthResponse>;
+    function echoThriceAuth(bridgeClient: BridgeClient.T, timeout: number | undefined, token: Text<'AuthToken'>, request: string): Stream<string>;
 }

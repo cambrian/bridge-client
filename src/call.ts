@@ -11,13 +11,14 @@ import {
   SerializationFormat,
   Text
 } from './generated/types'
+import { heldPushStream, observe } from './streams'
 import { safeParse, validate } from './format'
 
 import { SchemaRef } from './generated/schema'
 import { Stream } from '@most/types'
-import { heldPushStream } from './streams'
 
 const unexpectedResponseError = new Error('unexpected response from server')
+const timeoutError = (time: number) => new Error('request timed out (' + time.toString() + ')')
 
 function translateException (exc: RpcClientException): Error {
   if (validate<IBadAuth>('IBadAuth', exc)) {
@@ -130,29 +131,63 @@ function call<T, U> (
   request: T,
   typeURef: SchemaRef,
   token?: Text<'AuthToken'>
-): U {
+): [Text<'RequestId'>, U] {
   const [id, requestMessage] = buildRequestOfAuth(token)(route, request)
   const deferredResponse = installResponseHandler(bridgeClient, typeURef, id)
   bridgeClient.socketClient.send(requestMessage, cancelResponseIfError(bridgeClient, id))
-  return deferredResponse
+  return [id, deferredResponse]
+}
+
+// Run a custom handler if a Promise times out.
+function catchPromiseTimeout<T> (
+  timeout: number,
+  promise: Promise<T>,
+  // Timeout handler used for cleanup logic.
+  timeoutHandler: (errorValue: Error) => void
+): void {
+  const timer = setTimeout(() => timeoutHandler(timeoutError(timeout)), timeout)
+  promise.then(() => clearTimeout(timer)).catch(() => clearTimeout(timer))
+}
+
+// Run a custom handler if stream elements time out.
+function catchStreamTimeout<T> (
+  timeout: number,
+  stream: Stream<T>,
+  // Timeout handler used for cleanup logic.
+  timeoutHandler: (errorValue: Error) => void
+): void {
+  const makeTimer = () => setTimeout(() => timeoutHandler(timeoutError(timeout)), timeout)
+  let timer = makeTimer()
+  observe(() => {
+    clearTimeout(timer)
+    timer = makeTimer()
+  }, stream).catch(() => clearTimeout(timer))
 }
 
 export function direct<T, U> (
   bridgeClient: BridgeClient.T,
+  timeout: number | undefined,
   route: Text<'Route'>,
   request: T,
   typeURef: SchemaRef,
   token?: Text<'AuthToken'>
 ): Promise<U> {
-  return call<T, Promise<U>>(installDirectHandler, bridgeClient, route, request, typeURef, token)
+  const [id, promise] = call
+    <T, Promise<U>>(installDirectHandler, bridgeClient, route, request, typeURef, token)
+  if (timeout) catchPromiseTimeout(timeout, promise, cancelResponseIfError(bridgeClient, id))
+  return promise
 }
 
 export function streaming<T, U> (
   bridgeClient: BridgeClient.T,
+  timeout: number | undefined,
   route: Text<'Route'>,
   request: T,
   typeURef: SchemaRef,
   token?: Text<'AuthToken'>
 ): Stream<U> {
-  return call<T, Stream<U>>(installStreamingHandler, bridgeClient, route, request, typeURef, token)
+  const [id, stream] = call
+    <T, Stream<U>>(installStreamingHandler, bridgeClient, route, request, typeURef, token)
+  if (timeout) catchStreamTimeout(timeout, stream, cancelResponseIfError(bridgeClient, id))
+  return stream
 }

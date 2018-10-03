@@ -7,10 +7,12 @@ import { Stream } from '@most/types'
 export namespace Call {
   export function addInts (
     bridgeClient: BridgeClient.T,
+    timeout: number | undefined,
     request: AddIntsRequest
   ): Promise<number> {
     return direct<AddIntsRequest, number>(
       bridgeClient,
+      timeout,
       'addInts',
       request,
       'number'
@@ -19,10 +21,12 @@ export namespace Call {
 
   export function echoThrice (
     bridgeClient: BridgeClient.T,
+    timeout: number | undefined,
     request: number
   ): Stream<number> {
     return streaming<number, number>(
       bridgeClient,
+      timeout,
       'echoThrice',
       request,
       'number'
@@ -31,11 +35,13 @@ export namespace Call {
 
   export function concatTextAuth (
     bridgeClient: BridgeClient.T,
-    request: ConcatTextAuthRequest,
-    token: Text<'AuthToken'>
+    timeout: number | undefined,
+    token: Text<'AuthToken'>,
+    request: ConcatTextAuthRequest
   ): Promise<ConcatTextAuthResponse> {
     return direct<ConcatTextAuthRequest, ConcatTextAuthResponse>(
       bridgeClient,
+      timeout,
       'concatTextAuth',
       request,
       'ConcatTextAuthResponse',
@@ -45,11 +51,13 @@ export namespace Call {
 
   export function echoThriceAuth (
     bridgeClient: BridgeClient.T,
-    request: string,
-    token: Text<'AuthToken'>
+    timeout: number | undefined,
+    token: Text<'AuthToken'>,
+    request: string
   ): Stream<string> {
     return streaming<string, string>(
       bridgeClient,
+      timeout,
       'echoThriceAuth',
       request,
       'string',
