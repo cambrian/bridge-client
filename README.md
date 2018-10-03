@@ -5,7 +5,7 @@ A TypeScript module for interfacing with our Haskell-based backend.
 
 ## Installation
 ```bash
-npm install https://github.com/1protocol/bridge-client#8c0ca92 --save
+npm install https://github.com/1protocol/bridge-client#bdd59a9 --save
 ```
 The version given here is tied to a particular [Manager](https://github.com/1protocol/vest-hs/tree/2fb90119d4e00f5053087627b1f879618deffa0a) commit, which
 will enable you to complete the following demo.
@@ -17,7 +17,7 @@ already have a TypeScript project, see the next section for a toy setup.
 ```typescript
 import * as WebSocket from 'ws'
 
-import { BridgeClient, Call, observe } from '.'
+import { BridgeClient, Call, observe } from 'bridge-client'
 
 async function makeSocket (): Promise<WebSocket> {
   return new Promise<WebSocket>((resolve, _) => {
