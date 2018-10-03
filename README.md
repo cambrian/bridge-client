@@ -60,7 +60,7 @@ cd bridge-test
 npm install ws @types/ws https://github.com/1protocol/bridge-client#8c0ca92 typescript node
 ```
 Copy the code from the previous section into a file `bridge-test/main.ts`. Then (from the
-`bridge-client` subdirectory):
+`bridge-test` subdirectory):
 ```
 ./node_modules/.bin/tsc --lib 'es2018' main.ts
 ./node_modules/.bin/node main.js
