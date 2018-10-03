@@ -1,1 +1,0 @@
-{% if spec.streaming %}Stream<{% endif %}{{ spec.res }}{% if spec.streaming %}>{% endif %}

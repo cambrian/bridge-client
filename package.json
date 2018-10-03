@@ -2,7 +2,7 @@
   "name": "bridge-client",
   "version": "0.1.0",
   "description": "A TypeScript module for interfacing with our Haskell-based backend.",
-  "main": "dist/index.js",
+  "main": "dist/src/index.js",
   "private": true,
   "scripts": {
     "build": "rm -rf dist && ./node_modules/.bin/tsc && chmod +x ./dist/**/*.js",
@@ -46,13 +46,17 @@
     "@most/scheduler": "^1.2.1",
     "@most/types": "^1.0.1",
     "ajv": "^6.5.4",
-    "better-queue": "^3.8.10",
     "module-alias": "^2.1.0",
     "most-from-event": "^1.1.2",
     "source-map-support": "^0.5.8",
     "tslib": "^1.9.3",
     "uuid": "^3.3.2",
     "ws": "^6.0.0"
+  },
+  "peerDependencies": {
+    "@most/core": "1.x",
+    "@most/scheduler": "1.x",
+    "@most/types": "1.x"
   },
   "_moduleAliases": {
     "@src": "dist/src"

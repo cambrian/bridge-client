@@ -1,15 +1,8 @@
 import { AddIntsRequest, ConcatTextAuthRequest, ConcatTextAuthResponse, Text } from './types'
-import { call, makeDirectHandler, makeRequestOfAuth, makeStreamingHandler } from '../call'
+import { direct, streaming } from '../call'
 
 import { BridgeClient } from '../client'
-import { Stream } from '../streams'
-
-// IMPORTANT: If this line errors, do the following.
-// 1. Fix the error in ../call.ts before anything else.
-// 2. Fix the callers.ede template based on the new types.
-// 3. Change this type string to match the new types version.
-// 4. Re-run the caller generation script and commit.
-export { V555894 } from './types'
+import { Stream } from '@most/types'
 
 export namespace Call {
 {% for item in list %}

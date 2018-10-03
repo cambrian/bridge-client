@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-export { observe } from './streams';
 export { BridgeClient } from './client';
 export { Call } from './generated/callers';
-export { Stream } from '@most/types';
 export * from './generated/types';
+export * from './streams';
+export { V555894 } from './generated/types';

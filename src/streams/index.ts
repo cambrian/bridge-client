@@ -1,4 +1,2 @@
-export { PushableStream, heldPushStream } from './hold'
-export { observe, toList } from './utility'
-
-export { Stream } from '@most/types'
+export { heldPushStream } from './hold'
+export { observe, toList, PushableStream, pushStream } from './utility'

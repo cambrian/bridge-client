@@ -1,44 +1,41 @@
-import * as Events from 'events'
-
 import { Disposable, Scheduler, Sink, Stream, Time } from '@most/types'
-import { MulticastSource, until } from '@most/core'
+import { PushableStream, observe, pushStream } from './utility'
 
-import { fromEvent } from 'most-from-event'
-import { observe } from './utility'
-
-// Type is (push, close, stream).
-export type PushableStream<T> = [(value: T) => void, () => void, Stream<T>]
+import { MulticastSource } from '@most/core'
 
 // An imperative stream that holds its most recent value.
 export function heldPushStream<T> (): PushableStream<T> {
-  const emitter = new Events.EventEmitter()
-  const push = (item: T) => emitter.emit('pushEvent', item)
-  const close = () => emitter.emit('closeEvent')
-  const stream = hold(until(fromEvent('closeEvent', emitter), fromEvent('pushEvent', emitter)))
-  return [push, close, stream]
+  const [push, error, close, stream] = pushStream<T>()
+  return [push, error, close, hold(stream)]
 }
 
 export function hold<T> (stream: Stream<T>): Stream<T> {
   const heldStream = new Hold(stream)
-  // Force latest value to materialize.
-  observe(() => undefined, heldStream)
+  // If a tree falls in the forest and no one is there to hear it, it still makes a sound.
+  // Attach an observer to materialize held values even before other observers are attached.
+  observe(() => undefined, heldStream).catch(() => undefined)
   return heldStream
 }
 
 class Hold<T> extends MulticastSource<T> {
   heldValue?: T
   closed: Boolean
+  errored: Boolean
 
   constructor (source: Stream<T>) {
     super(source)
     this.closed = false
-    this.heldValue = undefined
+    this.errored = false
   }
 
   run (sink: Sink<T>, scheduler: Scheduler): Disposable {
-    let time = scheduler.currentTime()
-    this.tryFlushLatest(sink, time)
-    if (this.closed) sink.end(time)
+    if (!this.errored) {
+      const time = scheduler.currentTime()
+      if (this.heldValue) tryEvent(time, this.heldValue, sink)
+      if (this.closed) tryEnd(time, sink) // Gracefully handle late binds.
+    }
+
+    // Generic multicast logic.
     return super.run(sink, scheduler)
   }
 
@@ -47,20 +44,29 @@ class Hold<T> extends MulticastSource<T> {
     super.event(time, value)
   }
 
-  tryFlushLatest (sink: Sink<T>, time: Time): void {
-    if (this.heldValue) tryEvent(time, this.heldValue, sink)
-  }
-
   end (time: Time): void {
     this.closed = true
-    this.sinks.forEach(sink => sink.end(time))
+    super.end(time)
+  }
+
+  error (time: Time, errorValue: Error): void {
+    this.errored = true
+    super.error(time, errorValue)
   }
 }
 
-function tryEvent<T> (t: Time, x: T, sink: Sink<T>): void {
+function tryEvent<T> (time: Time, value: T, sink: Sink<T>): void {
   try {
-    sink.event(t, x)
-  } catch (e) {
-    sink.error(t, e)
+    sink.event(time, value)
+  } catch (errorValue) {
+    sink.error(time, errorValue)
+  }
+}
+
+function tryEnd<T> (time: Time, sink: Sink<T>): void {
+  try {
+    sink.end(time)
+  } catch (errorValue) {
+    sink.error(time, errorValue)
   }
 }

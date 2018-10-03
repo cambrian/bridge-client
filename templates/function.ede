@@ -2,13 +2,12 @@
     bridgeClient: BridgeClient.T,
     request: {{ spec.req }}{% if spec.auth %},
     token: Text<'AuthToken'>{% endif %}
-  ): Promise<{% include "return.ede" %}> {
-    return call<{{ spec.req }}, {% include "return.ede" %}>(
+  ): {% if spec.streaming %}Stream{% else %}Promise{% endif %}<{{ spec.res }}> {
+    return {% if spec.streaming %}streaming{% else %}direct{% endif %}<{{ spec.req }}, {{ spec.res }}>(
       bridgeClient,
-      makeRequestOfAuth({% if spec.auth %}token{% endif %}),
-      {% if spec.streaming %}makeStreamingHandler{% else %}makeDirectHandler{% endif %},
       '{{ spec.route }}',
-      '{{ spec.res }}',
-      request
+      request,
+      '{{ spec.res }}'{% if spec.auth %},
+      token{% endif %}
     )
   }
