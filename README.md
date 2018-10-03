@@ -9,9 +9,9 @@ This version is tied to a [particular](https://github.com/1protocol/vest-hs/tree
 Manager commit, which will enable you to complete the following demo.
 
 ## Demo
-The Manager [executable](https://github.com/1protocol/vest-hs/releases/tag/v0.1-manager-dummy)
-must be running in its own shell. If you want to try out `bridge-client` but do not
-already have a TypeScript project, see the next section for a toy setup.
+The Manager [executable](https://github.com/1protocol/vest-hs/releases/tag/v0.1-manager-dummy) must
+be running in its own shell. If you want to try out `bridge-client` but do not already have a
+TypeScript project, see the next section for a toy setup.
 ```typescript
 import * as WebSocket from 'ws'
 
@@ -65,9 +65,9 @@ WebSocket-compatible object to `BridgeClient.make`. Consider using a reconnectin
 implementation, such as [this](https://github.com/pladaria/reconnecting-websocket) repo.
 
 ## Toy Setup
-Run the Manager executable as before. Then open a separate shell and run these commands, which
-will populate a new subdirectory `bridge-test` (if this fails to create a `node_modules` folder,
-ensure that parent directories do not contain such a folder):
+Run the Manager executable as before. Then open a separate shell and run these commands, which will
+populate a new subdirectory `bridge-test` (if this fails to create a `node_modules` folder, ensure
+that parent directories do not contain such a folder):
 ```bash
 mkdir -p bridge-test
 cd bridge-test
@@ -83,15 +83,16 @@ Copy the code from the previous section into a file `bridge-test/main.ts`. Then 
 And you should see the desired output.
 
 ## Concept
-Our back-end codebase relies on Haskell's type safety to prevent errors of all kinds. We want to have
-the same type discipline when we communicate with the front-end. Since we're using a different language
-(TypeScript) to build out the front-end, however, and since all data is text-serialized when it goes over
-the network, we can't just copy our request and response types from back-end to front-end.
+Our back-end codebase relies on Haskell's type safety to prevent errors of all kinds. We want to
+have the same type discipline when we communicate with the front-end. But since we're using a
+different language (TypeScript) to build out the front-end, and since all data is text-serialized
+when it goes over the network, we can't just copy our request and response types from back-end to
+front-end.
 
-Fortunately, some Haskell magic lets us generate RPC functions and types for the TypeScript
-front-end to use. This requires only some up-front work to create the right templates. Now whenever the
-back-end API changes, our RPC functions can be automatically re-generated from boilerplate—with no room
-for manual translation errors.
+Fortunately, Haskell magic lets us generate RPC functions and types for the TypeScript front-end to
+use. This requires only some up-front work to create the right templates. Now whenever the back-end
+API changes, our RPC functions can be automatically re-generated from boilerplate—with no room for
+manual translation errors.
 
 In more concrete terms, let's say that the back-end had the following API:
 - Route `foo` from a `FooRequest` to a single `FooResponse`.
