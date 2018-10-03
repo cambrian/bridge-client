@@ -7,7 +7,7 @@ A TypeScript module for interfacing with our Haskell-based backend.
 ```bash
 npm install https://github.com/1protocol/bridge-client --save
 ```
-The version given here is tied to a particular [Manager](https://github.com/1protocol/vest-hs/tree/5df3500012a3f54225c9cbc6561253b13ce2250f) commit, which
+This version is tied to a particular [Manager](https://github.com/1protocol/vest-hs/tree/5df3500012a3f54225c9cbc6561253b13ce2250f) commit, which
 will enable you to complete the following demo.
 
 ## Usage
