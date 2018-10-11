@@ -5,10 +5,19 @@ import { BridgeClient } from '../client'
 import { Stream } from '@most/types'
 
 export namespace Call {
-{% for item in list %}
-{% let spec = item.value %}
+{% for serviceItem in services %}
+{% let service = serviceItem.value %}
+  export namespace {{ service.namespace }} {
+{% for specItem in service.specs %}
+{% let spec = specItem.value %}
 {% include "function.ede" %}
-{% if !item.last %}
+{% if !specItem.last %}
+
+{% endif %}
+{% endlet %}
+{% endfor %}
+  }
+{% if !serviceItem.last %}
 
 {% endif %}
 {% endlet %}

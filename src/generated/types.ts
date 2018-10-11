@@ -1,17 +1,12 @@
-export type V555894 = 'Bridge Typings Version 555894'
+export type V275704 = 'Bridge Typings Version 275704'
 
 export type Tagged<T extends string, K> = { TagDoNotUse: T } | K
 
 export type Text<T extends string> = Tagged<T, string>
 
-export type SerializationFormat = 'Haskell' | 'JSON'
+export type DeserializeException = IDeserializeException
 
-export type Headers = IHeaders
-
-export interface IHeaders {
-  format: SerializationFormat
-  token?: Text<'AuthToken'>
-}
+export type IDeserializeException = [Text<'Format'>, string]
 
 export type RpcClientException = IBadAuth | IBadCall
 
@@ -21,7 +16,7 @@ export interface IBadAuth {
 
 export interface IBadCall {
   tag: 'BadCall'
-  contents: [SerializationFormat, Text<'Request'>]
+  contents: DeserializeException
 }
 
 export type Either<T1, T2> = Left<T1> | Right<T2>
@@ -49,7 +44,7 @@ export type RequestMessage = IRequestMessage
 
 export interface IRequestMessage {
   id: Text<'RequestId'>
-  headers: Headers
+  headers: {[k: string]: string}
   route: Text<'Route'>
   reqText: Text<'Request'>
 }

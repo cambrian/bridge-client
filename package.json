@@ -9,7 +9,7 @@
     "clean": "rm -rf dist",
     "lint": "./node_modules/.bin/tslint --project tsconfig.json --format stylish",
     "start": "./dist/src/index.js",
-    "test": "./node_modules/.bin/mocha -r ts-node/register -r tsconfig-paths/register ./test/**/*.ts"
+    "test": "./node_modules/.bin/mocha -r ts-node/register -r tsconfig-paths/register --exclude ./test/example.ts ./test/**/*.ts"
   },
   "repository": {
     "type": "git",

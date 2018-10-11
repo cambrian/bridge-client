@@ -36,7 +36,7 @@ async function errorDemo (
   close()
 }
 
-describe('held push stream (tests are flaky)', () => {
+describe('held push stream (tests can be flaky)', () => {
   it('should return all demo values if bound immediately', async () => {
     const [push, , close, stream] = heldPushStream<number>()
     demo(push, close)

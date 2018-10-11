@@ -1,0 +1,43 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+// Not an actual test, but good to make sure this works when updating types.
+const WebSocket = require("ws");
+const _src_1 = require("@src");
+async function makeSocket() {
+    return new Promise((resolve, _) => {
+        const ws = new WebSocket('http://127.0.0.1:3000');
+        ws.on('open', () => resolve(ws));
+    });
+}
+async function run() {
+    const ws = await makeSocket();
+    const client = _src_1.BridgeClient.make(ws);
+    // Second parameter is your desired timeout.
+    // AddInts and EchoThrice have a built-in 250 ms server-side delay.
+    const result = await _src_1.Call.DummyManager.addInts(client, undefined, { a: 3, b: 4 });
+    console.log(result); // Output: 7
+    try {
+        const result = await _src_1.Call.DummyManager.addInts(client, 100, { a: 3, b: 4 });
+        console.log(result);
+    }
+    catch (exception) {
+        console.log(exception.message); // Output: request timed out (100)
+    }
+    const stream = await _src_1.Call.DummyManager.echoThrice(client, undefined, 1337);
+    await _src_1.observe(console.log, stream); // Output: 1337 (x3)
+    try {
+        const stream = await _src_1.Call.DummyManager.echoThrice(client, 100, 1337);
+        await _src_1.observe(console.log, stream);
+    }
+    catch (exception) {
+        console.log(exception.message); // Output: request timed out (100)
+    }
+    const fizzBuzz = { a: 'Fizz', b: 'Buzz' };
+    const result2 = await _src_1.Call.DummyManager.concatTextAuth(client, undefined, 'Token', fizzBuzz);
+    console.log(result2); // Output: { result: 'FizzBuzz' }
+    const stream2 = await _src_1.Call.DummyManager.echoThriceAuth(client, undefined, 'Token', '1337');
+    await _src_1.observe(console.log, stream2); // Output: '1337' (x3)
+    ws.close();
+}
+run();
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZXhhbXBsZS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uL3Rlc3QvZXhhbXBsZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLDRFQUE0RTtBQUM1RSxnQ0FBK0I7QUFFL0IsK0JBQWtEO0FBRWxELEtBQUssVUFBVSxVQUFVO0lBQ3ZCLE9BQU8sSUFBSSxPQUFPLENBQVksQ0FBQyxPQUFPLEVBQUUsQ0FBQyxFQUFFLEVBQUU7UUFDM0MsTUFBTSxFQUFFLEdBQUcsSUFBSSxTQUFTLENBQUMsdUJBQXVCLENBQUMsQ0FBQTtRQUNqRCxFQUFFLENBQUMsRUFBRSxDQUFDLE1BQU0sRUFBRSxHQUFHLEVBQUUsQ0FBQyxPQUFPLENBQUMsRUFBRSxDQUFDLENBQUMsQ0FBQTtJQUNsQyxDQUFDLENBQUMsQ0FBQTtBQUNKLENBQUM7QUFFRCxLQUFLLFVBQVUsR0FBRztJQUNoQixNQUFNLEVBQUUsR0FBRyxNQUFNLFVBQVUsRUFBRSxDQUFBO0lBQzdCLE1BQU0sTUFBTSxHQUFHLG1CQUFZLENBQUMsSUFBSSxDQUFDLEVBQUUsQ0FBQyxDQUFBO0lBRXBDLDRDQUE0QztJQUM1QyxtRUFBbUU7SUFDbkUsTUFBTSxNQUFNLEdBQUcsTUFBTSxXQUFJLENBQUMsWUFBWSxDQUFDLE9BQU8sQ0FBQyxNQUFNLEVBQUUsU0FBUyxFQUFFLEVBQUUsQ0FBQyxFQUFFLENBQUMsRUFBRSxDQUFDLEVBQUUsQ0FBQyxFQUFFLENBQUMsQ0FBQTtJQUNqRixPQUFPLENBQUMsR0FBRyxDQUFDLE1BQU0sQ0FBQyxDQUFBLENBQUMsWUFBWTtJQUVoQyxJQUFJO1FBQ0YsTUFBTSxNQUFNLEdBQUcsTUFBTSxXQUFJLENBQUMsWUFBWSxDQUFDLE9BQU8sQ0FBQyxNQUFNLEVBQUUsR0FBRyxFQUFFLEVBQUUsQ0FBQyxFQUFFLENBQUMsRUFBRSxDQUFDLEVBQUUsQ0FBQyxFQUFFLENBQUMsQ0FBQTtRQUMzRSxPQUFPLENBQUMsR0FBRyxDQUFDLE1BQU0sQ0FBQyxDQUFBO0tBQ3BCO0lBQUMsT0FBTyxTQUFTLEVBQUU7UUFDbEIsT0FBTyxDQUFDLEdBQUcsQ0FBQyxTQUFTLENBQUMsT0FBTyxDQUFDLENBQUEsQ0FBQyxrQ0FBa0M7S0FDbEU7SUFFRCxNQUFNLE1BQU0sR0FBRyxNQUFNLFdBQUksQ0FBQyxZQUFZLENBQUMsVUFBVSxDQUFDLE1BQU0sRUFBRSxTQUFTLEVBQUUsSUFBSSxDQUFDLENBQUE7SUFDMUUsTUFBTSxjQUFPLENBQUMsT0FBTyxDQUFDLEdBQUcsRUFBRSxNQUFNLENBQUMsQ0FBQSxDQUFDLG9CQUFvQjtJQUV2RCxJQUFJO1FBQ0YsTUFBTSxNQUFNLEdBQUcsTUFBTSxXQUFJLENBQUMsWUFBWSxDQUFDLFVBQVUsQ0FBQyxNQUFNLEVBQUUsR0FBRyxFQUFFLElBQUksQ0FBQyxDQUFBO1FBQ3BFLE1BQU0sY0FBTyxDQUFDLE9BQU8sQ0FBQyxHQUFHLEVBQUUsTUFBTSxDQUFDLENBQUE7S0FDbkM7SUFBQyxPQUFPLFNBQVMsRUFBRTtRQUNsQixPQUFPLENBQUMsR0FBRyxDQUFDLFNBQVMsQ0FBQyxPQUFPLENBQUMsQ0FBQSxDQUFDLGtDQUFrQztLQUNsRTtJQUVELE1BQU0sUUFBUSxHQUFHLEVBQUUsQ0FBQyxFQUFFLE1BQU0sRUFBRSxDQUFDLEVBQUUsTUFBTSxFQUFFLENBQUE7SUFDekMsTUFBTSxPQUFPLEdBQUcsTUFBTSxXQUFJLENBQUMsWUFBWSxDQUFDLGNBQWMsQ0FBQyxNQUFNLEVBQUUsU0FBUyxFQUFFLE9BQU8sRUFBRSxRQUFRLENBQUMsQ0FBQTtJQUM1RixPQUFPLENBQUMsR0FBRyxDQUFDLE9BQU8sQ0FBQyxDQUFBLENBQUMsaUNBQWlDO0lBRXRELE1BQU0sT0FBTyxHQUFHLE1BQU0sV0FBSSxDQUFDLFlBQVksQ0FBQyxjQUFjLENBQUMsTUFBTSxFQUFFLFNBQVMsRUFBRSxPQUFPLEVBQUUsTUFBTSxDQUFDLENBQUE7SUFDMUYsTUFBTSxjQUFPLENBQUMsT0FBTyxDQUFDLEdBQUcsRUFBRSxPQUFPLENBQUMsQ0FBQSxDQUFDLHNCQUFzQjtJQUMxRCxFQUFFLENBQUMsS0FBSyxFQUFFLENBQUE7QUFDWixDQUFDO0FBRUQsR0FBRyxFQUFFLENBQUEifQ==

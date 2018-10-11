@@ -8,7 +8,6 @@ import {
   RequestMessage,
   ResultItem,
   RpcClientException,
-  SerializationFormat,
   Text
 } from './generated/types'
 import { heldPushStream, observe } from './streams'
@@ -35,7 +34,7 @@ function buildRequestOfAuth<T> (token?: Text<'AuthToken'>): (
   return (route, request) => {
     const id = UUIDV4()
     const reqText = JSON.stringify(request)
-    const headers = { format: 'JSON' as SerializationFormat, token }
+    const headers = { token: token as string }
     const requestMessage: RequestMessage = { id, route, reqText, headers }
     return [id, JSON.stringify(requestMessage)]
   }

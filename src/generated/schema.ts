@@ -1,15 +1,15 @@
 export type SchemaRef = 'AddIntsRequest'
   | 'ConcatTextAuthRequest'
   | 'ConcatTextAuthResponse'
+  | 'DeserializeException'
   | 'Either'
-  | 'Headers'
   | 'IAddIntsRequest'
   | 'IBadAuth'
   | 'IBadCall'
   | 'IConcatTextAuthRequest'
   | 'IConcatTextAuthResponse'
+  | 'IDeserializeException'
   | 'IEndOfResults'
-  | 'IHeaders'
   | 'IRequestMessage'
   | 'IResponseMessage'
   | 'IResult'
@@ -23,7 +23,6 @@ export type SchemaRef = 'AddIntsRequest'
   | 'Right'
   | 'Right<T2>'
   | 'RpcClientException'
-  | 'SerializationFormat'
   | 'T'
   | 'T1'
   | 'T2'
@@ -32,7 +31,7 @@ export type SchemaRef = 'AddIntsRequest'
   | 'T_3'
   | 'Tagged'
   | 'Text'
-  | 'V555894'
+  | 'V876423'
   | 'string'
   | 'number'
   | 'boolean'
@@ -70,28 +69,40 @@ export const Schemas = {
       },
       'type': 'object'
     },
-    'Either': {
-      'anyOf': [
+    'DeserializeException': {
+      'additionalItems': {
+        'anyOf': [
+          {
+            'anyOf': [
+              {
+                'properties': {
+                  'TagDoNotUse': {
+                    'enum': [
+                      'Format'
+                    ],
+                    'type': 'string'
+                  }
+                },
+                'type': 'object'
+              },
+              {
+                'type': 'string'
+              }
+            ]
+          },
+          {
+            'type': 'string'
+          }
+        ]
+      },
+      'items': [
         {
-          '$ref': '#/definitions/Left<T1>'
-        },
-        {
-          '$ref': '#/definitions/Right<T2>'
-        }
-      ]
-    },
-    'Headers': {
-      'properties': {
-        'format': {
-          '$ref': '#/definitions/SerializationFormat'
-        },
-        'token': {
           'anyOf': [
             {
               'properties': {
                 'TagDoNotUse': {
                   'enum': [
-                    'AuthToken'
+                    'Format'
                   ],
                   'type': 'string'
                 }
@@ -102,9 +113,23 @@ export const Schemas = {
               'type': 'string'
             }
           ]
+        },
+        {
+          'type': 'string'
         }
-      },
-      'type': 'object'
+      ],
+      'minItems': 2,
+      'type': 'array'
+    },
+    'Either': {
+      'anyOf': [
+        {
+          '$ref': '#/definitions/Left<T1>'
+        },
+        {
+          '$ref': '#/definitions/Right<T2>'
+        }
+      ]
     },
     'IAddIntsRequest': {
       'properties': {
@@ -134,19 +159,12 @@ export const Schemas = {
           'additionalItems': {
             'anyOf': [
               {
-                'enum': [
-                  'Haskell',
-                  'JSON'
-                ],
-                'type': 'string'
-              },
-              {
                 'anyOf': [
                   {
                     'properties': {
                       'TagDoNotUse': {
                         'enum': [
-                          'Request'
+                          'Format'
                         ],
                         'type': 'string'
                       }
@@ -157,24 +175,20 @@ export const Schemas = {
                     'type': 'string'
                   }
                 ]
+              },
+              {
+                'type': 'string'
               }
             ]
           },
           'items': [
-            {
-              'enum': [
-                'Haskell',
-                'JSON'
-              ],
-              'type': 'string'
-            },
             {
               'anyOf': [
                 {
                   'properties': {
                     'TagDoNotUse': {
                       'enum': [
-                        'Request'
+                        'Format'
                       ],
                       'type': 'string'
                     }
@@ -185,6 +199,9 @@ export const Schemas = {
                   'type': 'string'
                 }
               ]
+            },
+            {
+              'type': 'string'
             }
           ],
           'minItems': 2,
@@ -218,6 +235,58 @@ export const Schemas = {
       },
       'type': 'object'
     },
+    'IDeserializeException': {
+      'additionalItems': {
+        'anyOf': [
+          {
+            'anyOf': [
+              {
+                'properties': {
+                  'TagDoNotUse': {
+                    'enum': [
+                      'Format'
+                    ],
+                    'type': 'string'
+                  }
+                },
+                'type': 'object'
+              },
+              {
+                'type': 'string'
+              }
+            ]
+          },
+          {
+            'type': 'string'
+          }
+        ]
+      },
+      'items': [
+        {
+          'anyOf': [
+            {
+              'properties': {
+                'TagDoNotUse': {
+                  'enum': [
+                    'Format'
+                  ],
+                  'type': 'string'
+                }
+              },
+              'type': 'object'
+            },
+            {
+              'type': 'string'
+            }
+          ]
+        },
+        {
+          'type': 'string'
+        }
+      ],
+      'minItems': 2,
+      'type': 'array'
+    },
     'IEndOfResults': {
       'properties': {
         'tag': {
@@ -229,36 +298,13 @@ export const Schemas = {
       },
       'type': 'object'
     },
-    'IHeaders': {
-      'properties': {
-        'format': {
-          '$ref': '#/definitions/SerializationFormat'
-        },
-        'token': {
-          'anyOf': [
-            {
-              'properties': {
-                'TagDoNotUse': {
-                  'enum': [
-                    'AuthToken'
-                  ],
-                  'type': 'string'
-                }
-              },
-              'type': 'object'
-            },
-            {
-              'type': 'string'
-            }
-          ]
-        }
-      },
-      'type': 'object'
-    },
     'IRequestMessage': {
       'properties': {
         'headers': {
-          '$ref': '#/definitions/IHeaders'
+          'additionalProperties': {
+            'type': 'string'
+          },
+          'type': 'object'
         },
         'id': {
           'anyOf': [
@@ -406,7 +452,10 @@ export const Schemas = {
     'RequestMessage': {
       'properties': {
         'headers': {
-          '$ref': '#/definitions/IHeaders'
+          'additionalProperties': {
+            'type': 'string'
+          },
+          'type': 'object'
         },
         'id': {
           'anyOf': [
@@ -542,13 +591,6 @@ export const Schemas = {
         }
       ]
     },
-    'SerializationFormat': {
-      'enum': [
-        'Haskell',
-        'JSON'
-      ],
-      'type': 'string'
-    },
     'T': {},
     'T1': {},
     'T2': {},
@@ -591,9 +633,9 @@ export const Schemas = {
         }
       ]
     },
-    'V555894': {
+    'V876423': {
       'enum': [
-        'Bridge Typings Version 555894'
+        'Bridge Typings Version 876423'
       ],
       'type': 'string'
     }

@@ -1,21 +1,17 @@
-export declare type V555894 = 'Bridge Typings Version 555894';
+export declare type V275704 = 'Bridge Typings Version 275704';
 export declare type Tagged<T extends string, K> = {
     TagDoNotUse: T;
 } | K;
 export declare type Text<T extends string> = Tagged<T, string>;
-export declare type SerializationFormat = 'Haskell' | 'JSON';
-export declare type Headers = IHeaders;
-export interface IHeaders {
-    format: SerializationFormat;
-    token?: Text<'AuthToken'>;
-}
+export declare type DeserializeException = IDeserializeException;
+export declare type IDeserializeException = [Text<'Format'>, string];
 export declare type RpcClientException = IBadAuth | IBadCall;
 export interface IBadAuth {
     tag: 'BadAuth';
 }
 export interface IBadCall {
     tag: 'BadCall';
-    contents: [SerializationFormat, Text<'Request'>];
+    contents: DeserializeException;
 }
 export declare type Either<T1, T2> = Left<T1> | Right<T2>;
 export interface Left<T> {
@@ -35,7 +31,9 @@ export interface IEndOfResults {
 export declare type RequestMessage = IRequestMessage;
 export interface IRequestMessage {
     id: Text<'RequestId'>;
-    headers: Headers;
+    headers: {
+        [k: string]: string;
+    };
     route: Text<'Route'>;
     reqText: Text<'Request'>;
 }
