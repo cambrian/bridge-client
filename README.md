@@ -3,9 +3,9 @@ A TypeScript module for interfacing with our Haskell-based backend.
 
 ## Installation
 ```bash
-npm install https://github.com/1protocol/bridge-client#1a67a97 --save
+npm install https://github.com/1protocol/bridge-client#b3dc126 --save
 ```
-This version is tied to a [particular](https://github.com/1protocol/vest-hs/tree/caf3cef10acaca5c2991ab8b25f9c625066a7807)
+This version is tied to a [particular](https://github.com/1protocol/vest-hs/tree/a88a6ed70582ddd3844aa07c7b8827151bf082a3)
 Manager commit, which will enable you to complete the following demo.
 
 ## Demo
@@ -13,9 +13,10 @@ The Manager [executable](https://github.com/1protocol/vest-hs/releases/tag/v0.1-
 be running in its own shell. If you want to try out `bridge-client` but do not already have a
 TypeScript project, see the next section for a toy setup.
 ```typescript
+// This file is also in test/example.ts.
 import * as WebSocket from 'ws'
 
-import { BridgeClient, Call, observe } from 'bridge-client'
+import { BridgeClient, Call, observe } from '@src'
 
 async function makeSocket (): Promise<WebSocket> {
   return new Promise<WebSocket>((resolve, _) => {
@@ -30,30 +31,31 @@ async function run (): Promise<void> {
 
   // Second parameter is your desired timeout.
   // AddInts and EchoThrice have a built-in 250 ms server-side delay.
-  const result = await Call.addInts(client, undefined, { a: 3, b: 4 })
+  const result = await Call.DummyManager.addInts(client, undefined, { a: 3, b: 4 })
   console.log(result) // Output: 7
 
   try {
-    const result = await Call.addInts(client, 100, { a: 3, b: 4 })
+    const result = await Call.DummyManager.addInts(client, 100, { a: 3, b: 4 })
     console.log(result)
   } catch (exception) {
     console.log(exception.message) // Output: request timed out (100)
   }
 
-  const stream = await Call.echoThrice(client, undefined, 1337)
+  const stream = await Call.DummyManager.echoThrice(client, undefined, 1337)
   await observe(console.log, stream) // Output: 1337 (x3)
 
   try {
-    const stream = await Call.echoThrice(client, 100, 1337)
+    const stream = await Call.DummyManager.echoThrice(client, 100, 1337)
     await observe(console.log, stream)
   } catch (exception) {
     console.log(exception.message) // Output: request timed out (100)
   }
 
-  const result2 = await Call.concatTextAuth(client, undefined, 'Token', { a: 'Fizz', b: 'Buzz' })
+  const fizzBuzz = { a: 'Fizz', b: 'Buzz' }
+  const result2 = await Call.DummyManager.concatTextAuth(client, undefined, 'Token', fizzBuzz)
   console.log(result2) // Output: { result: 'FizzBuzz' }
 
-  const stream2 = await Call.echoThriceAuth(client, undefined, 'Token', '1337')
+  const stream2 = await Call.DummyManager.echoThriceAuth(client, undefined, 'Token', '1337')
   await observe(console.log, stream2) // Output: '1337' (x3)
   ws.close()
 }
@@ -72,7 +74,7 @@ that parent directories do not contain such a folder):
 mkdir -p bridge-test
 cd bridge-test
 # You must have NPM installed at the very least...
-npm install ws @types/ws https://github.com/1protocol/bridge-client#1a67a97 typescript node
+npm install ws @types/ws https://github.com/1protocol/bridge-client#b3dc126 typescript node
 ```
 Copy the code from the previous section into a file `bridge-test/main.ts`. Then (from the
 `bridge-test` subdirectory):
