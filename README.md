@@ -3,7 +3,7 @@ A TypeScript module for interfacing with our Haskell-based backend.
 
 ## Installation
 ```bash
-npm install https://github.com/1protocol/bridge-client#b3dc126 --save
+npm install https://github.com/1protocol/bridge-client#7199f00 --save
 ```
 This version is tied to a [particular](https://github.com/1protocol/vest-hs/tree/a88a6ed70582ddd3844aa07c7b8827151bf082a3)
 Manager commit, which will enable you to complete the following demo.
@@ -16,7 +16,7 @@ TypeScript project, see the next section for a toy setup.
 // This file is also in test/example.ts.
 import * as WebSocket from 'ws'
 
-import { BridgeClient, Call, observe } from '@src'
+import { BridgeClient, Call, Server, observe } from '@src'
 
 async function makeSocket (): Promise<WebSocket> {
   return new Promise<WebSocket>((resolve, _) => {
@@ -27,7 +27,7 @@ async function makeSocket (): Promise<WebSocket> {
 
 async function run (): Promise<void> {
   const ws = await makeSocket()
-  const client = BridgeClient.make(ws)
+  const client = BridgeClient.make<Server.DummyManager>(ws)
 
   // Second parameter is your desired timeout.
   // AddInts and EchoThrice have a built-in 250 ms server-side delay.
@@ -74,7 +74,7 @@ that parent directories do not contain such a folder):
 mkdir -p bridge-test
 cd bridge-test
 # You must have NPM installed at the very least...
-npm install ws @types/ws https://github.com/1protocol/bridge-client#b3dc126 typescript node
+npm install ws @types/ws https://github.com/1protocol/bridge-client#7199f00 typescript node
 ```
 Copy the code from the previous section into a file `bridge-test/main.ts`. Then (from the
 `bridge-test` subdirectory):
