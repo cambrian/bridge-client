@@ -37,7 +37,7 @@ function makeInterruptHandler (
 export namespace BridgeClient {
   // Parameter is just an annotation.
   export interface T<S> {
-    s?: S
+    typeParameterProxy?: S
     closeHandler: () => void
     errorHandler: (errorValue: Error) => void
     responseDispatcher?: (data: WebSocket.Data) => void

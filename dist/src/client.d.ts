@@ -3,6 +3,7 @@ import { Text } from './generated/types';
 type HandleOrError = [(resText: Text<'Response'>) => void, (errorValue: Error) => void];
 export declare namespace BridgeClient {
     interface T<S> {
+        typeParameterProxy?: S;
         closeHandler: () => void;
         errorHandler: (errorValue: Error) => void;
         responseDispatcher?: (data: WebSocket.Data) => void;

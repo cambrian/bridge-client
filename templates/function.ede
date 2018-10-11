@@ -1,10 +1,10 @@
     export function {{ spec.route }} (
-      bridgeClient: BridgeClient.T,
+      bridgeClient: BridgeClient.T<Server.{{ service.namespace }}>,
       timeout: number | undefined,{% if spec.auth %}
       token: Text<'AuthToken'>,{% endif %}
       request: {{ spec.req }}
     ): {% if spec.streaming %}Stream{% else %}Promise{% endif %}<{{ spec.res }}> {
-      return {% if spec.streaming %}streaming{% else %}direct{% endif %}<{{ spec.req }}, {{ spec.res }}>(
+      return {% if spec.streaming %}streaming{% else %}direct{% endif %}<{{ spec.req }}, {{ spec.res }}, Server.{{ service.namespace }}>(
         bridgeClient,
         timeout,
         '{{ spec.namespacedRoute }}',

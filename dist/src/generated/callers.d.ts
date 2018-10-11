@@ -2,7 +2,9 @@ import { AddIntsRequest, ConcatTextAuthRequest, ConcatTextAuthResponse, Text } f
 import { BridgeClient } from '../client';
 import { Stream } from '@most/types';
 export declare namespace Server {
-    type DummyManager = "DummyManager";
+    class DummyManager {
+        private tag;
+    }
 }
 export declare namespace Call {
     namespace DummyManager {
