@@ -40,8 +40,8 @@ function buildRequestOfAuth<T> (token?: Text<'AuthToken'>): (
   }
 }
 
-function installDirectHandler<T> (
-  bridgeClient: BridgeClient.T,
+function installDirectHandler<T, S> (
+  bridgeClient: BridgeClient.T<S>,
   typeTRef: SchemaRef,
   id: Text<'RequestId'>
 ): Promise<T> {
@@ -72,8 +72,8 @@ function installDirectHandler<T> (
   })
 }
 
-function installStreamingHandler<T> (
-  bridgeClient: BridgeClient.T,
+function installStreamingHandler<T, S> (
+  bridgeClient: BridgeClient.T<S>,
   typeTRef: SchemaRef,
   id: Text<'RequestId'>
 ): Stream<T> {
@@ -119,13 +119,13 @@ function installStreamingHandler<T> (
 
 // T is request type.
 // U is response type.
-function call<T, U> (
+function call<T, U, S> (
   installResponseHandler: (
-    bridgeClient: BridgeClient.T,
+    bridgeClient: BridgeClient.T<S>,
     typeURef: SchemaRef,
     id: Text<'RequestId'>
   ) => U,
-  bridgeClient: BridgeClient.T,
+  bridgeClient: BridgeClient.T<S>,
   route: Text<'Route'>,
   request: T,
   typeURef: SchemaRef,
@@ -163,8 +163,8 @@ function catchStreamTimeout<T> (
   }, stream).catch(() => clearTimeout(timer))
 }
 
-export function direct<T, U> (
-  bridgeClient: BridgeClient.T,
+export function direct<T, U, S> (
+  bridgeClient: BridgeClient.T<S>,
   timeout: number | undefined,
   route: Text<'Route'>,
   request: T,
@@ -172,13 +172,13 @@ export function direct<T, U> (
   token?: Text<'AuthToken'>
 ): Promise<U> {
   const [id, promise] = call
-    <T, Promise<U>>(installDirectHandler, bridgeClient, route, request, typeURef, token)
+    <T, Promise<U>, S>(installDirectHandler, bridgeClient, route, request, typeURef, token)
   if (timeout) catchPromiseTimeout(timeout, promise, cancelResponseIfError(bridgeClient, id))
   return promise
 }
 
-export function streaming<T, U> (
-  bridgeClient: BridgeClient.T,
+export function streaming<T, U, S> (
+  bridgeClient: BridgeClient.T<S>,
   timeout: number | undefined,
   route: Text<'Route'>,
   request: T,
@@ -186,7 +186,7 @@ export function streaming<T, U> (
   token?: Text<'AuthToken'>
 ): Stream<U> {
   const [id, stream] = call
-    <T, Stream<U>>(installStreamingHandler, bridgeClient, route, request, typeURef, token)
+    <T, Stream<U>, S>(installStreamingHandler, bridgeClient, route, request, typeURef, token)
   if (timeout) catchStreamTimeout(timeout, stream, cancelResponseIfError(bridgeClient, id))
   return stream
 }

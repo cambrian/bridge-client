@@ -1,7 +1,7 @@
 // Not an actual test, but good to make sure this works when updating types.
 import * as WebSocket from 'ws'
 
-import { BridgeClient, Call, observe } from '@src'
+import { BridgeClient, Call, Server, observe } from '@src'
 
 async function makeSocket (): Promise<WebSocket> {
   return new Promise<WebSocket>((resolve, _) => {
@@ -12,7 +12,7 @@ async function makeSocket (): Promise<WebSocket> {
 
 async function run (): Promise<void> {
   const ws = await makeSocket()
-  const client = BridgeClient.make(ws)
+  const client = BridgeClient.make<Server.DummyManager>(ws)
 
   // Second parameter is your desired timeout.
   // AddInts and EchoThrice have a built-in 250 ms server-side delay.

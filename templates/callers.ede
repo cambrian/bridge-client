@@ -4,6 +4,14 @@ import { direct, streaming } from '../call'
 import { BridgeClient } from '../client'
 import { Stream } from '@most/types'
 
+export namespace Server {
+{% for serviceItem in services %}
+{% let service = serviceItem.value %}
+  export class {{ service.namespace }} { private tag: any }
+{% endlet %}
+{% endfor %}
+}
+
 export namespace Call {
 {% for serviceItem in services %}
 {% let service = serviceItem.value %}

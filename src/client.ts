@@ -8,7 +8,8 @@ const unknownError = new Error('bridge client encountered an unknown error')
 type HandleOrError = [(resText: Text<'Response'>) => void, (errorValue: Error) => void]
 
 // Future Tasks: Automate type validation even more and consider supporting other transports.
-function makeResponseDispatcher (bridgeClient: BridgeClient.T): (data: WebSocket.Data) => void {
+function makeResponseDispatcher<S> (bridgeClient: BridgeClient.T<S>):
+  (data: WebSocket.Data) => void {
   const { responseHandlers } = bridgeClient
   return (data) => {
     const message = data.toString()
@@ -34,7 +35,9 @@ function makeInterruptHandler (
 }
 
 export namespace BridgeClient {
-  export interface T {
+  // Parameter is just an annotation.
+  export interface T<S> {
+    s?: S
     closeHandler: () => void
     errorHandler: (errorValue: Error) => void
     responseDispatcher?: (data: WebSocket.Data) => void
@@ -42,7 +45,7 @@ export namespace BridgeClient {
     socketClient: WebSocket
   }
 
-  export function make (socketClient: WebSocket): T {
+  export function make<S> (socketClient: WebSocket): T<S> {
     const responseHandlers = new Map<Text<'RequestId'>, HandleOrError>()
     const closeHandler = makeInterruptHandler(responseHandlers, closeError)
     const errorHandler = makeInterruptHandler(responseHandlers, unknownError)
@@ -52,7 +55,7 @@ export namespace BridgeClient {
   }
 
   // Use activate only after deactivation (prefer make).
-  export function activate (bridgeClient: T): void {
+  export function activate<S> (bridgeClient: T<S>): void {
     deactivate(bridgeClient) // Just for sanity.
     bridgeClient.responseDispatcher = makeResponseDispatcher(bridgeClient)
     bridgeClient.socketClient.on('message', bridgeClient.responseDispatcher)
@@ -60,7 +63,7 @@ export namespace BridgeClient {
     bridgeClient.socketClient.on('error', bridgeClient.errorHandler)
   }
 
-  export function deactivate (bridgeClient: T): void {
+  export function deactivate<S> (bridgeClient: T<S>): void {
     if (bridgeClient.responseDispatcher) {
       bridgeClient.socketClient.off('error', bridgeClient.errorHandler)
       bridgeClient.socketClient.off('close', bridgeClient.closeHandler)
@@ -70,7 +73,7 @@ export namespace BridgeClient {
   }
 }
 
-export function cancelResponseIfError (bridgeClient: BridgeClient.T, id: Text<'RequestId'>):
+export function cancelResponseIfError<S> (bridgeClient: BridgeClient.T<S>, id: Text<'RequestId'>):
   (errorValue?: Error) => void {
   return (errorValue) => {
     if (errorValue) {
