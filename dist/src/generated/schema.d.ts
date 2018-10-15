@@ -1,4 +1,4 @@
-export declare type SchemaRef = 'AddIntsRequest' | 'ConcatTextAuthRequest' | 'ConcatTextAuthResponse' | 'DeserializeException' | 'Either' | 'IAddIntsRequest' | 'IBadAuth' | 'IBadCall' | 'IConcatTextAuthRequest' | 'IConcatTextAuthResponse' | 'IDeserializeException' | 'IEndOfResults' | 'IRequestMessage' | 'IResponseMessage' | 'IResult' | 'IResult<T>' | 'K' | 'Left' | 'Left<T1>' | 'RequestMessage' | 'ResponseMessage' | 'ResultItem' | 'Right' | 'Right<T2>' | 'RpcClientException' | 'T' | 'T1' | 'T2' | 'T_1' | 'T_2' | 'T_3' | 'Tagged' | 'Text' | 'V876423' | 'string' | 'number' | 'boolean' | 'symbol';
+export declare type SchemaRef = 'AddIntsRequest' | 'ConcatTextAuthRequest' | 'ConcatTextAuthResponse' | 'DeserializeException' | 'Either' | 'IAddIntsRequest' | 'IBadAuth' | 'IBadCall' | 'IConcatTextAuthRequest' | 'IConcatTextAuthResponse' | 'IDeserializeException' | 'IEndOfResults' | 'IHeartbeat' | 'IRequestMessage' | 'IResponseMessage' | 'IResult' | 'IResult<T>' | 'K' | 'Left' | 'Left<T1>' | 'RequestMessage' | 'ResponseMessage' | 'Right' | 'Right<T2>' | 'RpcClientException' | 'StreamingResponse' | 'T' | 'T1' | 'T2' | 'T_1' | 'T_2' | 'T_3' | 'Tagged' | 'Text' | 'V546824' | 'string' | 'number' | 'boolean' | 'symbol';
 export declare const Schemas: {
     '$schema': string;
     'definitions': {
@@ -220,6 +220,15 @@ export declare const Schemas: {
             };
             'type': string;
         };
+        'IHeartbeat': {
+            'properties': {
+                'tag': {
+                    'enum': string[];
+                    'type': string;
+                };
+            };
+            'type': string;
+        };
         'IRequestMessage': {
             'properties': {
                 'headers': {
@@ -433,11 +442,6 @@ export declare const Schemas: {
             };
             'type': string;
         };
-        'ResultItem': {
-            'anyOf': {
-                '$ref': string;
-            }[];
-        };
         'Right': {
             'properties': {
                 'Right': {
@@ -455,6 +459,11 @@ export declare const Schemas: {
             'type': string;
         };
         'RpcClientException': {
+            'anyOf': {
+                '$ref': string;
+            }[];
+        };
+        'StreamingResponse': {
             'anyOf': {
                 '$ref': string;
             }[];
@@ -499,7 +508,7 @@ export declare const Schemas: {
                 'properties'?: undefined;
             })[];
         };
-        'V876423': {
+        'V546824': {
             'enum': string[];
             'type': string;
         };

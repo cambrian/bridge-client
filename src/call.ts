@@ -4,10 +4,11 @@ import { BridgeClient, cancelResponseIfError } from './client'
 import {
   Either,
   IBadAuth,
+  IHeartbeat,
   IResult,
   RequestMessage,
-  ResultItem,
   RpcClientException,
+  StreamingResponse,
   Text
 } from './generated/types'
 import { heldPushStream, observe } from './streams'
@@ -15,6 +16,7 @@ import { safeParse, validate } from './format'
 
 import { SchemaRef } from './generated/schema'
 import { Stream } from '@most/types'
+import { filter } from '@most/core'
 
 const unexpectedResponseError = new Error('unexpected response from server')
 const timeoutError = (time: number) => new Error('request timed out (' + time.toString() + ')')
@@ -76,9 +78,9 @@ function installStreamingHandler<T, S> (
   bridgeClient: BridgeClient.T<S>,
   typeTRef: SchemaRef,
   id: Text<'RequestId'>
-): Stream<T> {
+): Stream<T | IHeartbeat> {
   const { responseHandlers } = bridgeClient
-  const [push, error, close, stream] = heldPushStream<T>()
+  const [push, error, close, stream] = heldPushStream<T | IHeartbeat>()
   const handle = (response: Text<'Response'>) => {
     let validated = false
     const resOrExc = safeParse(response)
@@ -92,13 +94,16 @@ function installStreamingHandler<T, S> (
         }
       } else {
         const res = resOrExc.Right
-        if (validate<ResultItem<any>>('ResultItem', res)) {
+        if (validate<StreamingResponse<any>>('StreamingResponse', res)) {
           if (validate<IResult<any>>('IResult', res)) {
             if (validate<T>(typeTRef, res.contents)) {
               push(res.contents)
               validated = true
             }
-          } else {
+          } else if (validate<IHeartbeat>('IHeartbeat', res)) {
+            push(res)
+            validated = true
+          } else { /* IEndOfResults */
             responseHandlers.delete(id)
             close()
             validated = true
@@ -186,7 +191,9 @@ export function streaming<T, U, S> (
   token?: Text<'AuthToken'>
 ): Stream<U> {
   const [id, stream] = call
-    <T, Stream<U>, S>(installStreamingHandler, bridgeClient, route, request, typeURef, token)
+    <T, Stream<U | IHeartbeat>, S>
+    (installStreamingHandler, bridgeClient, route, request, typeURef, token)
+  // Timeout listens on a stream with heartbeats, but clients of this library do not.
   if (timeout) catchStreamTimeout(timeout, stream, cancelResponseIfError(bridgeClient, id))
-  return stream
+  return filter(x => !validate<IHeartbeat>('IHeartbeat', x), stream) as Stream<U>
 }

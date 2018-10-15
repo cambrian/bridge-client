@@ -10,6 +10,7 @@ export type SchemaRef = 'AddIntsRequest'
   | 'IConcatTextAuthResponse'
   | 'IDeserializeException'
   | 'IEndOfResults'
+  | 'IHeartbeat'
   | 'IRequestMessage'
   | 'IResponseMessage'
   | 'IResult'
@@ -19,10 +20,10 @@ export type SchemaRef = 'AddIntsRequest'
   | 'Left<T1>'
   | 'RequestMessage'
   | 'ResponseMessage'
-  | 'ResultItem'
   | 'Right'
   | 'Right<T2>'
   | 'RpcClientException'
+  | 'StreamingResponse'
   | 'T'
   | 'T1'
   | 'T2'
@@ -31,7 +32,7 @@ export type SchemaRef = 'AddIntsRequest'
   | 'T_3'
   | 'Tagged'
   | 'Text'
-  | 'V876423'
+  | 'V546824'
   | 'string'
   | 'number'
   | 'boolean'
@@ -298,6 +299,17 @@ export const Schemas = {
       },
       'type': 'object'
     },
+    'IHeartbeat': {
+      'properties': {
+        'tag': {
+          'enum': [
+            'Heartbeat'
+          ],
+          'type': 'string'
+        }
+      },
+      'type': 'object'
+    },
     'IRequestMessage': {
       'properties': {
         'headers': {
@@ -555,16 +567,6 @@ export const Schemas = {
       },
       'type': 'object'
     },
-    'ResultItem': {
-      'anyOf': [
-        {
-          '$ref': '#/definitions/IResult<T>'
-        },
-        {
-          '$ref': '#/definitions/IEndOfResults'
-        }
-      ]
-    },
     'Right': {
       'properties': {
         'Right': {
@@ -588,6 +590,19 @@ export const Schemas = {
         },
         {
           '$ref': '#/definitions/IBadCall'
+        }
+      ]
+    },
+    'StreamingResponse': {
+      'anyOf': [
+        {
+          '$ref': '#/definitions/IHeartbeat'
+        },
+        {
+          '$ref': '#/definitions/IResult<T>'
+        },
+        {
+          '$ref': '#/definitions/IEndOfResults'
         }
       ]
     },
@@ -633,9 +648,9 @@ export const Schemas = {
         }
       ]
     },
-    'V876423': {
+    'V546824': {
       'enum': [
-        'Bridge Typings Version 876423'
+        'Bridge Typings Version 546824'
       ],
       'type': 'string'
     }

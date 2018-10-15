@@ -1,4 +1,4 @@
-export type V275704 = 'Bridge Typings Version 275704'
+export type V546824 = 'Bridge Typings Version 546824'
 
 export type Tagged<T extends string, K> = { TagDoNotUse: T } | K
 
@@ -29,7 +29,11 @@ export interface Right<T> {
   Right: T
 }
 
-export type ResultItem<T> = IResult<T> | IEndOfResults
+export type StreamingResponse<T> = IHeartbeat | IResult<T> | IEndOfResults
+
+export interface IHeartbeat {
+  tag: 'Heartbeat'
+}
 
 export interface IResult<T> {
   tag: 'Result'
