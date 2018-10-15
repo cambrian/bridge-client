@@ -24,22 +24,22 @@ async function run (): Promise<void> {
     console.log(exception.message) // Output: request timed out (1)
   }
 
-  const stream = await Call.DummyManager.echoThrice(client, 1337)
+  const stream = Call.DummyManager.echoThrice(client, 1337)
   await observe(console.log, stream) // Output: 1337 (x3)
 
   try {
-    const stream = await Call.DummyManager.echoThriceBad(client, 1337)
+    const stream = Call.DummyManager.echoThriceBad(client, 1337)
     await observe(console.log, stream)
   } catch (exception) {
     console.log(exception.message) // Output: request timed out (1)
   }
 
   const fizzBuzz = { a: 'Fizz', b: 'Buzz' }
-  const result2 = await Call.DummyManager.concatTextAuth(client, 'Token', fizzBuzz)
-  console.log(result2) // Output: { result: 'FizzBuzz' }
+  const resultAuth = await Call.DummyManager.concatTextAuth(client, 'Token', fizzBuzz)
+  console.log(resultAuth) // Output: { result: 'FizzBuzz' }
 
-  const stream2 = await Call.DummyManager.echoThriceAuth(client, 'Token', '1337')
-  await observe(console.log, stream2) // Output: '1337' (x3)
+  const streamAuth = Call.DummyManager.echoThriceAuth(client, 'Token', '1337')
+  await observe(console.log, streamAuth) // Output: '1337' (x3)
   ws.close()
 }
 
