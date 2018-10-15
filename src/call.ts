@@ -165,7 +165,9 @@ function catchStreamTimeout<T> (
   observe(() => {
     clearTimeout(timer)
     timer = makeTimer()
-  }, stream).catch(() => clearTimeout(timer))
+  }, stream)
+    .then(() => clearTimeout(timer))
+    .catch(() => clearTimeout(timer))
 }
 
 export function direct<T, U, S> (
@@ -182,6 +184,9 @@ export function direct<T, U, S> (
   return promise
 }
 
+// Since all errors are propagated via the stream, this streaming client has different semantics
+// than the Haskell streaming client. In particular, the stream is returned immediately, rather than
+// waiting for the first value to materialize.
 export function streaming<T, U, S> (
   bridgeClient: BridgeClient.T<S>,
   timeout: number | undefined,

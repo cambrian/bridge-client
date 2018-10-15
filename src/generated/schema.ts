@@ -32,7 +32,7 @@ export type SchemaRef = 'AddIntsRequest'
   | 'T_3'
   | 'Tagged'
   | 'Text'
-  | 'V546824'
+  | 'V173930'
   | 'string'
   | 'number'
   | 'boolean'
@@ -648,9 +648,9 @@ export const Schemas = {
         }
       ]
     },
-    'V546824': {
+    'V173930': {
       'enum': [
-        'Bridge Typings Version 546824'
+        'Bridge Typings Version 173930'
       ],
       'type': 'string'
     }

@@ -16,7 +16,7 @@ export namespace Call {
     ): Promise<number> {
       return direct<AddIntsRequest, number, Server.DummyManager>(
         bridgeClient,
-        10000,
+        20000,
         'DummyManager/addInts',
         request,
         'number'
@@ -42,7 +42,7 @@ export namespace Call {
     ): Stream<number> {
       return streaming<number, number, Server.DummyManager>(
         bridgeClient,
-        10000,
+        20000,
         'DummyManager/echoThrice',
         request,
         'number'
@@ -69,7 +69,7 @@ export namespace Call {
     ): Promise<ConcatTextAuthResponse> {
       return direct<ConcatTextAuthRequest, ConcatTextAuthResponse, Server.DummyManager>(
         bridgeClient,
-        10000,
+        20000,
         'DummyManager/concatTextAuth',
         request,
         'ConcatTextAuthResponse',
@@ -84,7 +84,7 @@ export namespace Call {
     ): Stream<string> {
       return streaming<string, string, Server.DummyManager>(
         bridgeClient,
-        10000,
+        20000,
         'DummyManager/echoThriceAuth',
         request,
         'string',

@@ -1,4 +1,4 @@
-export type V546824 = 'Bridge Typings Version 546824'
+export type V173930 = 'Bridge Typings Version 173930'
 
 export type Tagged<T extends string, K> = { TagDoNotUse: T } | K
 

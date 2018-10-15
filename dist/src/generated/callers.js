@@ -12,7 +12,7 @@ var Call;
     let DummyManager;
     (function (DummyManager) {
         function addInts(bridgeClient, request) {
-            return call_1.direct(bridgeClient, 10000, 'DummyManager/addInts', request, 'number');
+            return call_1.direct(bridgeClient, 20000, 'DummyManager/addInts', request, 'number');
         }
         DummyManager.addInts = addInts;
         function addIntsBad(bridgeClient, request) {
@@ -20,7 +20,7 @@ var Call;
         }
         DummyManager.addIntsBad = addIntsBad;
         function echoThrice(bridgeClient, request) {
-            return call_1.streaming(bridgeClient, 10000, 'DummyManager/echoThrice', request, 'number');
+            return call_1.streaming(bridgeClient, 20000, 'DummyManager/echoThrice', request, 'number');
         }
         DummyManager.echoThrice = echoThrice;
         function echoThriceBad(bridgeClient, request) {
@@ -28,11 +28,11 @@ var Call;
         }
         DummyManager.echoThriceBad = echoThriceBad;
         function concatTextAuth(bridgeClient, token, request) {
-            return call_1.direct(bridgeClient, 10000, 'DummyManager/concatTextAuth', request, 'ConcatTextAuthResponse', token);
+            return call_1.direct(bridgeClient, 20000, 'DummyManager/concatTextAuth', request, 'ConcatTextAuthResponse', token);
         }
         DummyManager.concatTextAuth = concatTextAuth;
         function echoThriceAuth(bridgeClient, token, request) {
-            return call_1.streaming(bridgeClient, 10000, 'DummyManager/echoThriceAuth', request, 'string', token);
+            return call_1.streaming(bridgeClient, 20000, 'DummyManager/echoThriceAuth', request, 'string', token);
         }
         DummyManager.echoThriceAuth = echoThriceAuth;
     })(DummyManager = Call.DummyManager || (Call.DummyManager = {}));
