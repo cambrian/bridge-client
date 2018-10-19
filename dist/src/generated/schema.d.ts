@@ -1,4 +1,4 @@
-export declare type SchemaRef = 'AddIntsRequest' | 'ConcatTextAuthRequest' | 'ConcatTextAuthResponse' | 'DeserializeException' | 'Either' | 'IAddIntsRequest' | 'IBadAuth' | 'IBadCall' | 'IConcatTextAuthRequest' | 'IConcatTextAuthResponse' | 'IDeserializeException' | 'IEndOfResults' | 'IHeartbeat' | 'IRequestMessage' | 'IResponseMessage' | 'IResult' | 'IResult<T>' | 'K' | 'Left' | 'Left<T1>' | 'RequestMessage' | 'ResponseMessage' | 'Right' | 'Right<T2>' | 'RpcClientException' | 'StreamingResponse' | 'T' | 'T1' | 'T2' | 'T_1' | 'T_2' | 'T_3' | 'Tagged' | 'Text' | 'V173930' | 'string' | 'number' | 'boolean' | 'symbol';
+export declare type SchemaRef = 'AddIntsRequest' | 'ConcatTextAuthRequest' | 'ConcatTextAuthResponse' | 'IAddIntsRequest' | 'IConcatTextAuthRequest' | 'IConcatTextAuthResponse' | 'IEndOfResults' | 'IHeartbeat' | 'IRequestMessage' | 'IResponseMessage' | 'IResult' | 'IResult<T>' | 'IRpcResponse' | 'IRpcResponse<T>' | 'IRpcResponseClientException' | 'IRpcResponseServerException' | 'K' | 'RequestMessage' | 'ResponseMessage' | 'RpcResponse' | 'StreamingResponse' | 'T' | 'T_1' | 'T_2' | 'T_3' | 'Tagged' | 'Text' | 'V580110' | 'string' | 'number' | 'boolean' | 'symbol';
 export declare const Schemas: {
     '$schema': string;
     'definitions': {
@@ -32,119 +32,12 @@ export declare const Schemas: {
             };
             'type': string;
         };
-        'DeserializeException': {
-            'additionalItems': {
-                'anyOf': ({
-                    'anyOf': ({
-                        'properties': {
-                            'TagDoNotUse': {
-                                'enum': string[];
-                                'type': string;
-                            };
-                        };
-                        'type': string;
-                    } | {
-                        'type': string;
-                        'properties'?: undefined;
-                    })[];
-                    'type'?: undefined;
-                } | {
-                    'type': string;
-                    'anyOf'?: undefined;
-                })[];
-            };
-            'items': ({
-                'anyOf': ({
-                    'properties': {
-                        'TagDoNotUse': {
-                            'enum': string[];
-                            'type': string;
-                        };
-                    };
-                    'type': string;
-                } | {
-                    'type': string;
-                    'properties'?: undefined;
-                })[];
-                'type'?: undefined;
-            } | {
-                'type': string;
-                'anyOf'?: undefined;
-            })[];
-            'minItems': number;
-            'type': string;
-        };
-        'Either': {
-            'anyOf': {
-                '$ref': string;
-            }[];
-        };
         'IAddIntsRequest': {
             'properties': {
                 'a': {
                     'type': string;
                 };
                 'b': {
-                    'type': string;
-                };
-            };
-            'type': string;
-        };
-        'IBadAuth': {
-            'properties': {
-                'tag': {
-                    'enum': string[];
-                    'type': string;
-                };
-            };
-            'type': string;
-        };
-        'IBadCall': {
-            'properties': {
-                'contents': {
-                    'additionalItems': {
-                        'anyOf': ({
-                            'anyOf': ({
-                                'properties': {
-                                    'TagDoNotUse': {
-                                        'enum': string[];
-                                        'type': string;
-                                    };
-                                };
-                                'type': string;
-                            } | {
-                                'type': string;
-                                'properties'?: undefined;
-                            })[];
-                            'type'?: undefined;
-                        } | {
-                            'type': string;
-                            'anyOf'?: undefined;
-                        })[];
-                    };
-                    'items': ({
-                        'anyOf': ({
-                            'properties': {
-                                'TagDoNotUse': {
-                                    'enum': string[];
-                                    'type': string;
-                                };
-                            };
-                            'type': string;
-                        } | {
-                            'type': string;
-                            'properties'?: undefined;
-                        })[];
-                        'type'?: undefined;
-                    } | {
-                        'type': string;
-                        'anyOf'?: undefined;
-                    })[];
-                    'minItems': number;
-                    'type': string;
-                };
-                'tag': {
-                    'enum': string[];
                     'type': string;
                 };
             };
@@ -167,48 +60,6 @@ export declare const Schemas: {
                     'type': string;
                 };
             };
-            'type': string;
-        };
-        'IDeserializeException': {
-            'additionalItems': {
-                'anyOf': ({
-                    'anyOf': ({
-                        'properties': {
-                            'TagDoNotUse': {
-                                'enum': string[];
-                                'type': string;
-                            };
-                        };
-                        'type': string;
-                    } | {
-                        'type': string;
-                        'properties'?: undefined;
-                    })[];
-                    'type'?: undefined;
-                } | {
-                    'type': string;
-                    'anyOf'?: undefined;
-                })[];
-            };
-            'items': ({
-                'anyOf': ({
-                    'properties': {
-                        'TagDoNotUse': {
-                            'enum': string[];
-                            'type': string;
-                        };
-                    };
-                    'type': string;
-                } | {
-                    'type': string;
-                    'properties'?: undefined;
-                })[];
-                'type'?: undefined;
-            } | {
-                'type': string;
-                'anyOf'?: undefined;
-            })[];
-            'minItems': number;
             'type': string;
         };
         'IEndOfResults': {
@@ -339,23 +190,55 @@ export declare const Schemas: {
             };
             'type': string;
         };
+        'IRpcResponse': {
+            'properties': {
+                'contents': {
+                    '$ref': string;
+                };
+                'tag': {
+                    'enum': string[];
+                    'type': string;
+                };
+            };
+            'type': string;
+        };
+        'IRpcResponse<T>': {
+            'properties': {
+                'contents': {
+                    '$ref': string;
+                };
+                'tag': {
+                    'enum': string[];
+                    'type': string;
+                };
+            };
+            'type': string;
+        };
+        'IRpcResponseClientException': {
+            'properties': {
+                'contents': {
+                    'type': string;
+                };
+                'tag': {
+                    'enum': string[];
+                    'type': string;
+                };
+            };
+            'type': string;
+        };
+        'IRpcResponseServerException': {
+            'properties': {
+                'contents': {
+                    'type': string;
+                };
+                'tag': {
+                    'enum': string[];
+                    'type': string;
+                };
+            };
+            'type': string;
+        };
         'K': {};
-        'Left': {
-            'properties': {
-                'Left': {
-                    '$ref': string;
-                };
-            };
-            'type': string;
-        };
-        'Left<T1>': {
-            'properties': {
-                'Left': {
-                    '$ref': string;
-                };
-            };
-            'type': string;
-        };
         'RequestMessage': {
             'properties': {
                 'headers': {
@@ -442,23 +325,7 @@ export declare const Schemas: {
             };
             'type': string;
         };
-        'Right': {
-            'properties': {
-                'Right': {
-                    '$ref': string;
-                };
-            };
-            'type': string;
-        };
-        'Right<T2>': {
-            'properties': {
-                'Right': {
-                    '$ref': string;
-                };
-            };
-            'type': string;
-        };
-        'RpcClientException': {
+        'RpcResponse': {
             'anyOf': {
                 '$ref': string;
             }[];
@@ -469,8 +336,6 @@ export declare const Schemas: {
             }[];
         };
         'T': {};
-        'T1': {};
-        'T2': {};
         'T_1': {};
         'T_2': {};
         'T_3': {};
@@ -508,7 +373,7 @@ export declare const Schemas: {
                 'properties'?: undefined;
             })[];
         };
-        'V173930': {
+        'V580110': {
             'enum': string[];
             'type': string;
         };

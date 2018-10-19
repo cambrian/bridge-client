@@ -1,38 +1,31 @@
 export type SchemaRef = 'AddIntsRequest'
   | 'ConcatTextAuthRequest'
   | 'ConcatTextAuthResponse'
-  | 'DeserializeException'
-  | 'Either'
   | 'IAddIntsRequest'
-  | 'IBadAuth'
-  | 'IBadCall'
   | 'IConcatTextAuthRequest'
   | 'IConcatTextAuthResponse'
-  | 'IDeserializeException'
   | 'IEndOfResults'
   | 'IHeartbeat'
   | 'IRequestMessage'
   | 'IResponseMessage'
   | 'IResult'
   | 'IResult<T>'
+  | 'IRpcResponse'
+  | 'IRpcResponse<T>'
+  | 'IRpcResponseClientException'
+  | 'IRpcResponseServerException'
   | 'K'
-  | 'Left'
-  | 'Left<T1>'
   | 'RequestMessage'
   | 'ResponseMessage'
-  | 'Right'
-  | 'Right<T2>'
-  | 'RpcClientException'
+  | 'RpcResponse'
   | 'StreamingResponse'
   | 'T'
-  | 'T1'
-  | 'T2'
   | 'T_1'
   | 'T_2'
   | 'T_3'
   | 'Tagged'
   | 'Text'
-  | 'V173930'
+  | 'V580110'
   | 'string'
   | 'number'
   | 'boolean'
@@ -70,68 +63,6 @@ export const Schemas = {
       },
       'type': 'object'
     },
-    'DeserializeException': {
-      'additionalItems': {
-        'anyOf': [
-          {
-            'anyOf': [
-              {
-                'properties': {
-                  'TagDoNotUse': {
-                    'enum': [
-                      'Format'
-                    ],
-                    'type': 'string'
-                  }
-                },
-                'type': 'object'
-              },
-              {
-                'type': 'string'
-              }
-            ]
-          },
-          {
-            'type': 'string'
-          }
-        ]
-      },
-      'items': [
-        {
-          'anyOf': [
-            {
-              'properties': {
-                'TagDoNotUse': {
-                  'enum': [
-                    'Format'
-                  ],
-                  'type': 'string'
-                }
-              },
-              'type': 'object'
-            },
-            {
-              'type': 'string'
-            }
-          ]
-        },
-        {
-          'type': 'string'
-        }
-      ],
-      'minItems': 2,
-      'type': 'array'
-    },
-    'Either': {
-      'anyOf': [
-        {
-          '$ref': '#/definitions/Left<T1>'
-        },
-        {
-          '$ref': '#/definitions/Right<T2>'
-        }
-      ]
-    },
     'IAddIntsRequest': {
       'properties': {
         'a': {
@@ -139,80 +70,6 @@ export const Schemas = {
         },
         'b': {
           'type': 'number'
-        }
-      },
-      'type': 'object'
-    },
-    'IBadAuth': {
-      'properties': {
-        'tag': {
-          'enum': [
-            'BadAuth'
-          ],
-          'type': 'string'
-        }
-      },
-      'type': 'object'
-    },
-    'IBadCall': {
-      'properties': {
-        'contents': {
-          'additionalItems': {
-            'anyOf': [
-              {
-                'anyOf': [
-                  {
-                    'properties': {
-                      'TagDoNotUse': {
-                        'enum': [
-                          'Format'
-                        ],
-                        'type': 'string'
-                      }
-                    },
-                    'type': 'object'
-                  },
-                  {
-                    'type': 'string'
-                  }
-                ]
-              },
-              {
-                'type': 'string'
-              }
-            ]
-          },
-          'items': [
-            {
-              'anyOf': [
-                {
-                  'properties': {
-                    'TagDoNotUse': {
-                      'enum': [
-                        'Format'
-                      ],
-                      'type': 'string'
-                    }
-                  },
-                  'type': 'object'
-                },
-                {
-                  'type': 'string'
-                }
-              ]
-            },
-            {
-              'type': 'string'
-            }
-          ],
-          'minItems': 2,
-          'type': 'array'
-        },
-        'tag': {
-          'enum': [
-            'BadCall'
-          ],
-          'type': 'string'
         }
       },
       'type': 'object'
@@ -235,58 +92,6 @@ export const Schemas = {
         }
       },
       'type': 'object'
-    },
-    'IDeserializeException': {
-      'additionalItems': {
-        'anyOf': [
-          {
-            'anyOf': [
-              {
-                'properties': {
-                  'TagDoNotUse': {
-                    'enum': [
-                      'Format'
-                    ],
-                    'type': 'string'
-                  }
-                },
-                'type': 'object'
-              },
-              {
-                'type': 'string'
-              }
-            ]
-          },
-          {
-            'type': 'string'
-          }
-        ]
-      },
-      'items': [
-        {
-          'anyOf': [
-            {
-              'properties': {
-                'TagDoNotUse': {
-                  'enum': [
-                    'Format'
-                  ],
-                  'type': 'string'
-                }
-              },
-              'type': 'object'
-            },
-            {
-              'type': 'string'
-            }
-          ]
-        },
-        {
-          'type': 'string'
-        }
-      ],
-      'minItems': 2,
-      'type': 'array'
     },
     'IEndOfResults': {
       'properties': {
@@ -444,23 +249,63 @@ export const Schemas = {
       },
       'type': 'object'
     },
-    'K': {},
-    'Left': {
+    'IRpcResponse': {
       'properties': {
-        'Left': {
+        'contents': {
+          '$ref': '#/definitions/T_1'
+        },
+        'tag': {
+          'enum': [
+            'RpcResponse'
+          ],
+          'type': 'string'
+        }
+      },
+      'type': 'object'
+    },
+    'IRpcResponse<T>': {
+      'properties': {
+        'contents': {
           '$ref': '#/definitions/T'
+        },
+        'tag': {
+          'enum': [
+            'RpcResponse'
+          ],
+          'type': 'string'
         }
       },
       'type': 'object'
     },
-    'Left<T1>': {
+    'IRpcResponseClientException': {
       'properties': {
-        'Left': {
-          '$ref': '#/definitions/T1'
+        'contents': {
+          'type': 'string'
+        },
+        'tag': {
+          'enum': [
+            'RpcResponseClientException'
+          ],
+          'type': 'string'
         }
       },
       'type': 'object'
     },
+    'IRpcResponseServerException': {
+      'properties': {
+        'contents': {
+          'type': 'string'
+        },
+        'tag': {
+          'enum': [
+            'RpcResponseServerException'
+          ],
+          'type': 'string'
+        }
+      },
+      'type': 'object'
+    },
+    'K': {},
     'RequestMessage': {
       'properties': {
         'headers': {
@@ -567,29 +412,16 @@ export const Schemas = {
       },
       'type': 'object'
     },
-    'Right': {
-      'properties': {
-        'Right': {
-          '$ref': '#/definitions/T_1'
-        }
-      },
-      'type': 'object'
-    },
-    'Right<T2>': {
-      'properties': {
-        'Right': {
-          '$ref': '#/definitions/T2'
-        }
-      },
-      'type': 'object'
-    },
-    'RpcClientException': {
+    'RpcResponse': {
       'anyOf': [
         {
-          '$ref': '#/definitions/IBadAuth'
+          '$ref': '#/definitions/IRpcResponseClientException'
         },
         {
-          '$ref': '#/definitions/IBadCall'
+          '$ref': '#/definitions/IRpcResponseServerException'
+        },
+        {
+          '$ref': '#/definitions/IRpcResponse<T>'
         }
       ]
     },
@@ -607,8 +439,6 @@ export const Schemas = {
       ]
     },
     'T': {},
-    'T1': {},
-    'T2': {},
     'T_1': {},
     'T_2': {},
     'T_3': {},
@@ -648,9 +478,9 @@ export const Schemas = {
         }
       ]
     },
-    'V173930': {
+    'V580110': {
       'enum': [
-        'Bridge Typings Version 173930'
+        'Bridge Typings Version 580110'
       ],
       'type': 'string'
     }

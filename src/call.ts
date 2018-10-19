@@ -2,12 +2,12 @@ import * as UUIDV4 from 'uuid/v4'
 
 import { BridgeClient, cancelResponseIfError } from './client'
 import {
-  Either,
-  IBadAuth,
   IHeartbeat,
   IResult,
+  IRpcResponseClientException,
+  IRpcResponseServerException,
   RequestMessage,
-  RpcClientException,
+  RpcResponse,
   StreamingResponse,
   Text
 } from './generated/types'
@@ -18,16 +18,11 @@ import { SchemaRef } from './generated/schema'
 import { Stream } from '@most/types'
 import { filter } from '@most/core'
 
-const unexpectedResponseError = new Error('unexpected response from server')
-const timeoutError = (time: number) => new Error('request timed out (' + time.toString() + ')')
-
-function translateException (exc: RpcClientException): Error {
-  if (validate<IBadAuth>('IBadAuth', exc)) {
-    return new Error('bad authentication')
-  } else /* IBadCall */ {
-    return new Error('bad call: ' + exc.contents[1])
-  }
-}
+const clientError = (errorText: String) => new Error('client error: ' + errorText)
+const serverError = (errorText: String) => new Error('server error: ' + errorText)
+const unexpectedResponseError = new Error('server error: unexpected response')
+const timeoutError = (time: number) => new Error('server error: request timed out ('
+  + time.toString() + ')')
 
 function buildRequestOfAuth<T> (token?: Text<'AuthToken'>): (
   route: Text<'Route'>,
@@ -53,14 +48,14 @@ function installDirectHandler<T, S> (
       // Only one result expected.
       responseHandlers.delete(id)
       const resOrExc = safeParse(response)
-      if (validate<Either<any, any>>('Either', resOrExc)) {
-        if ('Left' in resOrExc) {
-          const exc = resOrExc.Left
-          if (validate<RpcClientException>('RpcClientException', exc)) {
-            reject(translateException(exc))
-          }
-        } else {
-          const res = resOrExc.Right
+      if (validate<RpcResponse<any>>('RpcResponse', resOrExc)) {
+        if (validate<IRpcResponseClientException>('IRpcResponseClientException', resOrExc)) {
+          reject(clientError(resOrExc.contents))
+        } else if (validate<IRpcResponseServerException>('IRpcResponseServerException', resOrExc)) {
+          reject(serverError(resOrExc.contents))
+        }
+        else {
+          const res = resOrExc.contents
           if (validate<T>(typeTRef, res)) {
             resolve(res)
           }
@@ -84,16 +79,17 @@ function installStreamingHandler<T, S> (
   const handle = (response: Text<'Response'>) => {
     let validated = false
     const resOrExc = safeParse(response)
-    if (validate<Either<any, any>>('Either', resOrExc)) {
-      if ('Left' in resOrExc) {
-        const exc = resOrExc.Left
-        if (validate<RpcClientException>('RpcClientException', exc)) {
-          responseHandlers.delete(id)
-          error(translateException(exc))
-          validated = true
-        }
+    if (validate<RpcResponse<any>>('RpcResponse', resOrExc)) {
+      if (validate<IRpcResponseClientException>('IRpcResponseClientException', resOrExc)) {
+        responseHandlers.delete(id)
+        error(clientError(resOrExc.contents))
+        validated = true
+      } else if (validate<IRpcResponseServerException>('IRpcResponseServerException', resOrExc)) {
+        responseHandlers.delete(id)
+        error(serverError(resOrExc.contents))
+        validated = true
       } else {
-        const res = resOrExc.Right
+        const res = resOrExc.contents
         if (validate<StreamingResponse<any>>('StreamingResponse', res)) {
           if (validate<IResult<any>>('IResult', res)) {
             if (validate<T>(typeTRef, res.contents)) {

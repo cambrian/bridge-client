@@ -1,32 +1,24 @@
-export type V173930 = 'Bridge Typings Version 173930'
+export type V580110 = 'Bridge Typings Version 580110'
 
 export type Tagged<T extends string, K> = { TagDoNotUse: T } | K
 
 export type Text<T extends string> = Tagged<T, string>
 
-export type DeserializeException = IDeserializeException
+export type RpcResponse<T> = IRpcResponseClientException | IRpcResponseServerException | IRpcResponse<T>
 
-export type IDeserializeException = [Text<'Format'>, string]
-
-export type RpcClientException = IBadAuth | IBadCall
-
-export interface IBadAuth {
-  tag: 'BadAuth'
+export interface IRpcResponseClientException {
+  tag: 'RpcResponseClientException'
+  contents: string
 }
 
-export interface IBadCall {
-  tag: 'BadCall'
-  contents: DeserializeException
+export interface IRpcResponseServerException {
+  tag: 'RpcResponseServerException'
+  contents: string
 }
 
-export type Either<T1, T2> = Left<T1> | Right<T2>
-
-export interface Left<T> {
-  Left: T
-}
-
-export interface Right<T> {
-  Right: T
+export interface IRpcResponse<T> {
+  tag: 'RpcResponse'
+  contents: T
 }
 
 export type StreamingResponse<T> = IHeartbeat | IResult<T> | IEndOfResults

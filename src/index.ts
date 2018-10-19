@@ -13,4 +13,4 @@ export * from './streams'
 // 3. Fix the callers.ede template based on the new generated types.
 // 4. Re-run the caller generation script from vest-hs and commit.
 // 5. Change this type string to match the new types version.
-export { V173930 } from './generated/types'
+export { V580110 } from './generated/types'
