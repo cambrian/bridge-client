@@ -1,4 +1,4 @@
-export declare type V580110 = 'Bridge Typings Version 580110';
+export declare type V564424 = 'Bridge Typings Version 564424';
 export declare type Tagged<T extends string, K> = {
     TagDoNotUse: T;
 } | K;
@@ -33,7 +33,7 @@ export interface IRequestMessage {
     headers: {
         [k: string]: string;
     };
-    route: Text<'Route'>;
+    route: Text<'RawRoute'>;
     reqText: Text<'Request'>;
 }
 export declare type ResponseMessage = IResponseMessage;

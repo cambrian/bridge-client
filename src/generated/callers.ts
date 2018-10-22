@@ -17,7 +17,7 @@ export namespace Call {
       return direct<AddIntsRequest, number, Server.DummyManager>(
         bridgeClient,
         20000,
-        'DummyManager/addInts',
+        'DummyManager/Tagged "addInts"',
         request,
         'number'
       )
@@ -30,7 +30,7 @@ export namespace Call {
       return direct<AddIntsRequest, number, Server.DummyManager>(
         bridgeClient,
         1,
-        'DummyManager/addIntsBad',
+        'DummyManager/Tagged "addIntsBad"',
         request,
         'number'
       )
@@ -43,7 +43,7 @@ export namespace Call {
       return streaming<number, number, Server.DummyManager>(
         bridgeClient,
         20000,
-        'DummyManager/echoThrice',
+        'DummyManager/Tagged "echoThrice"',
         request,
         'number'
       )
@@ -56,7 +56,7 @@ export namespace Call {
       return streaming<number, number, Server.DummyManager>(
         bridgeClient,
         1,
-        'DummyManager/echoThriceBad',
+        'DummyManager/Tagged "echoThriceBad"',
         request,
         'number'
       )
@@ -70,7 +70,7 @@ export namespace Call {
       return direct<ConcatTextAuthRequest, ConcatTextAuthResponse, Server.DummyManager>(
         bridgeClient,
         20000,
-        'DummyManager/concatTextAuth',
+        'DummyManager/Tagged "concatTextAuth"',
         request,
         'ConcatTextAuthResponse',
         token
@@ -85,7 +85,7 @@ export namespace Call {
       return streaming<string, string, Server.DummyManager>(
         bridgeClient,
         20000,
-        'DummyManager/echoThriceAuth',
+        'DummyManager/Tagged "echoThriceAuth"',
         request,
         'string',
         token

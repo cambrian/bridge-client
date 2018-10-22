@@ -1,4 +1,4 @@
-export type V580110 = 'Bridge Typings Version 580110'
+export type V564424 = 'Bridge Typings Version 564424'
 
 export type Tagged<T extends string, K> = { TagDoNotUse: T } | K
 
@@ -41,7 +41,7 @@ export type RequestMessage = IRequestMessage
 export interface IRequestMessage {
   id: Text<'RequestId'>
   headers: {[k: string]: string}
-  route: Text<'Route'>
+  route: Text<'RawRoute'>
   reqText: Text<'Request'>
 }
 

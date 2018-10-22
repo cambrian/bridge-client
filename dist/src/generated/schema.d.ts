@@ -1,4 +1,4 @@
-export declare type SchemaRef = 'AddIntsRequest' | 'ConcatTextAuthRequest' | 'ConcatTextAuthResponse' | 'IAddIntsRequest' | 'IConcatTextAuthRequest' | 'IConcatTextAuthResponse' | 'IEndOfResults' | 'IHeartbeat' | 'IRequestMessage' | 'IResponseMessage' | 'IResult' | 'IResult<T>' | 'IRpcResponse' | 'IRpcResponse<T>' | 'IRpcResponseClientException' | 'IRpcResponseServerException' | 'K' | 'RequestMessage' | 'ResponseMessage' | 'RpcResponse' | 'StreamingResponse' | 'T' | 'T_1' | 'T_2' | 'T_3' | 'Tagged' | 'Text' | 'V580110' | 'string' | 'number' | 'boolean' | 'symbol';
+export declare type SchemaRef = 'AddIntsRequest' | 'ConcatTextAuthRequest' | 'ConcatTextAuthResponse' | 'IAddIntsRequest' | 'IConcatTextAuthRequest' | 'IConcatTextAuthResponse' | 'IEndOfResults' | 'IHeartbeat' | 'IRequestMessage' | 'IResponseMessage' | 'IResult' | 'IResult<T>' | 'IRpcResponse' | 'IRpcResponse<T>' | 'IRpcResponseClientException' | 'IRpcResponseServerException' | 'K' | 'RequestMessage' | 'ResponseMessage' | 'RpcResponse' | 'StreamingResponse' | 'T' | 'T_1' | 'T_2' | 'T_3' | 'Tagged' | 'Text' | 'V564424' | 'string' | 'number' | 'boolean' | 'symbol';
 export declare const Schemas: {
     '$schema': string;
     'definitions': {
@@ -373,7 +373,7 @@ export declare const Schemas: {
                 'properties'?: undefined;
             })[];
         };
-        'V580110': {
+        'V564424': {
             'enum': string[];
             'type': string;
         };
