@@ -25,7 +25,7 @@ export type SchemaRef = 'AddIntsRequest'
   | 'T_3'
   | 'Tagged'
   | 'Text'
-  | 'V564424'
+  | 'V370808'
   | 'string'
   | 'number'
   | 'boolean'
@@ -165,7 +165,7 @@ export const Schemas = {
               'properties': {
                 'TagDoNotUse': {
                   'enum': [
-                    'RawRoute'
+                    'Route'
                   ],
                   'type': 'string'
                 }
@@ -356,7 +356,7 @@ export const Schemas = {
               'properties': {
                 'TagDoNotUse': {
                   'enum': [
-                    'RawRoute'
+                    'Route'
                   ],
                   'type': 'string'
                 }
@@ -478,9 +478,9 @@ export const Schemas = {
         }
       ]
     },
-    'V564424': {
+    'V370808': {
       'enum': [
-        'Bridge Typings Version 564424'
+        'Bridge Typings Version 370808'
       ],
       'type': 'string'
     }

@@ -25,7 +25,7 @@ const timeoutError = (time: number) => new Error('server error: request timed ou
   + time.toString() + ')')
 
 function buildRequestOfAuth<T> (token?: Text<'AuthToken'>): (
-  route: Text<'RawRoute'>,
+  route: Text<'Route'>,
   request: T
 ) => [Text<'RequestId'>, string] {
   return (route, request) => {
@@ -127,7 +127,7 @@ function call<T, U, S> (
     id: Text<'RequestId'>
   ) => U,
   bridgeClient: BridgeClient.T<S>,
-  route: Text<'RawRoute'>,
+  route: Text<'Route'>,
   request: T,
   typeURef: SchemaRef,
   token?: Text<'AuthToken'>
@@ -169,7 +169,7 @@ function catchStreamTimeout<T> (
 export function direct<T, U, S> (
   bridgeClient: BridgeClient.T<S>,
   timeout: number | undefined,
-  route: Text<'RawRoute'>,
+  route: Text<'Route'>,
   request: T,
   typeURef: SchemaRef,
   token?: Text<'AuthToken'>
@@ -186,7 +186,7 @@ export function direct<T, U, S> (
 export function streaming<T, U, S> (
   bridgeClient: BridgeClient.T<S>,
   timeout: number | undefined,
-  route: Text<'RawRoute'>,
+  route: Text<'Route'>,
   request: T,
   typeURef: SchemaRef,
   token?: Text<'AuthToken'>

@@ -43,4 +43,4 @@ async function run (): Promise<void> {
   ws.close()
 }
 
-run()
+run().catch(console.log)
