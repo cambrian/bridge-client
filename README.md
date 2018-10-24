@@ -58,7 +58,7 @@ async function run (): Promise<void> {
   ws.close()
 }
 
-run()
+run().catch(console.log)
 ```
 Usage Note: Users are responsible for opening a WebSocket connection and passing a
 WebSocket-compatible object to `BridgeClient.make`. Consider using a reconnecting WebSocket
