@@ -1,8 +1,10 @@
-export type V370808 = 'Bridge Typings Version 370808'
+export type V191895 = 'Bridge Typings Version 191895'
 
 export type Tagged<T extends string, K> = { TagDoNotUse: T } | K
 
 export type Text<T extends string> = Tagged<T, string>
+
+export type Unit = Array<Boolean>
 
 export type RpcResponse<T> = IRpcResponseClientException | IRpcResponseServerException | IRpcResponse<T>
 

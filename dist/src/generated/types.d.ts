@@ -1,8 +1,9 @@
-export declare type V370808 = 'Bridge Typings Version 370808';
+export declare type V191895 = 'Bridge Typings Version 191895';
 export declare type Tagged<T extends string, K> = {
     TagDoNotUse: T;
 } | K;
 export declare type Text<T extends string> = Tagged<T, string>;
+export declare type Unit = Array<Boolean>;
 export declare type RpcResponse<T> = IRpcResponseClientException | IRpcResponseServerException | IRpcResponse<T>;
 export interface IRpcResponseClientException {
     tag: 'RpcResponseClientException';

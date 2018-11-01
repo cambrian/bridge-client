@@ -21,17 +21,17 @@ async function run (): Promise<void> {
     const result = await Call.DummyManager.addIntsBad(client, { a: 3, b: 4 })
     console.log(result)
   } catch (exception) {
-    console.log(exception.message) // Output: request timed out (1)
+    console.log(exception.message) // Output: [server] request timed out (1)
   }
 
   const stream = Call.DummyManager.echoThrice(client, 1337)
-  await observe(console.log, stream) // Output: 1337 (x3)
+  await observe(console.log, stream) // Output: 1337, 1338, 1339
 
   try {
     const stream = Call.DummyManager.echoThriceBad(client, 1337)
     await observe(console.log, stream)
   } catch (exception) {
-    console.log(exception.message) // Output: request timed out (1)
+    console.log(exception.message) // Output: [server] request timed out (1)
   }
 
   const fizzBuzz = { a: 'Fizz', b: 'Buzz' }
@@ -39,7 +39,13 @@ async function run (): Promise<void> {
   console.log(resultAuth) // Output: { result: 'FizzBuzz' }
 
   const streamAuth = Call.DummyManager.echoThriceAuth(client, 'Token', '1337')
-  await observe(console.log, streamAuth) // Output: '1337' (x3)
+  await observe(console.log, streamAuth) // Output: '1337' (x1)
+
+  const voidResult = await Call.DummyManager.getVoid(client)
+  console.log(voidResult) // Output: undefined (x1)
+
+  const voidStream = Call.DummyManager.getVoidStream(client)
+  await observe(console.log, voidStream) // Output: undefined (x1)
   ws.close()
 }
 

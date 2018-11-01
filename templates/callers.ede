@@ -1,8 +1,9 @@
-import { AddIntsRequest, ConcatTextAuthRequest, ConcatTextAuthResponse, Text } from './types'
+import { AddIntsRequest, ConcatTextAuthRequest, ConcatTextAuthResponse, Text, Unit } from './types'
 import { direct, streaming } from '../call'
 
 import { BridgeClient } from '../client'
 import { Stream } from '@most/types'
+import { map } from '@most/core'
 
 export namespace Server {
 {% for serviceItem in services %}

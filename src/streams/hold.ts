@@ -1,13 +1,7 @@
 import { Disposable, Scheduler, Sink, Stream, Time } from '@most/types'
-import { PushableStream, observe, pushStream } from './utility'
 
 import { MulticastSource } from '@most/core'
-
-// An imperative stream that holds its most recent value.
-export function heldPushStream<T> (): PushableStream<T> {
-  const [push, error, close, stream] = pushStream<T>()
-  return [push, error, close, hold(stream)]
-}
+import { observe } from './utility'
 
 export function hold<T> (stream: Stream<T>): Stream<T> {
   const heldStream = new Hold(stream)

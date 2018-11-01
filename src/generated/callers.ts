@@ -1,8 +1,9 @@
-import { AddIntsRequest, ConcatTextAuthRequest, ConcatTextAuthResponse, Text } from './types'
+import { AddIntsRequest, ConcatTextAuthRequest, ConcatTextAuthResponse, Text, Unit } from './types'
 import { direct, streaming } from '../call'
 
 import { BridgeClient } from '../client'
 import { Stream } from '@most/types'
+import { map } from '@most/core'
 
 export namespace Server {
   export class DummyManager { private tag: any }
@@ -90,6 +91,30 @@ export namespace Call {
         'string',
         token
       )
+    }
+
+    export function getVoid (
+      bridgeClient: BridgeClient.T<Server.DummyManager>
+    ): Promise<void> {
+      return direct<Unit, Unit, Server.DummyManager>(
+        bridgeClient,
+        20000,
+        'DummyManager/getVoid',
+        [],
+        'Unit'
+      ).then(_ => undefined)
+    }
+
+    export function getVoidStream (
+      bridgeClient: BridgeClient.T<Server.DummyManager>
+    ): Stream<void> {
+      return map(_ => undefined, streaming<Unit, Unit, Server.DummyManager>(
+        bridgeClient,
+        20000,
+        'DummyManager/getVoidStream',
+        [],
+        'Unit'
+      ))
     }
   }
 }

@@ -1,4 +1,5 @@
 export type SchemaRef = 'AddIntsRequest'
+  | 'Boolean'
   | 'ConcatTextAuthRequest'
   | 'ConcatTextAuthResponse'
   | 'IAddIntsRequest'
@@ -25,7 +26,8 @@ export type SchemaRef = 'AddIntsRequest'
   | 'T_3'
   | 'Tagged'
   | 'Text'
-  | 'V370808'
+  | 'Unit'
+  | 'V191895'
   | 'string'
   | 'number'
   | 'boolean'
@@ -44,6 +46,7 @@ export const Schemas = {
       },
       'type': 'object'
     },
+    'Boolean': {},
     'ConcatTextAuthRequest': {
       'properties': {
         'a': {
@@ -478,9 +481,15 @@ export const Schemas = {
         }
       ]
     },
-    'V370808': {
+    'Unit': {
+      'items': {
+        '$ref': '#/definitions/Boolean'
+      },
+      'type': 'array'
+    },
+    'V191895': {
       'enum': [
-        'Bridge Typings Version 370808'
+        'Bridge Typings Version 191895'
       ],
       'type': 'string'
     }

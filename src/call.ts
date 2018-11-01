@@ -11,18 +11,17 @@ import {
   StreamingResponse,
   Text
 } from './generated/types'
-import { heldPushStream, observe } from './streams'
+import { hold, observe, pushStream } from './streams'
 import { safeParse, validate } from './format'
 
 import { SchemaRef } from './generated/schema'
 import { Stream } from '@most/types'
 import { filter } from '@most/core'
 
-const clientError = (errorText: String) => new Error('client error: ' + errorText)
-const serverError = (errorText: String) => new Error('server error: ' + errorText)
-const unexpectedResponseError = new Error('server error: unexpected response')
-const timeoutError = (time: number) => new Error('server error: request timed out ('
-  + time.toString() + ')')
+const clientError = (errorText: String) => new Error('[client] ' + errorText)
+const serverError = (errorText: String) => new Error('[server] ' + errorText)
+const unexpectedResponseError = serverError('unexpected response')
+const timeoutError = (time: number) => serverError('request timed out (' + time.toString() + ')')
 
 function buildRequestOfAuth<T> (token?: Text<'AuthToken'>): (
   route: Text<'Route'>,
@@ -75,7 +74,7 @@ function installStreamingHandler<T, S> (
   id: Text<'RequestId'>
 ): Stream<T | IHeartbeat> {
   const { responseHandlers } = bridgeClient
-  const [push, error, close, stream] = heldPushStream<T | IHeartbeat>()
+  const [push, error, close, stream] = pushStream<T | IHeartbeat>()
   const handle = (response: Text<'Response'>) => {
     let validated = false
     const resOrExc = safeParse(response)
@@ -115,7 +114,7 @@ function installStreamingHandler<T, S> (
   }
   // Error will push error to the stream.
   responseHandlers.set(id, [handle, error])
-  return stream
+  return hold(stream)
 }
 
 // T is request type.

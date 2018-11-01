@@ -1,4 +1,4 @@
-import { heldPushStream, observe, toList } from '@src/streams'
+import { hold, observe, pushStream, toList } from '@src/streams'
 
 import { expect } from 'chai'
 
@@ -38,34 +38,38 @@ async function errorDemo (
 
 describe('held push stream (tests can be flaky)', () => {
   it('should return all demo values if bound immediately', async () => {
-    const [push, , close, stream] = heldPushStream<number>()
+    const [push, , close, stream] = pushStream<number>()
+    const heldStream = hold(stream)
     demo(push, close)
-    const result = await toList(stream)
+    const result = await toList(heldStream)
     expect(result).to.deep.equal([1, 2, 3, 4])
   })
 
   it('should return some demo values if bound later on', async () => {
-    const [push, , close, stream] = heldPushStream<number>()
+    const [push, , close, stream] = pushStream<number>()
+    const heldStream = hold(stream)
     demo(push, close)
     await sleep(38)
-    const result = await toList(stream)
+    const result = await toList(heldStream)
     expect(result).to.deep.equal([3, 4])
   })
 
   it('should return last demo value if bound at the end', async () => {
-    const [push, , close, stream] = heldPushStream<number>()
+    const [push, , close, stream] = pushStream<number>()
+    const heldStream = hold(stream)
     demo(push, close)
     await sleep(60)
-    const result = await toList(stream)
+    const result = await toList(heldStream)
     expect(result).to.deep.equal([4])
   })
 
   it('should return first errorDemo values if bound immediately', async () => {
-    const [push, error, close, stream] = heldPushStream<number>()
+    const [push, error, close, stream] = pushStream<number>()
+    const heldStream = hold(stream)
     errorDemo(push, error, close)
     const results: Array<number> = []
     try {
-      await observe<number>(value => results.push(value), stream)
+      await observe<number>(value => results.push(value), heldStream)
       expect(false).to.equal(true) // Unreachable (should throw).
     } catch {
       expect(results).to.deep.equal([1, 2])
@@ -73,12 +77,13 @@ describe('held push stream (tests can be flaky)', () => {
   })
 
   it('should return second errorDemo value if bound later', async () => {
-    const [push, error, close, stream] = heldPushStream<number>()
+    const [push, error, close, stream] = pushStream<number>()
+    const heldStream = hold(stream)
     errorDemo(push, error, close)
     await sleep(28)
     const results: Array<number> = []
     try {
-      await observe<number>(value => results.push(value), stream)
+      await observe<number>(value => results.push(value), heldStream)
       expect(false).to.equal(true) // Unreachable (should throw).
     } catch {
       expect(results).to.deep.equal([2])
@@ -86,12 +91,13 @@ describe('held push stream (tests can be flaky)', () => {
   })
 
   it('should return no errorDemo values if bound at the end', async () => {
-    const [push, error, close, stream] = heldPushStream<number>()
+    const [push, error, close, stream] = pushStream<number>()
+    const heldStream = hold(stream)
     errorDemo(push, error, close)
     await sleep(60)
     const results: Array<number> = []
     try {
-      await observe<number>(value => results.push(value), stream)
+      await observe<number>(value => results.push(value), heldStream)
       expect(false).to.equal(true) // Unreachable (should throw).
     } catch {
       expect(results).to.deep.equal([])

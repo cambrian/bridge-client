@@ -1,14 +1,14 @@
     export function {{ spec.route }} (
-      bridgeClient: BridgeClient.T<Server.{{ service.namespace }}>,{% if spec.auth %}
-      token: Text<'AuthToken'>,{% endif %}
-      request: {{ spec.req }}
+      bridgeClient: BridgeClient.T<Server.{{ service.namespace }}>{% if spec.auth || spec.req != "void" %},{% endif %}{% if spec.auth %}
+      token: Text<'AuthToken'>,{% endif %}{% if spec.req != "void" %}
+      request: {{ spec.req }}{% endif %}
     ): {% if spec.streaming %}Stream{% else %}Promise{% endif %}<{{ spec.res }}> {
-      return {% if spec.streaming %}streaming{% else %}direct{% endif %}<{{ spec.req }}, {{ spec.res }}, Server.{{ service.namespace }}>(
+      return {% if spec.streaming %}{% if spec.res == "void" %}map(_ => undefined, {% endif %}streaming{% else %}direct{% endif %}<{% if spec.req == "void" %}Unit{% else %}{{ spec.req }}{% endif %}, {% if spec.res == "void" %}Unit{% else %}{{ spec.res }}{% endif %}, Server.{{ service.namespace }}>(
         bridgeClient,
         {{ spec.timeoutMillis }},
         '{{ spec.namespacedRoute }}',
-        request,
-        '{{ spec.res }}'{% if spec.auth %},
+        {% if spec.req == "void" %}[]{% else %}request{% endif %},
+        '{% if spec.res == "void" %}Unit{% else %}{{ spec.res }}{% endif %}'{% if spec.auth %},
         token{% endif %}
-      )
+      ){% if spec.res == "void" %}{% if spec.streaming %}){% else %}.then(_ => undefined){% endif %}{% endif %}
     }

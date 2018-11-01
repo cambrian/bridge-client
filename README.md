@@ -3,84 +3,14 @@ A TypeScript module for interfacing with our Haskell-based backend.
 
 ## Installation
 ```bash
-npm install https://github.com/1protocol/bridge-client#0073c27 --save
+npm install https://github.com/1protocol/bridge-client --save
 ```
-This version is tied to a [particular](https://github.com/1protocol/vest-hs/tree/ead9ff36479135a68f47df4830a89b44218016d6)
-Manager commit, which will enable you to complete the following demo.
+To use the demo, please find a pre-November commit.
 
-## Demo
-The Manager [executable](https://github.com/1protocol/vest-hs/releases/tag/v0.1-dummy-manager) must
-be running in its own shell. If you want to try out `bridge-client` but do not already have a
-TypeScript project, see the next section for a toy setup.
-```typescript
-// This file is also in test/example.ts.
-import * as WebSocket from 'ws'
-
-import { BridgeClient, Call, Server, observe } from '@src'
-
-async function makeSocket (): Promise<WebSocket> {
-  return new Promise<WebSocket>((resolve, _) => {
-    const ws = new WebSocket('http://127.0.0.1:3000')
-    ws.on('open', () => resolve(ws))
-  })
-}
-
-async function run (): Promise<void> {
-  const ws = await makeSocket()
-  const client = BridgeClient.make<Server.DummyManager>(ws)
-
-  const result = await Call.DummyManager.addInts(client, { a: 3, b: 4 })
-  console.log(result) // Output: 7
-
-  try {
-    const result = await Call.DummyManager.addIntsBad(client, { a: 3, b: 4 })
-    console.log(result)
-  } catch (exception) {
-    console.log(exception.message) // Output: request timed out (1)
-  }
-
-  const stream = Call.DummyManager.echoThrice(client, 1337)
-  await observe(console.log, stream) // Output: 1337 (x3)
-
-  try {
-    const stream = Call.DummyManager.echoThriceBad(client, 1337)
-    await observe(console.log, stream)
-  } catch (exception) {
-    console.log(exception.message) // Output: request timed out (1)
-  }
-
-  const fizzBuzz = { a: 'Fizz', b: 'Buzz' }
-  const resultAuth = await Call.DummyManager.concatTextAuth(client, 'Token', fizzBuzz)
-  console.log(resultAuth) // Output: { result: 'FizzBuzz' }
-
-  const streamAuth = Call.DummyManager.echoThriceAuth(client, 'Token', '1337')
-  await observe(console.log, streamAuth) // Output: '1337' (x3)
-  ws.close()
-}
-
-run().catch(console.log)
-```
-Usage Note: Users are responsible for opening a WebSocket connection and passing a
-WebSocket-compatible object to `BridgeClient.make`. Consider using a reconnecting WebSocket
-implementation, such as [this](https://github.com/pladaria/reconnecting-websocket) repo.
-
-## Toy Setup
-Run the Manager executable as before. Then open a separate shell and run these commands, which will
-populate a new subdirectory `bridge-test` (if this fails to create a `node_modules` folder, ensure
-that parent directories do not contain such a folder):
-```bash
-mkdir -p bridge-test
-cd bridge-test
-# You must have NPM installed at the very least...
-npm install ws @types/ws https://github.com/1protocol/bridge-client#0073c27 typescript node
-```
-Copy the code from the previous section into a file `bridge-test/main.ts`. Then (from the
-`bridge-test` subdirectory):
-```
-./node_modules/.bin/tsc --lib 'es2018' main.ts
-./node_modules/.bin/node main.js
-```
-And you should see the desired output.
+## Usage
+See `test/example.ts`. Note that users are responsible for opening a WebSocket connection and
+passing a WebSocket-compatible object to `BridgeClient.make`. Consider using a reconnecting
+WebSocket implementation, such as [this](https://github.com/pladaria/reconnecting-websocket) repo.
 
 ## Concept
 Our back-end codebase relies on Haskell's type safety to prevent errors of all kinds. Naturally, we

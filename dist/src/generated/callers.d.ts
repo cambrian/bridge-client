@@ -14,5 +14,7 @@ export declare namespace Call {
         function echoThriceBad(bridgeClient: BridgeClient.T<Server.DummyManager>, request: number): Stream<number>;
         function concatTextAuth(bridgeClient: BridgeClient.T<Server.DummyManager>, token: Text<'AuthToken'>, request: ConcatTextAuthRequest): Promise<ConcatTextAuthResponse>;
         function echoThriceAuth(bridgeClient: BridgeClient.T<Server.DummyManager>, token: Text<'AuthToken'>, request: string): Stream<string>;
+        function getVoid(bridgeClient: BridgeClient.T<Server.DummyManager>): Promise<void>;
+        function getVoidStream(bridgeClient: BridgeClient.T<Server.DummyManager>): Stream<void>;
     }
 }
