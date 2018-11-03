@@ -1,4 +1,7 @@
 #!/bin/bash
+set -e
+set -o pipefail
+
 if [ -z "$1" ]
   then
     echo "types: output file not supplied"

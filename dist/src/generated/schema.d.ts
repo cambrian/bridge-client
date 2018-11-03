@@ -1,4 +1,4 @@
-export declare type SchemaRef = 'AddIntsRequest' | 'Boolean' | 'ConcatTextAuthRequest' | 'ConcatTextAuthResponse' | 'IAddIntsRequest' | 'IConcatTextAuthRequest' | 'IConcatTextAuthResponse' | 'IEndOfResults' | 'IHeartbeat' | 'IRequestMessage' | 'IResponseMessage' | 'IResult' | 'IResult<T>' | 'IRpcResponse' | 'IRpcResponse<T>' | 'IRpcResponseClientException' | 'IRpcResponseServerException' | 'K' | 'RequestMessage' | 'ResponseMessage' | 'RpcResponse' | 'StreamingResponse' | 'T' | 'T_1' | 'T_2' | 'T_3' | 'Tagged' | 'Text' | 'Unit' | 'V191895' | 'string' | 'number' | 'boolean' | 'symbol';
+export declare type SchemaRef = 'AddIntsRequest' | 'Baker' | 'BakersResponse' | 'Boolean' | 'ConcatTextAuthRequest' | 'ConcatTextAuthResponse' | 'DelegateFraction' | 'DelegateInfo' | 'IAddIntsRequest' | 'IBaker' | 'IBakersResponse' | 'IConcatTextAuthRequest' | 'IConcatTextAuthResponse' | 'IDelegateFraction' | 'IDelegateInfo' | 'IEndOfResults' | 'IHeartbeat' | 'IImplicitResponse' | 'ILedgerOperation' | 'IOperationResponse' | 'IOriginatedAccount' | 'IOverviewResponse' | 'IRequestMessage' | 'IResponseMessage' | 'IResult' | 'IResult<T>' | 'IRpcResponse' | 'IRpcResponse<T>' | 'IRpcResponseClientException' | 'IRpcResponseServerException' | 'ITimestampRate' | 'ITimestampSize' | 'ImplicitResponse' | 'K' | 'LedgerOperation' | 'LedgerOperationType' | 'OperationResponse' | 'OriginatedAccount' | 'OverviewResponse' | 'RequestMessage' | 'ResponseMessage' | 'RpcResponse' | 'StreamingResponse' | 'T' | 'T_1' | 'T_2' | 'T_3' | 'Tagged' | 'Text' | 'TimestampRate' | 'TimestampSize' | 'Unit' | 'V296236' | 'string' | 'number' | 'boolean' | 'symbol';
 export declare const Schemas: {
     '$schema': string;
     'definitions': {
@@ -8,6 +8,105 @@ export declare const Schemas: {
                     'type': string;
                 };
                 'b': {
+                    'type': string;
+                };
+            };
+            'type': string;
+        };
+        'Baker': {
+            'properties': {
+                'bond': {
+                    'anyOf': ({
+                        'properties': {
+                            'TagDoNotUse': {
+                                'enum': string[];
+                                'type': string;
+                            };
+                        };
+                        'type': string;
+                    } | {
+                        'type': string;
+                        'properties'?: undefined;
+                    })[];
+                };
+                'cyclesOutstanding': {
+                    'type': string;
+                };
+                'description': {
+                    'type': string;
+                };
+                'fee': {
+                    'anyOf': ({
+                        'properties': {
+                            'TagDoNotUse': {
+                                'enum': string[];
+                                'type': string;
+                            };
+                        };
+                        'type': string;
+                    } | {
+                        'type': string;
+                        'properties'?: undefined;
+                    })[];
+                };
+                'hash': {
+                    'anyOf': ({
+                        'properties': {
+                            'TagDoNotUse': {
+                                'enum': string[];
+                                'type': string;
+                            };
+                        };
+                        'type': string;
+                    } | {
+                        'type': string;
+                        'properties'?: undefined;
+                    })[];
+                };
+                'interestRatesOverTime': {
+                    'items': {
+                        '$ref': string;
+                    };
+                    'type': string;
+                };
+                'name': {
+                    'type': string;
+                };
+                'overDelegated': {
+                    'type': string;
+                };
+                'rewardsOverTime': {
+                    'items': {
+                        '$ref': string;
+                    };
+                    'type': string;
+                };
+                'totalDelegations': {
+                    'anyOf': ({
+                        'properties': {
+                            'TagDoNotUse': {
+                                'enum': string[];
+                                'type': string;
+                            };
+                        };
+                        'type': string;
+                    } | {
+                        'type': string;
+                        'properties'?: undefined;
+                    })[];
+                };
+            };
+            'type': string;
+        };
+        'BakersResponse': {
+            'properties': {
+                'bakers': {
+                    'items': {
+                        '$ref': string;
+                    };
+                    'type': string;
+                };
+                'retrieved': {
                     'type': string;
                 };
             };
@@ -33,12 +132,155 @@ export declare const Schemas: {
             };
             'type': string;
         };
+        'DelegateFraction': {
+            'properties': {
+                'delegate': {
+                    'anyOf': ({
+                        'properties': {
+                            'TagDoNotUse': {
+                                'enum': string[];
+                                'type': string;
+                            };
+                        };
+                        'type': string;
+                    } | {
+                        'type': string;
+                        'properties'?: undefined;
+                    })[];
+                };
+                'fraction': {
+                    'type': string;
+                };
+            };
+            'type': string;
+        };
+        'DelegateInfo': {
+            'properties': {
+                'hash': {
+                    'anyOf': ({
+                        'properties': {
+                            'TagDoNotUse': {
+                                'enum': string[];
+                                'type': string;
+                            };
+                        };
+                        'type': string;
+                    } | {
+                        'type': string;
+                        'properties'?: undefined;
+                    })[];
+                };
+                'name': {
+                    'type': string;
+                };
+            };
+            'type': string;
+        };
         'IAddIntsRequest': {
             'properties': {
                 'a': {
                     'type': string;
                 };
                 'b': {
+                    'type': string;
+                };
+            };
+            'type': string;
+        };
+        'IBaker': {
+            'properties': {
+                'bond': {
+                    'anyOf': ({
+                        'properties': {
+                            'TagDoNotUse': {
+                                'enum': string[];
+                                'type': string;
+                            };
+                        };
+                        'type': string;
+                    } | {
+                        'type': string;
+                        'properties'?: undefined;
+                    })[];
+                };
+                'cyclesOutstanding': {
+                    'type': string;
+                };
+                'description': {
+                    'type': string;
+                };
+                'fee': {
+                    'anyOf': ({
+                        'properties': {
+                            'TagDoNotUse': {
+                                'enum': string[];
+                                'type': string;
+                            };
+                        };
+                        'type': string;
+                    } | {
+                        'type': string;
+                        'properties'?: undefined;
+                    })[];
+                };
+                'hash': {
+                    'anyOf': ({
+                        'properties': {
+                            'TagDoNotUse': {
+                                'enum': string[];
+                                'type': string;
+                            };
+                        };
+                        'type': string;
+                    } | {
+                        'type': string;
+                        'properties'?: undefined;
+                    })[];
+                };
+                'interestRatesOverTime': {
+                    'items': {
+                        '$ref': string;
+                    };
+                    'type': string;
+                };
+                'name': {
+                    'type': string;
+                };
+                'overDelegated': {
+                    'type': string;
+                };
+                'rewardsOverTime': {
+                    'items': {
+                        '$ref': string;
+                    };
+                    'type': string;
+                };
+                'totalDelegations': {
+                    'anyOf': ({
+                        'properties': {
+                            'TagDoNotUse': {
+                                'enum': string[];
+                                'type': string;
+                            };
+                        };
+                        'type': string;
+                    } | {
+                        'type': string;
+                        'properties'?: undefined;
+                    })[];
+                };
+            };
+            'type': string;
+        };
+        'IBakersResponse': {
+            'properties': {
+                'bakers': {
+                    'items': {
+                        '$ref': string;
+                    };
+                    'type': string;
+                };
+                'retrieved': {
                     'type': string;
                 };
             };
@@ -63,6 +305,50 @@ export declare const Schemas: {
             };
             'type': string;
         };
+        'IDelegateFraction': {
+            'properties': {
+                'delegate': {
+                    'anyOf': ({
+                        'properties': {
+                            'TagDoNotUse': {
+                                'enum': string[];
+                                'type': string;
+                            };
+                        };
+                        'type': string;
+                    } | {
+                        'type': string;
+                        'properties'?: undefined;
+                    })[];
+                };
+                'fraction': {
+                    'type': string;
+                };
+            };
+            'type': string;
+        };
+        'IDelegateInfo': {
+            'properties': {
+                'hash': {
+                    'anyOf': ({
+                        'properties': {
+                            'TagDoNotUse': {
+                                'enum': string[];
+                                'type': string;
+                            };
+                        };
+                        'type': string;
+                    } | {
+                        'type': string;
+                        'properties'?: undefined;
+                    })[];
+                };
+                'name': {
+                    'type': string;
+                };
+            };
+            'type': string;
+        };
         'IEndOfResults': {
             'properties': {
                 'tag': {
@@ -77,6 +363,223 @@ export declare const Schemas: {
                 'tag': {
                     'enum': string[];
                     'type': string;
+                };
+            };
+            'type': string;
+        };
+        'IImplicitResponse': {
+            'properties': {
+                'balance': {
+                    'anyOf': ({
+                        'properties': {
+                            'TagDoNotUse': {
+                                'enum': string[];
+                                'type': string;
+                            };
+                        };
+                        'type': string;
+                    } | {
+                        'type': string;
+                        'properties'?: undefined;
+                    })[];
+                };
+                'originated': {
+                    'items': {
+                        '$ref': string;
+                    };
+                    'type': string;
+                };
+                'retrieved': {
+                    'type': string;
+                };
+            };
+            'type': string;
+        };
+        'ILedgerOperation': {
+            'properties': {
+                'blockHash': {
+                    'anyOf': ({
+                        'properties': {
+                            'TagDoNotUse': {
+                                'enum': string[];
+                                'type': string;
+                            };
+                        };
+                        'type': string;
+                    } | {
+                        'type': string;
+                        'properties'?: undefined;
+                    })[];
+                };
+                'from': {
+                    'anyOf': ({
+                        'properties': {
+                            'TagDoNotUse': {
+                                'enum': string[];
+                                'type': string;
+                            };
+                        };
+                        'type': string;
+                    } | {
+                        'type': string;
+                        'properties'?: undefined;
+                    })[];
+                };
+                'hash': {
+                    'anyOf': ({
+                        'properties': {
+                            'TagDoNotUse': {
+                                'enum': string[];
+                                'type': string;
+                            };
+                        };
+                        'type': string;
+                    } | {
+                        'type': string;
+                        'properties'?: undefined;
+                    })[];
+                };
+                'operationType': {
+                    '$ref': string;
+                };
+                'size': {
+                    'anyOf': ({
+                        'properties': {
+                            'TagDoNotUse': {
+                                'enum': string[];
+                                'type': string;
+                            };
+                        };
+                        'type': string;
+                    } | {
+                        'type': string;
+                        'properties'?: undefined;
+                    })[];
+                };
+                'timestamp': {
+                    'type': string;
+                };
+            };
+            'type': string;
+        };
+        'IOperationResponse': {
+            'properties': {
+                'baked': {
+                    'type': string;
+                };
+                'blockHash': {
+                    'anyOf': ({
+                        'properties': {
+                            'TagDoNotUse': {
+                                'enum': string[];
+                                'type': string;
+                            };
+                        };
+                        'type': string;
+                    } | {
+                        'type': string;
+                        'properties'?: undefined;
+                    })[];
+                };
+                'confirmations': {
+                    'type': string;
+                };
+                'error': {
+                    'type': string;
+                };
+                'retrieved': {
+                    'type': string;
+                };
+            };
+            'type': string;
+        };
+        'IOriginatedAccount': {
+            'properties': {
+                'balance': {
+                    'anyOf': ({
+                        'properties': {
+                            'TagDoNotUse': {
+                                'enum': string[];
+                                'type': string;
+                            };
+                        };
+                        'type': string;
+                    } | {
+                        'type': string;
+                        'properties'?: undefined;
+                    })[];
+                };
+                'delegate': {
+                    '$ref': string;
+                };
+                'hash': {
+                    'anyOf': ({
+                        'properties': {
+                            'TagDoNotUse': {
+                                'enum': string[];
+                                'type': string;
+                            };
+                        };
+                        'type': string;
+                    } | {
+                        'type': string;
+                        'properties'?: undefined;
+                    })[];
+                };
+                'ledger': {
+                    'items': {
+                        '$ref': string;
+                    };
+                    'type': string;
+                };
+            };
+            'type': string;
+        };
+        'IOverviewResponse': {
+            'properties': {
+                'bondsOverTime': {
+                    'items': {
+                        '$ref': string;
+                    };
+                    'type': string;
+                };
+                'delegateDistribution': {
+                    'items': {
+                        '$ref': string;
+                    };
+                    'type': string;
+                };
+                'interestRatesOverTime': {
+                    'items': {
+                        '$ref': string;
+                    };
+                    'type': string;
+                };
+                'minerCount': {
+                    'type': string;
+                };
+                'retrieved': {
+                    'type': string;
+                };
+                'totalDelegationsOverTime': {
+                    'items': {
+                        '$ref': string;
+                    };
+                    'type': string;
+                };
+                'totalRewards': {
+                    'anyOf': ({
+                        'properties': {
+                            'TagDoNotUse': {
+                                'enum': string[];
+                                'type': string;
+                            };
+                        };
+                        'type': string;
+                    } | {
+                        'type': string;
+                        'properties'?: undefined;
+                    })[];
                 };
             };
             'type': string;
@@ -239,7 +742,261 @@ export declare const Schemas: {
             };
             'type': string;
         };
+        'ITimestampRate': {
+            'properties': {
+                'rate': {
+                    'type': string;
+                };
+                'timestamp': {
+                    'type': string;
+                };
+            };
+            'type': string;
+        };
+        'ITimestampSize': {
+            'properties': {
+                'size': {
+                    'anyOf': ({
+                        'properties': {
+                            'TagDoNotUse': {
+                                'enum': string[];
+                                'type': string;
+                            };
+                        };
+                        'type': string;
+                    } | {
+                        'type': string;
+                        'properties'?: undefined;
+                    })[];
+                };
+                'timestamp': {
+                    'type': string;
+                };
+            };
+            'type': string;
+        };
+        'ImplicitResponse': {
+            'properties': {
+                'balance': {
+                    'anyOf': ({
+                        'properties': {
+                            'TagDoNotUse': {
+                                'enum': string[];
+                                'type': string;
+                            };
+                        };
+                        'type': string;
+                    } | {
+                        'type': string;
+                        'properties'?: undefined;
+                    })[];
+                };
+                'originated': {
+                    'items': {
+                        '$ref': string;
+                    };
+                    'type': string;
+                };
+                'retrieved': {
+                    'type': string;
+                };
+            };
+            'type': string;
+        };
         'K': {};
+        'LedgerOperation': {
+            'properties': {
+                'blockHash': {
+                    'anyOf': ({
+                        'properties': {
+                            'TagDoNotUse': {
+                                'enum': string[];
+                                'type': string;
+                            };
+                        };
+                        'type': string;
+                    } | {
+                        'type': string;
+                        'properties'?: undefined;
+                    })[];
+                };
+                'from': {
+                    'anyOf': ({
+                        'properties': {
+                            'TagDoNotUse': {
+                                'enum': string[];
+                                'type': string;
+                            };
+                        };
+                        'type': string;
+                    } | {
+                        'type': string;
+                        'properties'?: undefined;
+                    })[];
+                };
+                'hash': {
+                    'anyOf': ({
+                        'properties': {
+                            'TagDoNotUse': {
+                                'enum': string[];
+                                'type': string;
+                            };
+                        };
+                        'type': string;
+                    } | {
+                        'type': string;
+                        'properties'?: undefined;
+                    })[];
+                };
+                'operationType': {
+                    '$ref': string;
+                };
+                'size': {
+                    'anyOf': ({
+                        'properties': {
+                            'TagDoNotUse': {
+                                'enum': string[];
+                                'type': string;
+                            };
+                        };
+                        'type': string;
+                    } | {
+                        'type': string;
+                        'properties'?: undefined;
+                    })[];
+                };
+                'timestamp': {
+                    'type': string;
+                };
+            };
+            'type': string;
+        };
+        'LedgerOperationType': {
+            'enum': string[];
+            'type': string;
+        };
+        'OperationResponse': {
+            'properties': {
+                'baked': {
+                    'type': string;
+                };
+                'blockHash': {
+                    'anyOf': ({
+                        'properties': {
+                            'TagDoNotUse': {
+                                'enum': string[];
+                                'type': string;
+                            };
+                        };
+                        'type': string;
+                    } | {
+                        'type': string;
+                        'properties'?: undefined;
+                    })[];
+                };
+                'confirmations': {
+                    'type': string;
+                };
+                'error': {
+                    'type': string;
+                };
+                'retrieved': {
+                    'type': string;
+                };
+            };
+            'type': string;
+        };
+        'OriginatedAccount': {
+            'properties': {
+                'balance': {
+                    'anyOf': ({
+                        'properties': {
+                            'TagDoNotUse': {
+                                'enum': string[];
+                                'type': string;
+                            };
+                        };
+                        'type': string;
+                    } | {
+                        'type': string;
+                        'properties'?: undefined;
+                    })[];
+                };
+                'delegate': {
+                    '$ref': string;
+                };
+                'hash': {
+                    'anyOf': ({
+                        'properties': {
+                            'TagDoNotUse': {
+                                'enum': string[];
+                                'type': string;
+                            };
+                        };
+                        'type': string;
+                    } | {
+                        'type': string;
+                        'properties'?: undefined;
+                    })[];
+                };
+                'ledger': {
+                    'items': {
+                        '$ref': string;
+                    };
+                    'type': string;
+                };
+            };
+            'type': string;
+        };
+        'OverviewResponse': {
+            'properties': {
+                'bondsOverTime': {
+                    'items': {
+                        '$ref': string;
+                    };
+                    'type': string;
+                };
+                'delegateDistribution': {
+                    'items': {
+                        '$ref': string;
+                    };
+                    'type': string;
+                };
+                'interestRatesOverTime': {
+                    'items': {
+                        '$ref': string;
+                    };
+                    'type': string;
+                };
+                'minerCount': {
+                    'type': string;
+                };
+                'retrieved': {
+                    'type': string;
+                };
+                'totalDelegationsOverTime': {
+                    'items': {
+                        '$ref': string;
+                    };
+                    'type': string;
+                };
+                'totalRewards': {
+                    'anyOf': ({
+                        'properties': {
+                            'TagDoNotUse': {
+                                'enum': string[];
+                                'type': string;
+                            };
+                        };
+                        'type': string;
+                    } | {
+                        'type': string;
+                        'properties'?: undefined;
+                    })[];
+                };
+            };
+            'type': string;
+        };
         'RequestMessage': {
             'properties': {
                 'headers': {
@@ -374,13 +1131,46 @@ export declare const Schemas: {
                 'properties'?: undefined;
             })[];
         };
+        'TimestampRate': {
+            'properties': {
+                'rate': {
+                    'type': string;
+                };
+                'timestamp': {
+                    'type': string;
+                };
+            };
+            'type': string;
+        };
+        'TimestampSize': {
+            'properties': {
+                'size': {
+                    'anyOf': ({
+                        'properties': {
+                            'TagDoNotUse': {
+                                'enum': string[];
+                                'type': string;
+                            };
+                        };
+                        'type': string;
+                    } | {
+                        'type': string;
+                        'properties'?: undefined;
+                    })[];
+                };
+                'timestamp': {
+                    'type': string;
+                };
+            };
+            'type': string;
+        };
         'Unit': {
             'items': {
                 '$ref': string;
             };
             'type': string;
         };
-        'V191895': {
+        'V296236': {
             'enum': string[];
             'type': string;
         };

@@ -1,12 +1,25 @@
 export type SchemaRef = 'AddIntsRequest'
+  | 'Baker'
+  | 'BakersResponse'
   | 'Boolean'
   | 'ConcatTextAuthRequest'
   | 'ConcatTextAuthResponse'
+  | 'DelegateFraction'
+  | 'DelegateInfo'
   | 'IAddIntsRequest'
+  | 'IBaker'
+  | 'IBakersResponse'
   | 'IConcatTextAuthRequest'
   | 'IConcatTextAuthResponse'
+  | 'IDelegateFraction'
+  | 'IDelegateInfo'
   | 'IEndOfResults'
   | 'IHeartbeat'
+  | 'IImplicitResponse'
+  | 'ILedgerOperation'
+  | 'IOperationResponse'
+  | 'IOriginatedAccount'
+  | 'IOverviewResponse'
   | 'IRequestMessage'
   | 'IResponseMessage'
   | 'IResult'
@@ -15,7 +28,15 @@ export type SchemaRef = 'AddIntsRequest'
   | 'IRpcResponse<T>'
   | 'IRpcResponseClientException'
   | 'IRpcResponseServerException'
+  | 'ITimestampRate'
+  | 'ITimestampSize'
+  | 'ImplicitResponse'
   | 'K'
+  | 'LedgerOperation'
+  | 'LedgerOperationType'
+  | 'OperationResponse'
+  | 'OriginatedAccount'
+  | 'OverviewResponse'
   | 'RequestMessage'
   | 'ResponseMessage'
   | 'RpcResponse'
@@ -26,8 +47,10 @@ export type SchemaRef = 'AddIntsRequest'
   | 'T_3'
   | 'Tagged'
   | 'Text'
+  | 'TimestampRate'
+  | 'TimestampSize'
   | 'Unit'
-  | 'V191895'
+  | 'V296236'
   | 'string'
   | 'number'
   | 'boolean'
@@ -42,6 +65,121 @@ export const Schemas = {
         },
         'b': {
           'type': 'number'
+        }
+      },
+      'type': 'object'
+    },
+    'Baker': {
+      'properties': {
+        'bond': {
+          'anyOf': [
+            {
+              'properties': {
+                'TagDoNotUse': {
+                  'enum': [
+                    'XTZ'
+                  ],
+                  'type': 'string'
+                }
+              },
+              'type': 'object'
+            },
+            {
+              'type': 'number'
+            }
+          ]
+        },
+        'cyclesOutstanding': {
+          'type': 'number'
+        },
+        'description': {
+          'type': 'string'
+        },
+        'fee': {
+          'anyOf': [
+            {
+              'properties': {
+                'TagDoNotUse': {
+                  'enum': [
+                    'XTZ'
+                  ],
+                  'type': 'string'
+                }
+              },
+              'type': 'object'
+            },
+            {
+              'type': 'number'
+            }
+          ]
+        },
+        'hash': {
+          'anyOf': [
+            {
+              'properties': {
+                'TagDoNotUse': {
+                  'enum': [
+                    'TzImplicitPkh'
+                  ],
+                  'type': 'string'
+                }
+              },
+              'type': 'object'
+            },
+            {
+              'type': 'string'
+            }
+          ]
+        },
+        'interestRatesOverTime': {
+          'items': {
+            '$ref': '#/definitions/ITimestampRate'
+          },
+          'type': 'array'
+        },
+        'name': {
+          'type': 'string'
+        },
+        'overDelegated': {
+          'type': 'boolean'
+        },
+        'rewardsOverTime': {
+          'items': {
+            '$ref': '#/definitions/ITimestampSize'
+          },
+          'type': 'array'
+        },
+        'totalDelegations': {
+          'anyOf': [
+            {
+              'properties': {
+                'TagDoNotUse': {
+                  'enum': [
+                    'XTZ'
+                  ],
+                  'type': 'string'
+                }
+              },
+              'type': 'object'
+            },
+            {
+              'type': 'number'
+            }
+          ]
+        }
+      },
+      'type': 'object'
+    },
+    'BakersResponse': {
+      'properties': {
+        'bakers': {
+          'items': {
+            '$ref': '#/definitions/IBaker'
+          },
+          'type': 'array'
+        },
+        'retrieved': {
+          'type': 'string'
         }
       },
       'type': 'object'
@@ -66,6 +204,58 @@ export const Schemas = {
       },
       'type': 'object'
     },
+    'DelegateFraction': {
+      'properties': {
+        'delegate': {
+          'anyOf': [
+            {
+              'properties': {
+                'TagDoNotUse': {
+                  'enum': [
+                    'TzImplicitPkh'
+                  ],
+                  'type': 'string'
+                }
+              },
+              'type': 'object'
+            },
+            {
+              'type': 'string'
+            }
+          ]
+        },
+        'fraction': {
+          'type': 'number'
+        }
+      },
+      'type': 'object'
+    },
+    'DelegateInfo': {
+      'properties': {
+        'hash': {
+          'anyOf': [
+            {
+              'properties': {
+                'TagDoNotUse': {
+                  'enum': [
+                    'TzImplicitPkh'
+                  ],
+                  'type': 'string'
+                }
+              },
+              'type': 'object'
+            },
+            {
+              'type': 'string'
+            }
+          ]
+        },
+        'name': {
+          'type': 'string'
+        }
+      },
+      'type': 'object'
+    },
     'IAddIntsRequest': {
       'properties': {
         'a': {
@@ -73,6 +263,121 @@ export const Schemas = {
         },
         'b': {
           'type': 'number'
+        }
+      },
+      'type': 'object'
+    },
+    'IBaker': {
+      'properties': {
+        'bond': {
+          'anyOf': [
+            {
+              'properties': {
+                'TagDoNotUse': {
+                  'enum': [
+                    'XTZ'
+                  ],
+                  'type': 'string'
+                }
+              },
+              'type': 'object'
+            },
+            {
+              'type': 'number'
+            }
+          ]
+        },
+        'cyclesOutstanding': {
+          'type': 'number'
+        },
+        'description': {
+          'type': 'string'
+        },
+        'fee': {
+          'anyOf': [
+            {
+              'properties': {
+                'TagDoNotUse': {
+                  'enum': [
+                    'XTZ'
+                  ],
+                  'type': 'string'
+                }
+              },
+              'type': 'object'
+            },
+            {
+              'type': 'number'
+            }
+          ]
+        },
+        'hash': {
+          'anyOf': [
+            {
+              'properties': {
+                'TagDoNotUse': {
+                  'enum': [
+                    'TzImplicitPkh'
+                  ],
+                  'type': 'string'
+                }
+              },
+              'type': 'object'
+            },
+            {
+              'type': 'string'
+            }
+          ]
+        },
+        'interestRatesOverTime': {
+          'items': {
+            '$ref': '#/definitions/ITimestampRate'
+          },
+          'type': 'array'
+        },
+        'name': {
+          'type': 'string'
+        },
+        'overDelegated': {
+          'type': 'boolean'
+        },
+        'rewardsOverTime': {
+          'items': {
+            '$ref': '#/definitions/ITimestampSize'
+          },
+          'type': 'array'
+        },
+        'totalDelegations': {
+          'anyOf': [
+            {
+              'properties': {
+                'TagDoNotUse': {
+                  'enum': [
+                    'XTZ'
+                  ],
+                  'type': 'string'
+                }
+              },
+              'type': 'object'
+            },
+            {
+              'type': 'number'
+            }
+          ]
+        }
+      },
+      'type': 'object'
+    },
+    'IBakersResponse': {
+      'properties': {
+        'bakers': {
+          'items': {
+            '$ref': '#/definitions/IBaker'
+          },
+          'type': 'array'
+        },
+        'retrieved': {
+          'type': 'string'
         }
       },
       'type': 'object'
@@ -96,6 +401,58 @@ export const Schemas = {
       },
       'type': 'object'
     },
+    'IDelegateFraction': {
+      'properties': {
+        'delegate': {
+          'anyOf': [
+            {
+              'properties': {
+                'TagDoNotUse': {
+                  'enum': [
+                    'TzImplicitPkh'
+                  ],
+                  'type': 'string'
+                }
+              },
+              'type': 'object'
+            },
+            {
+              'type': 'string'
+            }
+          ]
+        },
+        'fraction': {
+          'type': 'number'
+        }
+      },
+      'type': 'object'
+    },
+    'IDelegateInfo': {
+      'properties': {
+        'hash': {
+          'anyOf': [
+            {
+              'properties': {
+                'TagDoNotUse': {
+                  'enum': [
+                    'TzImplicitPkh'
+                  ],
+                  'type': 'string'
+                }
+              },
+              'type': 'object'
+            },
+            {
+              'type': 'string'
+            }
+          ]
+        },
+        'name': {
+          'type': 'string'
+        }
+      },
+      'type': 'object'
+    },
     'IEndOfResults': {
       'properties': {
         'tag': {
@@ -114,6 +471,259 @@ export const Schemas = {
             'Heartbeat'
           ],
           'type': 'string'
+        }
+      },
+      'type': 'object'
+    },
+    'IImplicitResponse': {
+      'properties': {
+        'balance': {
+          'anyOf': [
+            {
+              'properties': {
+                'TagDoNotUse': {
+                  'enum': [
+                    'XTZ'
+                  ],
+                  'type': 'string'
+                }
+              },
+              'type': 'object'
+            },
+            {
+              'type': 'number'
+            }
+          ]
+        },
+        'originated': {
+          'items': {
+            '$ref': '#/definitions/IOriginatedAccount'
+          },
+          'type': 'array'
+        },
+        'retrieved': {
+          'type': 'string'
+        }
+      },
+      'type': 'object'
+    },
+    'ILedgerOperation': {
+      'properties': {
+        'blockHash': {
+          'anyOf': [
+            {
+              'properties': {
+                'TagDoNotUse': {
+                  'enum': [
+                    'TzBlockHash'
+                  ],
+                  'type': 'string'
+                }
+              },
+              'type': 'object'
+            },
+            {
+              'type': 'string'
+            }
+          ]
+        },
+        'from': {
+          'anyOf': [
+            {
+              'properties': {
+                'TagDoNotUse': {
+                  'enum': [
+                    'TzAccountHash'
+                  ],
+                  'type': 'string'
+                }
+              },
+              'type': 'object'
+            },
+            {
+              'type': 'string'
+            }
+          ]
+        },
+        'hash': {
+          'anyOf': [
+            {
+              'properties': {
+                'TagDoNotUse': {
+                  'enum': [
+                    'TzOperationHash'
+                  ],
+                  'type': 'string'
+                }
+              },
+              'type': 'object'
+            },
+            {
+              'type': 'string'
+            }
+          ]
+        },
+        'operationType': {
+          '$ref': '#/definitions/LedgerOperationType'
+        },
+        'size': {
+          'anyOf': [
+            {
+              'properties': {
+                'TagDoNotUse': {
+                  'enum': [
+                    'XTZ'
+                  ],
+                  'type': 'string'
+                }
+              },
+              'type': 'object'
+            },
+            {
+              'type': 'number'
+            }
+          ]
+        },
+        'timestamp': {
+          'type': 'string'
+        }
+      },
+      'type': 'object'
+    },
+    'IOperationResponse': {
+      'properties': {
+        'baked': {
+          'type': 'boolean'
+        },
+        'blockHash': {
+          'anyOf': [
+            {
+              'properties': {
+                'TagDoNotUse': {
+                  'enum': [
+                    'TzBlockHash'
+                  ],
+                  'type': 'string'
+                }
+              },
+              'type': 'object'
+            },
+            {
+              'type': 'string'
+            }
+          ]
+        },
+        'confirmations': {
+          'type': 'number'
+        },
+        'error': {
+          'type': 'boolean'
+        },
+        'retrieved': {
+          'type': 'string'
+        }
+      },
+      'type': 'object'
+    },
+    'IOriginatedAccount': {
+      'properties': {
+        'balance': {
+          'anyOf': [
+            {
+              'properties': {
+                'TagDoNotUse': {
+                  'enum': [
+                    'XTZ'
+                  ],
+                  'type': 'string'
+                }
+              },
+              'type': 'object'
+            },
+            {
+              'type': 'number'
+            }
+          ]
+        },
+        'delegate': {
+          '$ref': '#/definitions/IDelegateInfo'
+        },
+        'hash': {
+          'anyOf': [
+            {
+              'properties': {
+                'TagDoNotUse': {
+                  'enum': [
+                    'TzOriginatedHash'
+                  ],
+                  'type': 'string'
+                }
+              },
+              'type': 'object'
+            },
+            {
+              'type': 'string'
+            }
+          ]
+        },
+        'ledger': {
+          'items': {
+            '$ref': '#/definitions/ILedgerOperation'
+          },
+          'type': 'array'
+        }
+      },
+      'type': 'object'
+    },
+    'IOverviewResponse': {
+      'properties': {
+        'bondsOverTime': {
+          'items': {
+            '$ref': '#/definitions/ITimestampSize'
+          },
+          'type': 'array'
+        },
+        'delegateDistribution': {
+          'items': {
+            '$ref': '#/definitions/IDelegateFraction'
+          },
+          'type': 'array'
+        },
+        'interestRatesOverTime': {
+          'items': {
+            '$ref': '#/definitions/ITimestampRate'
+          },
+          'type': 'array'
+        },
+        'minerCount': {
+          'type': 'number'
+        },
+        'retrieved': {
+          'type': 'string'
+        },
+        'totalDelegationsOverTime': {
+          'items': {
+            '$ref': '#/definitions/ITimestampSize'
+          },
+          'type': 'array'
+        },
+        'totalRewards': {
+          'anyOf': [
+            {
+              'properties': {
+                'TagDoNotUse': {
+                  'enum': [
+                    'XTZ'
+                  ],
+                  'type': 'string'
+                }
+              },
+              'type': 'object'
+            },
+            {
+              'type': 'number'
+            }
+          ]
         }
       },
       'type': 'object'
@@ -308,7 +918,305 @@ export const Schemas = {
       },
       'type': 'object'
     },
+    'ITimestampRate': {
+      'properties': {
+        'rate': {
+          'type': 'number'
+        },
+        'timestamp': {
+          'type': 'string'
+        }
+      },
+      'type': 'object'
+    },
+    'ITimestampSize': {
+      'properties': {
+        'size': {
+          'anyOf': [
+            {
+              'properties': {
+                'TagDoNotUse': {
+                  'enum': [
+                    'XTZ'
+                  ],
+                  'type': 'string'
+                }
+              },
+              'type': 'object'
+            },
+            {
+              'type': 'number'
+            }
+          ]
+        },
+        'timestamp': {
+          'type': 'string'
+        }
+      },
+      'type': 'object'
+    },
+    'ImplicitResponse': {
+      'properties': {
+        'balance': {
+          'anyOf': [
+            {
+              'properties': {
+                'TagDoNotUse': {
+                  'enum': [
+                    'XTZ'
+                  ],
+                  'type': 'string'
+                }
+              },
+              'type': 'object'
+            },
+            {
+              'type': 'number'
+            }
+          ]
+        },
+        'originated': {
+          'items': {
+            '$ref': '#/definitions/IOriginatedAccount'
+          },
+          'type': 'array'
+        },
+        'retrieved': {
+          'type': 'string'
+        }
+      },
+      'type': 'object'
+    },
     'K': {},
+    'LedgerOperation': {
+      'properties': {
+        'blockHash': {
+          'anyOf': [
+            {
+              'properties': {
+                'TagDoNotUse': {
+                  'enum': [
+                    'TzBlockHash'
+                  ],
+                  'type': 'string'
+                }
+              },
+              'type': 'object'
+            },
+            {
+              'type': 'string'
+            }
+          ]
+        },
+        'from': {
+          'anyOf': [
+            {
+              'properties': {
+                'TagDoNotUse': {
+                  'enum': [
+                    'TzAccountHash'
+                  ],
+                  'type': 'string'
+                }
+              },
+              'type': 'object'
+            },
+            {
+              'type': 'string'
+            }
+          ]
+        },
+        'hash': {
+          'anyOf': [
+            {
+              'properties': {
+                'TagDoNotUse': {
+                  'enum': [
+                    'TzOperationHash'
+                  ],
+                  'type': 'string'
+                }
+              },
+              'type': 'object'
+            },
+            {
+              'type': 'string'
+            }
+          ]
+        },
+        'operationType': {
+          '$ref': '#/definitions/LedgerOperationType'
+        },
+        'size': {
+          'anyOf': [
+            {
+              'properties': {
+                'TagDoNotUse': {
+                  'enum': [
+                    'XTZ'
+                  ],
+                  'type': 'string'
+                }
+              },
+              'type': 'object'
+            },
+            {
+              'type': 'number'
+            }
+          ]
+        },
+        'timestamp': {
+          'type': 'string'
+        }
+      },
+      'type': 'object'
+    },
+    'LedgerOperationType': {
+      'enum': [
+        'Deposit',
+        'Reward',
+        'Withdrawal'
+      ],
+      'type': 'string'
+    },
+    'OperationResponse': {
+      'properties': {
+        'baked': {
+          'type': 'boolean'
+        },
+        'blockHash': {
+          'anyOf': [
+            {
+              'properties': {
+                'TagDoNotUse': {
+                  'enum': [
+                    'TzBlockHash'
+                  ],
+                  'type': 'string'
+                }
+              },
+              'type': 'object'
+            },
+            {
+              'type': 'string'
+            }
+          ]
+        },
+        'confirmations': {
+          'type': 'number'
+        },
+        'error': {
+          'type': 'boolean'
+        },
+        'retrieved': {
+          'type': 'string'
+        }
+      },
+      'type': 'object'
+    },
+    'OriginatedAccount': {
+      'properties': {
+        'balance': {
+          'anyOf': [
+            {
+              'properties': {
+                'TagDoNotUse': {
+                  'enum': [
+                    'XTZ'
+                  ],
+                  'type': 'string'
+                }
+              },
+              'type': 'object'
+            },
+            {
+              'type': 'number'
+            }
+          ]
+        },
+        'delegate': {
+          '$ref': '#/definitions/IDelegateInfo'
+        },
+        'hash': {
+          'anyOf': [
+            {
+              'properties': {
+                'TagDoNotUse': {
+                  'enum': [
+                    'TzOriginatedHash'
+                  ],
+                  'type': 'string'
+                }
+              },
+              'type': 'object'
+            },
+            {
+              'type': 'string'
+            }
+          ]
+        },
+        'ledger': {
+          'items': {
+            '$ref': '#/definitions/ILedgerOperation'
+          },
+          'type': 'array'
+        }
+      },
+      'type': 'object'
+    },
+    'OverviewResponse': {
+      'properties': {
+        'bondsOverTime': {
+          'items': {
+            '$ref': '#/definitions/ITimestampSize'
+          },
+          'type': 'array'
+        },
+        'delegateDistribution': {
+          'items': {
+            '$ref': '#/definitions/IDelegateFraction'
+          },
+          'type': 'array'
+        },
+        'interestRatesOverTime': {
+          'items': {
+            '$ref': '#/definitions/ITimestampRate'
+          },
+          'type': 'array'
+        },
+        'minerCount': {
+          'type': 'number'
+        },
+        'retrieved': {
+          'type': 'string'
+        },
+        'totalDelegationsOverTime': {
+          'items': {
+            '$ref': '#/definitions/ITimestampSize'
+          },
+          'type': 'array'
+        },
+        'totalRewards': {
+          'anyOf': [
+            {
+              'properties': {
+                'TagDoNotUse': {
+                  'enum': [
+                    'XTZ'
+                  ],
+                  'type': 'string'
+                }
+              },
+              'type': 'object'
+            },
+            {
+              'type': 'number'
+            }
+          ]
+        }
+      },
+      'type': 'object'
+    },
     'RequestMessage': {
       'properties': {
         'headers': {
@@ -481,15 +1389,52 @@ export const Schemas = {
         }
       ]
     },
+    'TimestampRate': {
+      'properties': {
+        'rate': {
+          'type': 'number'
+        },
+        'timestamp': {
+          'type': 'string'
+        }
+      },
+      'type': 'object'
+    },
+    'TimestampSize': {
+      'properties': {
+        'size': {
+          'anyOf': [
+            {
+              'properties': {
+                'TagDoNotUse': {
+                  'enum': [
+                    'XTZ'
+                  ],
+                  'type': 'string'
+                }
+              },
+              'type': 'object'
+            },
+            {
+              'type': 'number'
+            }
+          ]
+        },
+        'timestamp': {
+          'type': 'string'
+        }
+      },
+      'type': 'object'
+    },
     'Unit': {
       'items': {
         '$ref': '#/definitions/Boolean'
       },
       'type': 'array'
     },
-    'V191895': {
+    'V296236': {
       'enum': [
-        'Bridge Typings Version 191895'
+        'Bridge Typings Version 296236'
       ],
       'type': 'string'
     }

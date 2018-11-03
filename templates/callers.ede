@@ -1,4 +1,6 @@
-import { AddIntsRequest, ConcatTextAuthRequest, ConcatTextAuthResponse, Text, Unit } from './types'
+// I apologize in advance for function.ede.
+import * as T from './types'
+
 import { direct, streaming } from '../call'
 
 import { BridgeClient } from '../client'
