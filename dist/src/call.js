@@ -8,7 +8,7 @@ const core_1 = require("@most/core");
 const clientError = (errorText) => new Error('[client] ' + errorText);
 const serverError = (errorText) => new Error('[server] ' + errorText);
 const unexpectedResponseError = serverError('unexpected response');
-const timeoutError = (time) => serverError('request timed out (' + time.toString() + ')');
+const timeoutError = (time) => clientError('request timed out (' + time.toString() + ')');
 function buildRequestOfAuth(token) {
     return (route, request) => {
         const id = UUIDV4();

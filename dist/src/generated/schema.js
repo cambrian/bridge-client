@@ -1377,9 +1377,9 @@ exports.Schemas = {
             },
             'type': 'array'
         },
-        'V296236': {
+        'V439745': {
             'enum': [
-                'Bridge Typings Version 296236'
+                'Bridge Typings Version 439745'
             ],
             'type': 'string'
         }

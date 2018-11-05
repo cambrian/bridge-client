@@ -24,12 +24,12 @@ export declare namespace Call {
         function getVoidStream(bridgeClient: BridgeClient.T<Server.DummyManager>): Stream<void>;
     }
     namespace TezosOperationQueue {
-        function inject(bridgeClient: BridgeClient.T<Server.TezosOperationQueue>, request: T.Tagged<"TzOperation", string>): Promise<void>;
+        function inject(bridgeClient: BridgeClient.T<Server.TezosOperationQueue>, request: T.Tagged<'TzOperation', string>): Promise<void>;
     }
     namespace TezosStats {
         function overview(bridgeClient: BridgeClient.T<Server.TezosStats>): Promise<T.OverviewResponse>;
         function bakers(bridgeClient: BridgeClient.T<Server.TezosStats>): Promise<T.BakersResponse>;
-        function implicit(bridgeClient: BridgeClient.T<Server.TezosStats>, request: T.Tagged<"TzImplicitPkh", string>): Promise<T.ImplicitResponse>;
-        function operation(bridgeClient: BridgeClient.T<Server.TezosStats>, request: T.Tagged<"TzOperationHash", string>): Stream<T.OperationResponse>;
+        function implicit(bridgeClient: BridgeClient.T<Server.TezosStats>, request: T.Tagged<'TzImplicitPkh', string>): Promise<T.ImplicitResponse>;
+        function operation(bridgeClient: BridgeClient.T<Server.TezosStats>, request: T.Tagged<'TzOperationHash', string>): Stream<T.OperationResponse>;
     }
 }

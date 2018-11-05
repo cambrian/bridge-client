@@ -125,9 +125,9 @@ export namespace Call {
   export namespace TezosOperationQueue {
     export function inject (
       bridgeClient: BridgeClient.T<Server.TezosOperationQueue>,
-      request: T.Tagged<"TzOperation", string>
+      request: T.Tagged<'TzOperation', string>
     ): Promise<void> {
-      return direct<T.Tagged<"TzOperation", string>, T.Unit, Server.TezosOperationQueue>(
+      return direct<T.Tagged<'TzOperation', string>, T.Unit, Server.TezosOperationQueue>(
         bridgeClient,
         20000,
         'TezosOperationQueue/inject',
@@ -164,9 +164,9 @@ export namespace Call {
 
     export function implicit (
       bridgeClient: BridgeClient.T<Server.TezosStats>,
-      request: T.Tagged<"TzImplicitPkh", string>
+      request: T.Tagged<'TzImplicitPkh', string>
     ): Promise<T.ImplicitResponse> {
-      return direct<T.Tagged<"TzImplicitPkh", string>, T.ImplicitResponse, Server.TezosStats>(
+      return direct<T.Tagged<'TzImplicitPkh', string>, T.ImplicitResponse, Server.TezosStats>(
         bridgeClient,
         20000,
         'TezosStats/implicit',
@@ -177,9 +177,9 @@ export namespace Call {
 
     export function operation (
       bridgeClient: BridgeClient.T<Server.TezosStats>,
-      request: T.Tagged<"TzOperationHash", string>
+      request: T.Tagged<'TzOperationHash', string>
     ): Stream<T.OperationResponse> {
-      return streaming<T.Tagged<"TzOperationHash", string>, T.OperationResponse, Server.TezosStats>(
+      return streaming<T.Tagged<'TzOperationHash', string>, T.OperationResponse, Server.TezosStats>(
         bridgeClient,
         20000,
         'TezosStats/operation',

@@ -21,7 +21,7 @@ async function run (): Promise<void> {
     const result = await Call.DummyManager.addIntsBad(client, { a: 3, b: 4 })
     console.log(result)
   } catch (exception) {
-    console.log(exception.message) // Output: [server] request timed out (1)
+    console.log(exception.message) // Output: [client] request timed out (1)
   }
 
   const stream = Call.DummyManager.echoThrice(client, 1337)
@@ -31,7 +31,7 @@ async function run (): Promise<void> {
     const stream = Call.DummyManager.echoThriceBad(client, 1337)
     await observe(console.log, stream)
   } catch (exception) {
-    console.log(exception.message) // Output: [server] request timed out (1)
+    console.log(exception.message) // Output (usually): [client] request timed out (1)
   }
 
   const fizzBuzz = { a: 'Fizz', b: 'Buzz' }

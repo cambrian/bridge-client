@@ -21,7 +21,7 @@ import { filter } from '@most/core'
 const clientError = (errorText: String) => new Error('[client] ' + errorText)
 const serverError = (errorText: String) => new Error('[server] ' + errorText)
 const unexpectedResponseError = serverError('unexpected response')
-const timeoutError = (time: number) => serverError('request timed out (' + time.toString() + ')')
+const timeoutError = (time: number) => clientError('request timed out (' + time.toString() + ')')
 
 function buildRequestOfAuth<T> (token?: Text<'AuthToken'>): (
   route: Text<'Route'>,

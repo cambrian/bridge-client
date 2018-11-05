@@ -1,4 +1,4 @@
-export declare type V296236 = 'Bridge Typings Version 296236';
+export declare type V439745 = 'Bridge Typings Version 439745';
 export declare type Tagged<T extends string, K> = {
     TagDoNotUse: T;
 } | K;
