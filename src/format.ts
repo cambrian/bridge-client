@@ -8,9 +8,19 @@ export const props = Object.getOwnPropertyNames(Schemas.definitions)
 const validator = new Ajv().addSchema(Schemas)
 const prefix = '#/definitions/'
 
+function removeNull (obj: any): any {
+  if (typeof obj === 'object') {
+    Object.keys(obj).forEach(key => {
+      if (obj[key] && typeof obj[key] === 'object') removeNull(obj[key])
+      else if (obj[key] == null) delete obj[key];
+    });
+  }
+  return obj
+};
+
 export function safeParse (value: any): any {
   try {
-    return JSON.parse(value)
+    return removeNull(JSON.parse(value))
   } catch { return undefined }
 }
 

@@ -1,4 +1,4 @@
-export type V439745 = 'Bridge Typings Version 439745'
+export type V126289 = 'Bridge Typings Version 126289'
 
 export type Tagged<T extends string, K> = { TagDoNotUse: T } | K
 
@@ -142,7 +142,7 @@ export interface ITimestampSize {
 export type OverviewResponse = IOverviewResponse
 
 export interface IOverviewResponse {
-  minerCount: number
+  bakerCount: number
   totalRewards: Tagged<'XTZ', number>
   bondsOverTime: TimestampSize[]
   totalDelegationsOverTime: TimestampSize[]

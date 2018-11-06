@@ -1,4 +1,4 @@
-export declare type SchemaRef = 'AddIntsRequest' | 'Baker' | 'BakersResponse' | 'Boolean' | 'ConcatTextAuthRequest' | 'ConcatTextAuthResponse' | 'DelegateFraction' | 'DelegateInfo' | 'IAddIntsRequest' | 'IBaker' | 'IBakersResponse' | 'IConcatTextAuthRequest' | 'IConcatTextAuthResponse' | 'IDelegateFraction' | 'IDelegateInfo' | 'IEndOfResults' | 'IHeartbeat' | 'IImplicitResponse' | 'ILedgerOperation' | 'IOperationResponse' | 'IOriginatedAccount' | 'IOverviewResponse' | 'IRequestMessage' | 'IResponseMessage' | 'IResult' | 'IResult<T>' | 'IRpcResponse' | 'IRpcResponse<T>' | 'IRpcResponseClientException' | 'IRpcResponseServerException' | 'ITimestampRate' | 'ITimestampSize' | 'ImplicitResponse' | 'K' | 'LedgerOperation' | 'LedgerOperationType' | 'OperationResponse' | 'OriginatedAccount' | 'OverviewResponse' | 'RequestMessage' | 'ResponseMessage' | 'RpcResponse' | 'StreamingResponse' | 'T' | 'T_1' | 'T_2' | 'T_3' | 'Tagged' | 'Text' | 'TimestampRate' | 'TimestampSize' | 'Unit' | 'V439745' | 'string' | 'number' | 'boolean' | 'symbol';
+export declare type SchemaRef = 'AddIntsRequest' | 'Baker' | 'BakersResponse' | 'Boolean' | 'ConcatTextAuthRequest' | 'ConcatTextAuthResponse' | 'DelegateFraction' | 'DelegateInfo' | 'IAddIntsRequest' | 'IBaker' | 'IBakersResponse' | 'IConcatTextAuthRequest' | 'IConcatTextAuthResponse' | 'IDelegateFraction' | 'IDelegateInfo' | 'IEndOfResults' | 'IHeartbeat' | 'IImplicitResponse' | 'ILedgerOperation' | 'IOperationResponse' | 'IOriginatedAccount' | 'IOverviewResponse' | 'IRequestMessage' | 'IResponseMessage' | 'IResult' | 'IResult<T>' | 'IRpcResponse' | 'IRpcResponse<T>' | 'IRpcResponseClientException' | 'IRpcResponseServerException' | 'ITimestampRate' | 'ITimestampSize' | 'ImplicitResponse' | 'K' | 'LedgerOperation' | 'LedgerOperationType' | 'OperationResponse' | 'OriginatedAccount' | 'OverviewResponse' | 'RequestMessage' | 'ResponseMessage' | 'RpcResponse' | 'StreamingResponse' | 'T' | 'T_1' | 'T_2' | 'T_3' | 'Tagged' | 'Text' | 'TimestampRate' | 'TimestampSize' | 'Unit' | 'V126289' | 'string' | 'number' | 'boolean' | 'symbol';
 export declare const Schemas: {
     '$schema': string;
     'definitions': {
@@ -11,6 +11,7 @@ export declare const Schemas: {
                     'type': string;
                 };
             };
+            'required': string[];
             'type': string;
         };
         'Baker': {
@@ -23,10 +24,12 @@ export declare const Schemas: {
                                 'type': string;
                             };
                         };
+                        'required': string[];
                         'type': string;
                     } | {
                         'type': string;
                         'properties'?: undefined;
+                        'required'?: undefined;
                     })[];
                 };
                 'cyclesOutstanding': {
@@ -43,10 +46,12 @@ export declare const Schemas: {
                                 'type': string;
                             };
                         };
+                        'required': string[];
                         'type': string;
                     } | {
                         'type': string;
                         'properties'?: undefined;
+                        'required'?: undefined;
                     })[];
                 };
                 'hash': {
@@ -57,10 +62,12 @@ export declare const Schemas: {
                                 'type': string;
                             };
                         };
+                        'required': string[];
                         'type': string;
                     } | {
                         'type': string;
                         'properties'?: undefined;
+                        'required'?: undefined;
                     })[];
                 };
                 'interestRatesOverTime': {
@@ -89,13 +96,16 @@ export declare const Schemas: {
                                 'type': string;
                             };
                         };
+                        'required': string[];
                         'type': string;
                     } | {
                         'type': string;
                         'properties'?: undefined;
+                        'required'?: undefined;
                     })[];
                 };
             };
+            'required': string[];
             'type': string;
         };
         'BakersResponse': {
@@ -110,6 +120,7 @@ export declare const Schemas: {
                     'type': string;
                 };
             };
+            'required': string[];
             'type': string;
         };
         'Boolean': {};
@@ -122,6 +133,7 @@ export declare const Schemas: {
                     'type': string;
                 };
             };
+            'required': string[];
             'type': string;
         };
         'ConcatTextAuthResponse': {
@@ -130,6 +142,7 @@ export declare const Schemas: {
                     'type': string;
                 };
             };
+            'required': string[];
             'type': string;
         };
         'DelegateFraction': {
@@ -142,16 +155,19 @@ export declare const Schemas: {
                                 'type': string;
                             };
                         };
+                        'required': string[];
                         'type': string;
                     } | {
                         'type': string;
                         'properties'?: undefined;
+                        'required'?: undefined;
                     })[];
                 };
                 'fraction': {
                     'type': string;
                 };
             };
+            'required': string[];
             'type': string;
         };
         'DelegateInfo': {
@@ -164,16 +180,19 @@ export declare const Schemas: {
                                 'type': string;
                             };
                         };
+                        'required': string[];
                         'type': string;
                     } | {
                         'type': string;
                         'properties'?: undefined;
+                        'required'?: undefined;
                     })[];
                 };
                 'name': {
                     'type': string;
                 };
             };
+            'required': string[];
             'type': string;
         };
         'IAddIntsRequest': {
@@ -185,6 +204,7 @@ export declare const Schemas: {
                     'type': string;
                 };
             };
+            'required': string[];
             'type': string;
         };
         'IBaker': {
@@ -197,10 +217,12 @@ export declare const Schemas: {
                                 'type': string;
                             };
                         };
+                        'required': string[];
                         'type': string;
                     } | {
                         'type': string;
                         'properties'?: undefined;
+                        'required'?: undefined;
                     })[];
                 };
                 'cyclesOutstanding': {
@@ -217,10 +239,12 @@ export declare const Schemas: {
                                 'type': string;
                             };
                         };
+                        'required': string[];
                         'type': string;
                     } | {
                         'type': string;
                         'properties'?: undefined;
+                        'required'?: undefined;
                     })[];
                 };
                 'hash': {
@@ -231,10 +255,12 @@ export declare const Schemas: {
                                 'type': string;
                             };
                         };
+                        'required': string[];
                         'type': string;
                     } | {
                         'type': string;
                         'properties'?: undefined;
+                        'required'?: undefined;
                     })[];
                 };
                 'interestRatesOverTime': {
@@ -263,13 +289,16 @@ export declare const Schemas: {
                                 'type': string;
                             };
                         };
+                        'required': string[];
                         'type': string;
                     } | {
                         'type': string;
                         'properties'?: undefined;
+                        'required'?: undefined;
                     })[];
                 };
             };
+            'required': string[];
             'type': string;
         };
         'IBakersResponse': {
@@ -284,6 +313,7 @@ export declare const Schemas: {
                     'type': string;
                 };
             };
+            'required': string[];
             'type': string;
         };
         'IConcatTextAuthRequest': {
@@ -295,6 +325,7 @@ export declare const Schemas: {
                     'type': string;
                 };
             };
+            'required': string[];
             'type': string;
         };
         'IConcatTextAuthResponse': {
@@ -303,6 +334,7 @@ export declare const Schemas: {
                     'type': string;
                 };
             };
+            'required': string[];
             'type': string;
         };
         'IDelegateFraction': {
@@ -315,16 +347,19 @@ export declare const Schemas: {
                                 'type': string;
                             };
                         };
+                        'required': string[];
                         'type': string;
                     } | {
                         'type': string;
                         'properties'?: undefined;
+                        'required'?: undefined;
                     })[];
                 };
                 'fraction': {
                     'type': string;
                 };
             };
+            'required': string[];
             'type': string;
         };
         'IDelegateInfo': {
@@ -337,16 +372,19 @@ export declare const Schemas: {
                                 'type': string;
                             };
                         };
+                        'required': string[];
                         'type': string;
                     } | {
                         'type': string;
                         'properties'?: undefined;
+                        'required'?: undefined;
                     })[];
                 };
                 'name': {
                     'type': string;
                 };
             };
+            'required': string[];
             'type': string;
         };
         'IEndOfResults': {
@@ -356,6 +394,7 @@ export declare const Schemas: {
                     'type': string;
                 };
             };
+            'required': string[];
             'type': string;
         };
         'IHeartbeat': {
@@ -365,6 +404,7 @@ export declare const Schemas: {
                     'type': string;
                 };
             };
+            'required': string[];
             'type': string;
         };
         'IImplicitResponse': {
@@ -377,10 +417,12 @@ export declare const Schemas: {
                                 'type': string;
                             };
                         };
+                        'required': string[];
                         'type': string;
                     } | {
                         'type': string;
                         'properties'?: undefined;
+                        'required'?: undefined;
                     })[];
                 };
                 'originated': {
@@ -393,6 +435,7 @@ export declare const Schemas: {
                     'type': string;
                 };
             };
+            'required': string[];
             'type': string;
         };
         'ILedgerOperation': {
@@ -405,10 +448,12 @@ export declare const Schemas: {
                                 'type': string;
                             };
                         };
+                        'required': string[];
                         'type': string;
                     } | {
                         'type': string;
                         'properties'?: undefined;
+                        'required'?: undefined;
                     })[];
                 };
                 'from': {
@@ -419,10 +464,12 @@ export declare const Schemas: {
                                 'type': string;
                             };
                         };
+                        'required': string[];
                         'type': string;
                     } | {
                         'type': string;
                         'properties'?: undefined;
+                        'required'?: undefined;
                     })[];
                 };
                 'hash': {
@@ -433,10 +480,12 @@ export declare const Schemas: {
                                 'type': string;
                             };
                         };
+                        'required': string[];
                         'type': string;
                     } | {
                         'type': string;
                         'properties'?: undefined;
+                        'required'?: undefined;
                     })[];
                 };
                 'operationType': {
@@ -450,16 +499,19 @@ export declare const Schemas: {
                                 'type': string;
                             };
                         };
+                        'required': string[];
                         'type': string;
                     } | {
                         'type': string;
                         'properties'?: undefined;
+                        'required'?: undefined;
                     })[];
                 };
                 'timestamp': {
                     'type': string;
                 };
             };
+            'required': string[];
             'type': string;
         };
         'IOperationResponse': {
@@ -475,10 +527,12 @@ export declare const Schemas: {
                                 'type': string;
                             };
                         };
+                        'required': string[];
                         'type': string;
                     } | {
                         'type': string;
                         'properties'?: undefined;
+                        'required'?: undefined;
                     })[];
                 };
                 'confirmations': {
@@ -491,6 +545,7 @@ export declare const Schemas: {
                     'type': string;
                 };
             };
+            'required': string[];
             'type': string;
         };
         'IOriginatedAccount': {
@@ -503,10 +558,12 @@ export declare const Schemas: {
                                 'type': string;
                             };
                         };
+                        'required': string[];
                         'type': string;
                     } | {
                         'type': string;
                         'properties'?: undefined;
+                        'required'?: undefined;
                     })[];
                 };
                 'delegate': {
@@ -520,10 +577,12 @@ export declare const Schemas: {
                                 'type': string;
                             };
                         };
+                        'required': string[];
                         'type': string;
                     } | {
                         'type': string;
                         'properties'?: undefined;
+                        'required'?: undefined;
                     })[];
                 };
                 'ledger': {
@@ -533,10 +592,14 @@ export declare const Schemas: {
                     'type': string;
                 };
             };
+            'required': string[];
             'type': string;
         };
         'IOverviewResponse': {
             'properties': {
+                'bakerCount': {
+                    'type': string;
+                };
                 'bondsOverTime': {
                     'items': {
                         '$ref': string;
@@ -553,9 +616,6 @@ export declare const Schemas: {
                     'items': {
                         '$ref': string;
                     };
-                    'type': string;
-                };
-                'minerCount': {
                     'type': string;
                 };
                 'retrieved': {
@@ -575,13 +635,16 @@ export declare const Schemas: {
                                 'type': string;
                             };
                         };
+                        'required': string[];
                         'type': string;
                     } | {
                         'type': string;
                         'properties'?: undefined;
+                        'required'?: undefined;
                     })[];
                 };
             };
+            'required': string[];
             'type': string;
         };
         'IRequestMessage': {
@@ -600,10 +663,12 @@ export declare const Schemas: {
                                 'type': string;
                             };
                         };
+                        'required': string[];
                         'type': string;
                     } | {
                         'type': string;
                         'properties'?: undefined;
+                        'required'?: undefined;
                     })[];
                 };
                 'reqText': {
@@ -614,10 +679,12 @@ export declare const Schemas: {
                                 'type': string;
                             };
                         };
+                        'required': string[];
                         'type': string;
                     } | {
                         'type': string;
                         'properties'?: undefined;
+                        'required'?: undefined;
                     })[];
                 };
                 'route': {
@@ -628,13 +695,16 @@ export declare const Schemas: {
                                 'type': string;
                             };
                         };
+                        'required': string[];
                         'type': string;
                     } | {
                         'type': string;
                         'properties'?: undefined;
+                        'required'?: undefined;
                     })[];
                 };
             };
+            'required': string[];
             'type': string;
         };
         'IResponseMessage': {
@@ -647,10 +717,12 @@ export declare const Schemas: {
                                 'type': string;
                             };
                         };
+                        'required': string[];
                         'type': string;
                     } | {
                         'type': string;
                         'properties'?: undefined;
+                        'required'?: undefined;
                     })[];
                 };
                 'resText': {
@@ -661,13 +733,16 @@ export declare const Schemas: {
                                 'type': string;
                             };
                         };
+                        'required': string[];
                         'type': string;
                     } | {
                         'type': string;
                         'properties'?: undefined;
+                        'required'?: undefined;
                     })[];
                 };
             };
+            'required': string[];
             'type': string;
         };
         'IResult': {
@@ -680,6 +755,7 @@ export declare const Schemas: {
                     'type': string;
                 };
             };
+            'required': string[];
             'type': string;
         };
         'IResult<T>': {
@@ -692,6 +768,7 @@ export declare const Schemas: {
                     'type': string;
                 };
             };
+            'required': string[];
             'type': string;
         };
         'IRpcResponse': {
@@ -704,6 +781,7 @@ export declare const Schemas: {
                     'type': string;
                 };
             };
+            'required': string[];
             'type': string;
         };
         'IRpcResponse<T>': {
@@ -716,6 +794,7 @@ export declare const Schemas: {
                     'type': string;
                 };
             };
+            'required': string[];
             'type': string;
         };
         'IRpcResponseClientException': {
@@ -728,6 +807,7 @@ export declare const Schemas: {
                     'type': string;
                 };
             };
+            'required': string[];
             'type': string;
         };
         'IRpcResponseServerException': {
@@ -740,6 +820,7 @@ export declare const Schemas: {
                     'type': string;
                 };
             };
+            'required': string[];
             'type': string;
         };
         'ITimestampRate': {
@@ -751,6 +832,7 @@ export declare const Schemas: {
                     'type': string;
                 };
             };
+            'required': string[];
             'type': string;
         };
         'ITimestampSize': {
@@ -763,16 +845,19 @@ export declare const Schemas: {
                                 'type': string;
                             };
                         };
+                        'required': string[];
                         'type': string;
                     } | {
                         'type': string;
                         'properties'?: undefined;
+                        'required'?: undefined;
                     })[];
                 };
                 'timestamp': {
                     'type': string;
                 };
             };
+            'required': string[];
             'type': string;
         };
         'ImplicitResponse': {
@@ -785,10 +870,12 @@ export declare const Schemas: {
                                 'type': string;
                             };
                         };
+                        'required': string[];
                         'type': string;
                     } | {
                         'type': string;
                         'properties'?: undefined;
+                        'required'?: undefined;
                     })[];
                 };
                 'originated': {
@@ -801,6 +888,7 @@ export declare const Schemas: {
                     'type': string;
                 };
             };
+            'required': string[];
             'type': string;
         };
         'K': {};
@@ -814,10 +902,12 @@ export declare const Schemas: {
                                 'type': string;
                             };
                         };
+                        'required': string[];
                         'type': string;
                     } | {
                         'type': string;
                         'properties'?: undefined;
+                        'required'?: undefined;
                     })[];
                 };
                 'from': {
@@ -828,10 +918,12 @@ export declare const Schemas: {
                                 'type': string;
                             };
                         };
+                        'required': string[];
                         'type': string;
                     } | {
                         'type': string;
                         'properties'?: undefined;
+                        'required'?: undefined;
                     })[];
                 };
                 'hash': {
@@ -842,10 +934,12 @@ export declare const Schemas: {
                                 'type': string;
                             };
                         };
+                        'required': string[];
                         'type': string;
                     } | {
                         'type': string;
                         'properties'?: undefined;
+                        'required'?: undefined;
                     })[];
                 };
                 'operationType': {
@@ -859,16 +953,19 @@ export declare const Schemas: {
                                 'type': string;
                             };
                         };
+                        'required': string[];
                         'type': string;
                     } | {
                         'type': string;
                         'properties'?: undefined;
+                        'required'?: undefined;
                     })[];
                 };
                 'timestamp': {
                     'type': string;
                 };
             };
+            'required': string[];
             'type': string;
         };
         'LedgerOperationType': {
@@ -888,10 +985,12 @@ export declare const Schemas: {
                                 'type': string;
                             };
                         };
+                        'required': string[];
                         'type': string;
                     } | {
                         'type': string;
                         'properties'?: undefined;
+                        'required'?: undefined;
                     })[];
                 };
                 'confirmations': {
@@ -904,6 +1003,7 @@ export declare const Schemas: {
                     'type': string;
                 };
             };
+            'required': string[];
             'type': string;
         };
         'OriginatedAccount': {
@@ -916,10 +1016,12 @@ export declare const Schemas: {
                                 'type': string;
                             };
                         };
+                        'required': string[];
                         'type': string;
                     } | {
                         'type': string;
                         'properties'?: undefined;
+                        'required'?: undefined;
                     })[];
                 };
                 'delegate': {
@@ -933,10 +1035,12 @@ export declare const Schemas: {
                                 'type': string;
                             };
                         };
+                        'required': string[];
                         'type': string;
                     } | {
                         'type': string;
                         'properties'?: undefined;
+                        'required'?: undefined;
                     })[];
                 };
                 'ledger': {
@@ -946,10 +1050,14 @@ export declare const Schemas: {
                     'type': string;
                 };
             };
+            'required': string[];
             'type': string;
         };
         'OverviewResponse': {
             'properties': {
+                'bakerCount': {
+                    'type': string;
+                };
                 'bondsOverTime': {
                     'items': {
                         '$ref': string;
@@ -966,9 +1074,6 @@ export declare const Schemas: {
                     'items': {
                         '$ref': string;
                     };
-                    'type': string;
-                };
-                'minerCount': {
                     'type': string;
                 };
                 'retrieved': {
@@ -988,13 +1093,16 @@ export declare const Schemas: {
                                 'type': string;
                             };
                         };
+                        'required': string[];
                         'type': string;
                     } | {
                         'type': string;
                         'properties'?: undefined;
+                        'required'?: undefined;
                     })[];
                 };
             };
+            'required': string[];
             'type': string;
         };
         'RequestMessage': {
@@ -1013,10 +1121,12 @@ export declare const Schemas: {
                                 'type': string;
                             };
                         };
+                        'required': string[];
                         'type': string;
                     } | {
                         'type': string;
                         'properties'?: undefined;
+                        'required'?: undefined;
                     })[];
                 };
                 'reqText': {
@@ -1027,10 +1137,12 @@ export declare const Schemas: {
                                 'type': string;
                             };
                         };
+                        'required': string[];
                         'type': string;
                     } | {
                         'type': string;
                         'properties'?: undefined;
+                        'required'?: undefined;
                     })[];
                 };
                 'route': {
@@ -1041,13 +1153,16 @@ export declare const Schemas: {
                                 'type': string;
                             };
                         };
+                        'required': string[];
                         'type': string;
                     } | {
                         'type': string;
                         'properties'?: undefined;
+                        'required'?: undefined;
                     })[];
                 };
             };
+            'required': string[];
             'type': string;
         };
         'ResponseMessage': {
@@ -1060,10 +1175,12 @@ export declare const Schemas: {
                                 'type': string;
                             };
                         };
+                        'required': string[];
                         'type': string;
                     } | {
                         'type': string;
                         'properties'?: undefined;
+                        'required'?: undefined;
                     })[];
                 };
                 'resText': {
@@ -1074,13 +1191,16 @@ export declare const Schemas: {
                                 'type': string;
                             };
                         };
+                        'required': string[];
                         'type': string;
                     } | {
                         'type': string;
                         'properties'?: undefined;
+                        'required'?: undefined;
                     })[];
                 };
             };
+            'required': string[];
             'type': string;
         };
         'RpcResponse': {
@@ -1107,11 +1227,13 @@ export declare const Schemas: {
                         'type': string;
                     };
                 };
+                'required': string[];
                 'type': string;
                 '$ref'?: undefined;
             } | {
                 '$ref': string;
                 'properties'?: undefined;
+                'required'?: undefined;
                 'type'?: undefined;
             })[];
         };
@@ -1125,10 +1247,12 @@ export declare const Schemas: {
                         'type': string;
                     };
                 };
+                'required': string[];
                 'type': string;
             } | {
                 'type': string;
                 'properties'?: undefined;
+                'required'?: undefined;
             })[];
         };
         'TimestampRate': {
@@ -1140,6 +1264,7 @@ export declare const Schemas: {
                     'type': string;
                 };
             };
+            'required': string[];
             'type': string;
         };
         'TimestampSize': {
@@ -1152,16 +1277,19 @@ export declare const Schemas: {
                                 'type': string;
                             };
                         };
+                        'required': string[];
                         'type': string;
                     } | {
                         'type': string;
                         'properties'?: undefined;
+                        'required'?: undefined;
                     })[];
                 };
                 'timestamp': {
                     'type': string;
                 };
             };
+            'required': string[];
             'type': string;
         };
         'Unit': {
@@ -1170,7 +1298,7 @@ export declare const Schemas: {
             };
             'type': string;
         };
-        'V439745': {
+        'V126289': {
             'enum': string[];
             'type': string;
         };

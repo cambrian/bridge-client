@@ -50,7 +50,7 @@ export type SchemaRef = 'AddIntsRequest'
   | 'TimestampRate'
   | 'TimestampSize'
   | 'Unit'
-  | 'V439745'
+  | 'V126289'
   | 'string'
   | 'number'
   | 'boolean'
@@ -67,6 +67,10 @@ export const Schemas = {
           'type': 'number'
         }
       },
+      'required': [
+        'a',
+        'b'
+      ],
       'type': 'object'
     },
     'Baker': {
@@ -82,6 +86,9 @@ export const Schemas = {
                   'type': 'string'
                 }
               },
+              'required': [
+                'TagDoNotUse'
+              ],
               'type': 'object'
             },
             {
@@ -106,6 +113,9 @@ export const Schemas = {
                   'type': 'string'
                 }
               },
+              'required': [
+                'TagDoNotUse'
+              ],
               'type': 'object'
             },
             {
@@ -124,6 +134,9 @@ export const Schemas = {
                   'type': 'string'
                 }
               },
+              'required': [
+                'TagDoNotUse'
+              ],
               'type': 'object'
             },
             {
@@ -160,6 +173,9 @@ export const Schemas = {
                   'type': 'string'
                 }
               },
+              'required': [
+                'TagDoNotUse'
+              ],
               'type': 'object'
             },
             {
@@ -168,6 +184,18 @@ export const Schemas = {
           ]
         }
       },
+      'required': [
+        'bond',
+        'cyclesOutstanding',
+        'description',
+        'fee',
+        'hash',
+        'interestRatesOverTime',
+        'name',
+        'overDelegated',
+        'rewardsOverTime',
+        'totalDelegations'
+      ],
       'type': 'object'
     },
     'BakersResponse': {
@@ -182,6 +210,10 @@ export const Schemas = {
           'type': 'string'
         }
       },
+      'required': [
+        'bakers',
+        'retrieved'
+      ],
       'type': 'object'
     },
     'Boolean': {},
@@ -194,6 +226,10 @@ export const Schemas = {
           'type': 'string'
         }
       },
+      'required': [
+        'a',
+        'b'
+      ],
       'type': 'object'
     },
     'ConcatTextAuthResponse': {
@@ -202,6 +238,9 @@ export const Schemas = {
           'type': 'string'
         }
       },
+      'required': [
+        'result'
+      ],
       'type': 'object'
     },
     'DelegateFraction': {
@@ -217,6 +256,9 @@ export const Schemas = {
                   'type': 'string'
                 }
               },
+              'required': [
+                'TagDoNotUse'
+              ],
               'type': 'object'
             },
             {
@@ -228,6 +270,10 @@ export const Schemas = {
           'type': 'number'
         }
       },
+      'required': [
+        'delegate',
+        'fraction'
+      ],
       'type': 'object'
     },
     'DelegateInfo': {
@@ -243,6 +289,9 @@ export const Schemas = {
                   'type': 'string'
                 }
               },
+              'required': [
+                'TagDoNotUse'
+              ],
               'type': 'object'
             },
             {
@@ -254,6 +303,10 @@ export const Schemas = {
           'type': 'string'
         }
       },
+      'required': [
+        'hash',
+        'name'
+      ],
       'type': 'object'
     },
     'IAddIntsRequest': {
@@ -265,6 +318,10 @@ export const Schemas = {
           'type': 'number'
         }
       },
+      'required': [
+        'a',
+        'b'
+      ],
       'type': 'object'
     },
     'IBaker': {
@@ -280,6 +337,9 @@ export const Schemas = {
                   'type': 'string'
                 }
               },
+              'required': [
+                'TagDoNotUse'
+              ],
               'type': 'object'
             },
             {
@@ -304,6 +364,9 @@ export const Schemas = {
                   'type': 'string'
                 }
               },
+              'required': [
+                'TagDoNotUse'
+              ],
               'type': 'object'
             },
             {
@@ -322,6 +385,9 @@ export const Schemas = {
                   'type': 'string'
                 }
               },
+              'required': [
+                'TagDoNotUse'
+              ],
               'type': 'object'
             },
             {
@@ -358,6 +424,9 @@ export const Schemas = {
                   'type': 'string'
                 }
               },
+              'required': [
+                'TagDoNotUse'
+              ],
               'type': 'object'
             },
             {
@@ -366,6 +435,18 @@ export const Schemas = {
           ]
         }
       },
+      'required': [
+        'bond',
+        'cyclesOutstanding',
+        'description',
+        'fee',
+        'hash',
+        'interestRatesOverTime',
+        'name',
+        'overDelegated',
+        'rewardsOverTime',
+        'totalDelegations'
+      ],
       'type': 'object'
     },
     'IBakersResponse': {
@@ -380,6 +461,10 @@ export const Schemas = {
           'type': 'string'
         }
       },
+      'required': [
+        'bakers',
+        'retrieved'
+      ],
       'type': 'object'
     },
     'IConcatTextAuthRequest': {
@@ -391,6 +476,10 @@ export const Schemas = {
           'type': 'string'
         }
       },
+      'required': [
+        'a',
+        'b'
+      ],
       'type': 'object'
     },
     'IConcatTextAuthResponse': {
@@ -399,6 +488,9 @@ export const Schemas = {
           'type': 'string'
         }
       },
+      'required': [
+        'result'
+      ],
       'type': 'object'
     },
     'IDelegateFraction': {
@@ -414,6 +506,9 @@ export const Schemas = {
                   'type': 'string'
                 }
               },
+              'required': [
+                'TagDoNotUse'
+              ],
               'type': 'object'
             },
             {
@@ -425,6 +520,10 @@ export const Schemas = {
           'type': 'number'
         }
       },
+      'required': [
+        'delegate',
+        'fraction'
+      ],
       'type': 'object'
     },
     'IDelegateInfo': {
@@ -440,6 +539,9 @@ export const Schemas = {
                   'type': 'string'
                 }
               },
+              'required': [
+                'TagDoNotUse'
+              ],
               'type': 'object'
             },
             {
@@ -451,6 +553,10 @@ export const Schemas = {
           'type': 'string'
         }
       },
+      'required': [
+        'hash',
+        'name'
+      ],
       'type': 'object'
     },
     'IEndOfResults': {
@@ -462,6 +568,9 @@ export const Schemas = {
           'type': 'string'
         }
       },
+      'required': [
+        'tag'
+      ],
       'type': 'object'
     },
     'IHeartbeat': {
@@ -473,6 +582,9 @@ export const Schemas = {
           'type': 'string'
         }
       },
+      'required': [
+        'tag'
+      ],
       'type': 'object'
     },
     'IImplicitResponse': {
@@ -488,6 +600,9 @@ export const Schemas = {
                   'type': 'string'
                 }
               },
+              'required': [
+                'TagDoNotUse'
+              ],
               'type': 'object'
             },
             {
@@ -505,6 +620,11 @@ export const Schemas = {
           'type': 'string'
         }
       },
+      'required': [
+        'balance',
+        'originated',
+        'retrieved'
+      ],
       'type': 'object'
     },
     'ILedgerOperation': {
@@ -520,6 +640,9 @@ export const Schemas = {
                   'type': 'string'
                 }
               },
+              'required': [
+                'TagDoNotUse'
+              ],
               'type': 'object'
             },
             {
@@ -538,6 +661,9 @@ export const Schemas = {
                   'type': 'string'
                 }
               },
+              'required': [
+                'TagDoNotUse'
+              ],
               'type': 'object'
             },
             {
@@ -556,6 +682,9 @@ export const Schemas = {
                   'type': 'string'
                 }
               },
+              'required': [
+                'TagDoNotUse'
+              ],
               'type': 'object'
             },
             {
@@ -577,6 +706,9 @@ export const Schemas = {
                   'type': 'string'
                 }
               },
+              'required': [
+                'TagDoNotUse'
+              ],
               'type': 'object'
             },
             {
@@ -588,6 +720,12 @@ export const Schemas = {
           'type': 'string'
         }
       },
+      'required': [
+        'hash',
+        'operationType',
+        'size',
+        'timestamp'
+      ],
       'type': 'object'
     },
     'IOperationResponse': {
@@ -606,6 +744,9 @@ export const Schemas = {
                   'type': 'string'
                 }
               },
+              'required': [
+                'TagDoNotUse'
+              ],
               'type': 'object'
             },
             {
@@ -623,6 +764,11 @@ export const Schemas = {
           'type': 'string'
         }
       },
+      'required': [
+        'baked',
+        'error',
+        'retrieved'
+      ],
       'type': 'object'
     },
     'IOriginatedAccount': {
@@ -638,6 +784,9 @@ export const Schemas = {
                   'type': 'string'
                 }
               },
+              'required': [
+                'TagDoNotUse'
+              ],
               'type': 'object'
             },
             {
@@ -659,6 +808,9 @@ export const Schemas = {
                   'type': 'string'
                 }
               },
+              'required': [
+                'TagDoNotUse'
+              ],
               'type': 'object'
             },
             {
@@ -673,10 +825,19 @@ export const Schemas = {
           'type': 'array'
         }
       },
+      'required': [
+        'balance',
+        'delegate',
+        'hash',
+        'ledger'
+      ],
       'type': 'object'
     },
     'IOverviewResponse': {
       'properties': {
+        'bakerCount': {
+          'type': 'number'
+        },
         'bondsOverTime': {
           'items': {
             '$ref': '#/definitions/ITimestampSize'
@@ -694,9 +855,6 @@ export const Schemas = {
             '$ref': '#/definitions/ITimestampRate'
           },
           'type': 'array'
-        },
-        'minerCount': {
-          'type': 'number'
         },
         'retrieved': {
           'type': 'string'
@@ -718,6 +876,9 @@ export const Schemas = {
                   'type': 'string'
                 }
               },
+              'required': [
+                'TagDoNotUse'
+              ],
               'type': 'object'
             },
             {
@@ -726,6 +887,15 @@ export const Schemas = {
           ]
         }
       },
+      'required': [
+        'bakerCount',
+        'bondsOverTime',
+        'delegateDistribution',
+        'interestRatesOverTime',
+        'retrieved',
+        'totalDelegationsOverTime',
+        'totalRewards'
+      ],
       'type': 'object'
     },
     'IRequestMessage': {
@@ -747,6 +917,9 @@ export const Schemas = {
                   'type': 'string'
                 }
               },
+              'required': [
+                'TagDoNotUse'
+              ],
               'type': 'object'
             },
             {
@@ -765,6 +938,9 @@ export const Schemas = {
                   'type': 'string'
                 }
               },
+              'required': [
+                'TagDoNotUse'
+              ],
               'type': 'object'
             },
             {
@@ -783,6 +959,9 @@ export const Schemas = {
                   'type': 'string'
                 }
               },
+              'required': [
+                'TagDoNotUse'
+              ],
               'type': 'object'
             },
             {
@@ -791,6 +970,12 @@ export const Schemas = {
           ]
         }
       },
+      'required': [
+        'headers',
+        'id',
+        'reqText',
+        'route'
+      ],
       'type': 'object'
     },
     'IResponseMessage': {
@@ -806,6 +991,9 @@ export const Schemas = {
                   'type': 'string'
                 }
               },
+              'required': [
+                'TagDoNotUse'
+              ],
               'type': 'object'
             },
             {
@@ -824,6 +1012,9 @@ export const Schemas = {
                   'type': 'string'
                 }
               },
+              'required': [
+                'TagDoNotUse'
+              ],
               'type': 'object'
             },
             {
@@ -832,6 +1023,10 @@ export const Schemas = {
           ]
         }
       },
+      'required': [
+        'requestId',
+        'resText'
+      ],
       'type': 'object'
     },
     'IResult': {
@@ -846,6 +1041,10 @@ export const Schemas = {
           'type': 'string'
         }
       },
+      'required': [
+        'contents',
+        'tag'
+      ],
       'type': 'object'
     },
     'IResult<T>': {
@@ -860,6 +1059,10 @@ export const Schemas = {
           'type': 'string'
         }
       },
+      'required': [
+        'contents',
+        'tag'
+      ],
       'type': 'object'
     },
     'IRpcResponse': {
@@ -874,6 +1077,10 @@ export const Schemas = {
           'type': 'string'
         }
       },
+      'required': [
+        'contents',
+        'tag'
+      ],
       'type': 'object'
     },
     'IRpcResponse<T>': {
@@ -888,6 +1095,10 @@ export const Schemas = {
           'type': 'string'
         }
       },
+      'required': [
+        'contents',
+        'tag'
+      ],
       'type': 'object'
     },
     'IRpcResponseClientException': {
@@ -902,6 +1113,10 @@ export const Schemas = {
           'type': 'string'
         }
       },
+      'required': [
+        'contents',
+        'tag'
+      ],
       'type': 'object'
     },
     'IRpcResponseServerException': {
@@ -916,6 +1131,10 @@ export const Schemas = {
           'type': 'string'
         }
       },
+      'required': [
+        'contents',
+        'tag'
+      ],
       'type': 'object'
     },
     'ITimestampRate': {
@@ -927,6 +1146,10 @@ export const Schemas = {
           'type': 'string'
         }
       },
+      'required': [
+        'rate',
+        'timestamp'
+      ],
       'type': 'object'
     },
     'ITimestampSize': {
@@ -942,6 +1165,9 @@ export const Schemas = {
                   'type': 'string'
                 }
               },
+              'required': [
+                'TagDoNotUse'
+              ],
               'type': 'object'
             },
             {
@@ -953,6 +1179,10 @@ export const Schemas = {
           'type': 'string'
         }
       },
+      'required': [
+        'size',
+        'timestamp'
+      ],
       'type': 'object'
     },
     'ImplicitResponse': {
@@ -968,6 +1198,9 @@ export const Schemas = {
                   'type': 'string'
                 }
               },
+              'required': [
+                'TagDoNotUse'
+              ],
               'type': 'object'
             },
             {
@@ -985,6 +1218,11 @@ export const Schemas = {
           'type': 'string'
         }
       },
+      'required': [
+        'balance',
+        'originated',
+        'retrieved'
+      ],
       'type': 'object'
     },
     'K': {},
@@ -1001,6 +1239,9 @@ export const Schemas = {
                   'type': 'string'
                 }
               },
+              'required': [
+                'TagDoNotUse'
+              ],
               'type': 'object'
             },
             {
@@ -1019,6 +1260,9 @@ export const Schemas = {
                   'type': 'string'
                 }
               },
+              'required': [
+                'TagDoNotUse'
+              ],
               'type': 'object'
             },
             {
@@ -1037,6 +1281,9 @@ export const Schemas = {
                   'type': 'string'
                 }
               },
+              'required': [
+                'TagDoNotUse'
+              ],
               'type': 'object'
             },
             {
@@ -1058,6 +1305,9 @@ export const Schemas = {
                   'type': 'string'
                 }
               },
+              'required': [
+                'TagDoNotUse'
+              ],
               'type': 'object'
             },
             {
@@ -1069,6 +1319,12 @@ export const Schemas = {
           'type': 'string'
         }
       },
+      'required': [
+        'hash',
+        'operationType',
+        'size',
+        'timestamp'
+      ],
       'type': 'object'
     },
     'LedgerOperationType': {
@@ -1095,6 +1351,9 @@ export const Schemas = {
                   'type': 'string'
                 }
               },
+              'required': [
+                'TagDoNotUse'
+              ],
               'type': 'object'
             },
             {
@@ -1112,6 +1371,11 @@ export const Schemas = {
           'type': 'string'
         }
       },
+      'required': [
+        'baked',
+        'error',
+        'retrieved'
+      ],
       'type': 'object'
     },
     'OriginatedAccount': {
@@ -1127,6 +1391,9 @@ export const Schemas = {
                   'type': 'string'
                 }
               },
+              'required': [
+                'TagDoNotUse'
+              ],
               'type': 'object'
             },
             {
@@ -1148,6 +1415,9 @@ export const Schemas = {
                   'type': 'string'
                 }
               },
+              'required': [
+                'TagDoNotUse'
+              ],
               'type': 'object'
             },
             {
@@ -1162,10 +1432,19 @@ export const Schemas = {
           'type': 'array'
         }
       },
+      'required': [
+        'balance',
+        'delegate',
+        'hash',
+        'ledger'
+      ],
       'type': 'object'
     },
     'OverviewResponse': {
       'properties': {
+        'bakerCount': {
+          'type': 'number'
+        },
         'bondsOverTime': {
           'items': {
             '$ref': '#/definitions/ITimestampSize'
@@ -1183,9 +1462,6 @@ export const Schemas = {
             '$ref': '#/definitions/ITimestampRate'
           },
           'type': 'array'
-        },
-        'minerCount': {
-          'type': 'number'
         },
         'retrieved': {
           'type': 'string'
@@ -1207,6 +1483,9 @@ export const Schemas = {
                   'type': 'string'
                 }
               },
+              'required': [
+                'TagDoNotUse'
+              ],
               'type': 'object'
             },
             {
@@ -1215,6 +1494,15 @@ export const Schemas = {
           ]
         }
       },
+      'required': [
+        'bakerCount',
+        'bondsOverTime',
+        'delegateDistribution',
+        'interestRatesOverTime',
+        'retrieved',
+        'totalDelegationsOverTime',
+        'totalRewards'
+      ],
       'type': 'object'
     },
     'RequestMessage': {
@@ -1236,6 +1524,9 @@ export const Schemas = {
                   'type': 'string'
                 }
               },
+              'required': [
+                'TagDoNotUse'
+              ],
               'type': 'object'
             },
             {
@@ -1254,6 +1545,9 @@ export const Schemas = {
                   'type': 'string'
                 }
               },
+              'required': [
+                'TagDoNotUse'
+              ],
               'type': 'object'
             },
             {
@@ -1272,6 +1566,9 @@ export const Schemas = {
                   'type': 'string'
                 }
               },
+              'required': [
+                'TagDoNotUse'
+              ],
               'type': 'object'
             },
             {
@@ -1280,6 +1577,12 @@ export const Schemas = {
           ]
         }
       },
+      'required': [
+        'headers',
+        'id',
+        'reqText',
+        'route'
+      ],
       'type': 'object'
     },
     'ResponseMessage': {
@@ -1295,6 +1598,9 @@ export const Schemas = {
                   'type': 'string'
                 }
               },
+              'required': [
+                'TagDoNotUse'
+              ],
               'type': 'object'
             },
             {
@@ -1313,6 +1619,9 @@ export const Schemas = {
                   'type': 'string'
                 }
               },
+              'required': [
+                'TagDoNotUse'
+              ],
               'type': 'object'
             },
             {
@@ -1321,6 +1630,10 @@ export const Schemas = {
           ]
         }
       },
+      'required': [
+        'requestId',
+        'resText'
+      ],
       'type': 'object'
     },
     'RpcResponse': {
@@ -1364,6 +1677,9 @@ export const Schemas = {
               'type': 'array'
             }
           },
+          'required': [
+            'TagDoNotUse'
+          ],
           'type': 'object'
         },
         {
@@ -1382,6 +1698,9 @@ export const Schemas = {
               'type': 'array'
             }
           },
+          'required': [
+            'TagDoNotUse'
+          ],
           'type': 'object'
         },
         {
@@ -1398,6 +1717,10 @@ export const Schemas = {
           'type': 'string'
         }
       },
+      'required': [
+        'rate',
+        'timestamp'
+      ],
       'type': 'object'
     },
     'TimestampSize': {
@@ -1413,6 +1736,9 @@ export const Schemas = {
                   'type': 'string'
                 }
               },
+              'required': [
+                'TagDoNotUse'
+              ],
               'type': 'object'
             },
             {
@@ -1424,6 +1750,10 @@ export const Schemas = {
           'type': 'string'
         }
       },
+      'required': [
+        'size',
+        'timestamp'
+      ],
       'type': 'object'
     },
     'Unit': {
@@ -1432,9 +1762,9 @@ export const Schemas = {
       },
       'type': 'array'
     },
-    'V439745': {
+    'V126289': {
       'enum': [
-        'Bridge Typings Version 439745'
+        'Bridge Typings Version 126289'
       ],
       'type': 'string'
     }

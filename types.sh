@@ -12,7 +12,7 @@ OUT_FILE=$1
 TEMP_JSON=/tmp/schema.json
 
 # Generates JSON schema from generated types. Does post-processing to make things clean.
-./node_modules/.bin/typescript-json-schema schema.tsconfig.json "*" > $TEMP_JSON
+./node_modules/.bin/typescript-json-schema schema.tsconfig.json "*" --required > $TEMP_JSON
 PREPEND_TYPES=$(node types.js $TEMP_JSON)
 PREPEND_EXPORT=$(echo 'export const Schemas = {')
 NO_TRAILING=$(sed '1d;$d' $TEMP_JSON)

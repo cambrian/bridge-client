@@ -8,9 +8,10 @@ npm install https://github.com/1protocol/bridge-client --save
 To use the demo, please find a pre-November commit.
 
 ## Usage
-See [`test/example.ts`](https://github.com/1protocol/bridge-client/blob/master/test/example.ts). Note that users are responsible for opening a WebSocket connection and
-passing a compatible object to `BridgeClient.make`. Consider using a reconnecting WebSocket
-implementation, such as [this](https://github.com/pladaria/reconnecting-websocket) one.
+Take a look at the [examples](https://github.com/1protocol/bridge-client/blob/master/test/examples)
+folder. Note that users are responsible for opening a WebSocket connection and passing a compatible
+object to `BridgeClient.make`. Consider using a reconnecting WebSocket implementation, such as
+[this project](https://github.com/pladaria/reconnecting-websocket).
 
 ## Concept
 Our back-end codebase relies on Haskell's type safety to prevent errors of all kinds. Naturally, we
