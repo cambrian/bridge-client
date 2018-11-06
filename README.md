@@ -5,7 +5,6 @@ A TypeScript module for interfacing with our Haskell-based backend.
 ```bash
 npm install https://github.com/1protocol/bridge-client --save
 ```
-To use the demo, please find a pre-November commit.
 
 ## Usage
 Take a look at the [examples](https://github.com/1protocol/bridge-client/blob/master/test/examples)
