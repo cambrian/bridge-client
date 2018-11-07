@@ -24,7 +24,7 @@ export declare namespace Call {
         function getVoidStream(bridgeClient: BridgeClient.T<Server.DummyManager>): Stream<void>;
     }
     namespace TezosOperationQueue {
-        function inject(bridgeClient: BridgeClient.T<Server.TezosOperationQueue>, request: T.Tagged<'TzOperation', string>): Promise<void>;
+        function inject(bridgeClient: BridgeClient.T<Server.TezosOperationQueue>, request: T.Tagged<'TzSignedOperationContents', string>): Promise<void>;
     }
     namespace TezosStats {
         function overview(bridgeClient: BridgeClient.T<Server.TezosStats>): Promise<T.OverviewResponse>;

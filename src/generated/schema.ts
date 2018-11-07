@@ -50,7 +50,7 @@ export type SchemaRef = 'AddIntsRequest'
   | 'TimestampRate'
   | 'TimestampSize'
   | 'Unit'
-  | 'V126289'
+  | 'V705328'
   | 'string'
   | 'number'
   | 'boolean'
@@ -1121,9 +1121,6 @@ export const Schemas = {
     },
     'IRpcResponseServerException': {
       'properties': {
-        'contents': {
-          'type': 'string'
-        },
         'tag': {
           'enum': [
             'RpcResponseServerException'
@@ -1132,7 +1129,6 @@ export const Schemas = {
         }
       },
       'required': [
-        'contents',
         'tag'
       ],
       'type': 'object'
@@ -1762,9 +1758,9 @@ export const Schemas = {
       },
       'type': 'array'
     },
-    'V126289': {
+    'V705328': {
       'enum': [
-        'Bridge Typings Version 126289'
+        'Bridge Typings Version 705328'
       ],
       'type': 'string'
     }

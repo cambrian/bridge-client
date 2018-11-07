@@ -125,9 +125,9 @@ export namespace Call {
   export namespace TezosOperationQueue {
     export function inject (
       bridgeClient: BridgeClient.T<Server.TezosOperationQueue>,
-      request: T.Tagged<'TzOperation', string>
+      request: T.Tagged<'TzSignedOperationContents', string>
     ): Promise<void> {
-      return direct<T.Tagged<'TzOperation', string>, T.Unit, Server.TezosOperationQueue>(
+      return direct<T.Tagged<'TzSignedOperationContents', string>, T.Unit, Server.TezosOperationQueue>(
         bridgeClient,
         20000,
         'TezosOperationQueue/inject',

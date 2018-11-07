@@ -21,6 +21,7 @@ import { filter } from '@most/core'
 const clientError = (errorText: String) => new Error('[client] ' + errorText)
 const serverError = (errorText: String) => new Error('[server] ' + errorText)
 const unexpectedResponseError = serverError('unexpected response')
+const internalServerError = serverError('internal exception')
 const timeoutError = (time: number) => clientError('request timed out (' + time.toString() + ')')
 
 function buildRequestOfAuth<T> (token?: Text<'AuthToken'>): (
@@ -51,7 +52,7 @@ function installDirectHandler<T, S> (
         if (validate<IRpcResponseClientException>('IRpcResponseClientException', resOrExc)) {
           reject(clientError(resOrExc.contents))
         } else if (validate<IRpcResponseServerException>('IRpcResponseServerException', resOrExc)) {
-          reject(serverError(resOrExc.contents))
+          reject(internalServerError)
         }
         else {
           const res = resOrExc.contents
@@ -85,7 +86,7 @@ function installStreamingHandler<T, S> (
         validated = true
       } else if (validate<IRpcResponseServerException>('IRpcResponseServerException', resOrExc)) {
         responseHandlers.delete(id)
-        error(serverError(resOrExc.contents))
+        error(internalServerError)
         validated = true
       } else {
         const res = resOrExc.contents
