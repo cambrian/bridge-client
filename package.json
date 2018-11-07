@@ -9,7 +9,7 @@
     "clean": "rm -rf dist",
     "lint": "./node_modules/.bin/tslint --project tsconfig.json --format stylish",
     "start": "./dist/src/index.js",
-    "test": "./node_modules/.bin/mocha -r ts-node/register -r tsconfig-paths/register --exclude ./test/example.ts ./test/**/*.ts"
+    "test": "./node_modules/.bin/mocha -r ts-node/register -r tsconfig-paths/register $(find test -name *.ts -not -path 'test/examples/*')"
   },
   "repository": {
     "type": "git",
@@ -46,6 +46,7 @@
     "@most/scheduler": "^1.2.1",
     "@most/types": "^1.0.1",
     "ajv": "^6.5.5",
+    "isomorphic-ws": "^4.0.1",
     "module-alias": "^2.1.0",
     "most-from-event": "^1.1.2",
     "source-map-support": "^0.5.8",

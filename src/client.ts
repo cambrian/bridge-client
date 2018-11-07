@@ -1,4 +1,4 @@
-import * as WebSocket from 'ws'
+import * as WebSocket from 'isomorphic-ws'
 
 import { ResponseMessage, Text } from './generated/types'
 import { safeParse, validate } from './format'

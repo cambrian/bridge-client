@@ -1,5 +1,5 @@
 // Not an actual test, but good to make sure this works when updating types.
-import * as WebSocket from 'ws'
+import * as WebSocket from 'isomorphic-ws'
 
 import { BridgeClient, Call, Server, observe } from '@src'
 

@@ -1,4 +1,5 @@
-import * as WebSocket from 'ws';
+/// <reference types="ws" />
+import * as WebSocket from 'isomorphic-ws';
 import { Text } from './generated/types';
 type HandleOrError = [(resText: Text<'Response'>) => void, (errorValue: Error) => void];
 export declare namespace BridgeClient {
