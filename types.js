@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 if (process.argv.length < 3) {
   console.error('types: schema file not supplied')
   process.exit(1)
