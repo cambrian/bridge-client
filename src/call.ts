@@ -52,8 +52,7 @@ function installDirectHandler<T, S> (
           reject(clientError(resOrExc.contents))
         } else if (validate<IRpcResponseServerException>('IRpcResponseServerException', resOrExc)) {
           reject(serverError(resOrExc.contents))
-        }
-        else {
+        } else {
           const res = resOrExc.contents
           if (validate<T>(typeTRef, res)) {
             resolve(res)
@@ -191,8 +190,7 @@ export function streaming<T, U, S> (
   token?: Text<'AuthToken'>
 ): Stream<U> {
   const [id, stream] = call
-    <T, Stream<U | IHeartbeat>, S>
-    (installStreamingHandler, bridgeClient, route, request, typeURef, token)
+    <T, Stream<U | IHeartbeat>, S>(installStreamingHandler, bridgeClient, route, request, typeURef, token)
   // Timeout listens on a stream with heartbeats, but clients of this library do not.
   if (timeout) catchStreamTimeout(timeout, stream, cancelResponseIfError(bridgeClient, id))
   return filter(x => !validate<IHeartbeat>('IHeartbeat', x), stream) as Stream<U>

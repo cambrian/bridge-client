@@ -12,6 +12,7 @@ function makeResponseDispatcher<S> (bridgeClient: BridgeClient.T<S>):
   (data: WebSocket.Data) => void {
   const { responseHandlers } = bridgeClient
   return (data) => {
+
     const message = data.toString()
     const responseMessage = safeParse(message)
     // This is ugly and repetitive, but basically the type parameter is the type that is being
@@ -57,8 +58,9 @@ export namespace BridgeClient {
   // Use activate only after deactivation (prefer make).
   export function activate<S> (bridgeClient: T<S>): void {
     deactivate(bridgeClient) // Just for sanity.
+    console.log('activate')
     bridgeClient.responseDispatcher = makeResponseDispatcher(bridgeClient)
-    bridgeClient.socketClient.on('message', bridgeClient.responseDispatcher)
+    bridgeClient.socketClient.onmessage = bridgeClient.responseDispatcher
     bridgeClient.socketClient.on('close', bridgeClient.closeHandler)
     bridgeClient.socketClient.on('error', bridgeClient.errorHandler)
   }
@@ -67,7 +69,7 @@ export namespace BridgeClient {
     if (bridgeClient.responseDispatcher) {
       bridgeClient.socketClient.off('error', bridgeClient.errorHandler)
       bridgeClient.socketClient.off('close', bridgeClient.closeHandler)
-      bridgeClient.socketClient.off('message', bridgeClient.responseDispatcher)
+      bridgeClient.socketClient.onmessage = bridgeClient.responseDispatcher
       bridgeClient.responseDispatcher = undefined
     }
   }
@@ -76,7 +78,11 @@ export namespace BridgeClient {
 export function cancelResponseIfError<S> (bridgeClient: BridgeClient.T<S>, id: Text<'RequestId'>):
   (errorValue?: Error) => void {
   return (errorValue) => {
+    console.log('error', errorValue)
+
     if (errorValue) {
+      console.log('error', errorValue)
+
       const { responseHandlers } = bridgeClient
       const handleOrError = responseHandlers.get(id)
       if (handleOrError) {
