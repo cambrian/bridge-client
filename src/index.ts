@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+// Bad for browser: #!/usr/bin/env node
 require('source-map-support').install()
 
 export { BridgeClient } from './client'

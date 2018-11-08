@@ -2,12 +2,29 @@
 import * as WebSocket from 'isomorphic-ws';
 import { Text } from './generated/types';
 type HandleOrError = [(resText: Text<'Response'>) => void, (errorValue: Error) => void];
+type WebSocketEvent = {
+    data: WebSocket.Data;
+    type: string;
+    target: WebSocket;
+};
+type WebSocketError = {
+    error: any;
+    message: string;
+    type: string;
+    target: WebSocket;
+};
+type WebSocketClose = {
+    wasClean: boolean;
+    code: number;
+    reason: string;
+    target: WebSocket;
+};
 export declare namespace BridgeClient {
     interface T<S> {
         typeParameterProxy?: S;
-        closeHandler: () => void;
-        errorHandler: (errorValue: Error) => void;
-        responseDispatcher?: (data: WebSocket.Data) => void;
+        closeHandler: (event: WebSocketClose) => void;
+        errorHandler: (event: WebSocketError) => void;
+        responseDispatcher?: (event: WebSocketEvent) => void;
         responseHandlers: Map<Text<'RequestId'>, HandleOrError>;
         socketClient: WebSocket;
     }

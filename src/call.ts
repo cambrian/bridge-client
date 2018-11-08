@@ -134,7 +134,11 @@ function call<T, U, S> (
 ): [Text<'RequestId'>, U] {
   const [id, requestMessage] = buildRequestOfAuth(token)(route, request)
   const deferredResponse = installResponseHandler(bridgeClient, typeURef, id)
-  bridgeClient.socketClient.send(requestMessage, cancelResponseIfError(bridgeClient, id))
+  try {
+    bridgeClient.socketClient.send(requestMessage)
+  } catch (exception) {
+    cancelResponseIfError(bridgeClient, id)
+  }
   return [id, deferredResponse]
 }
 

@@ -3,15 +3,17 @@ import * as WebSocket from 'isomorphic-ws'
 import { ResponseMessage, Text } from './generated/types'
 import { safeParse, validate } from './format'
 
-const closeError = new Error('socket client was closed externally')
-const unknownError = new Error('bridge client encountered an unknown error')
 type HandleOrError = [(resText: Text<'Response'>) => void, (errorValue: Error) => void]
+type WebSocketEvent = { data: WebSocket.Data, type: string, target: WebSocket }
+type WebSocketError = { error: any, message: string, type: string, target: WebSocket }
+type WebSocketClose = { wasClean: boolean, code: number, reason: string, target: WebSocket }
 
 // Future Tasks: Automate type validation even more and consider supporting other transports.
 function makeResponseDispatcher<S> (bridgeClient: BridgeClient.T<S>):
-  (data: WebSocket.Data) => void {
+  (event: WebSocketEvent) => void {
   const { responseHandlers } = bridgeClient
-  return (data) => {
+  return (event) => {
+    const { data } = event
     const message = data.toString()
     const responseMessage = safeParse(message)
     // This is ugly and repetitive, but basically the type parameter is the type that is being
@@ -26,29 +28,33 @@ function makeResponseDispatcher<S> (bridgeClient: BridgeClient.T<S>):
   }
 }
 
-function makeInterruptHandler (
-  responseHandlers: Map<Text<'RequestId'>, HandleOrError>,
-  errorDefault: Error
-): (errorReceived?: Error) => void {
-  return (errorReceived) => responseHandlers.forEach(([_, error]) =>
-    errorReceived ? error(errorReceived) : error(errorDefault))
+function makeErrorHandler (responseHandlers: Map<Text<'RequestId'>, HandleOrError>):
+  (event: WebSocketError) => void {
+  return (errorEvent) => responseHandlers.forEach(([_, error]) =>
+    error(new Error('[socket error] ' + errorEvent.message)))
+}
+
+function makeCloseHandler (responseHandlers: Map<Text<'RequestId'>, HandleOrError>):
+  (event: WebSocketClose) => void {
+  return (closeEvent) => responseHandlers.forEach(([_, error]) =>
+    error(new Error('[socket closed] ' + closeEvent.reason)))
 }
 
 export namespace BridgeClient {
   // Parameter is just an annotation.
   export interface T<S> {
     typeParameterProxy?: S
-    closeHandler: () => void
-    errorHandler: (errorValue: Error) => void
-    responseDispatcher?: (data: WebSocket.Data) => void
+    closeHandler: (event: WebSocketClose) => void
+    errorHandler: (event: WebSocketError) => void
+    responseDispatcher?: (event: WebSocketEvent) => void
     responseHandlers: Map<Text<'RequestId'>, HandleOrError>
     socketClient: WebSocket
   }
 
   export function make<S> (socketClient: WebSocket): T<S> {
     const responseHandlers = new Map<Text<'RequestId'>, HandleOrError>()
-    const closeHandler = makeInterruptHandler(responseHandlers, closeError)
-    const errorHandler = makeInterruptHandler(responseHandlers, unknownError)
+    const closeHandler = makeCloseHandler(responseHandlers)
+    const errorHandler = makeErrorHandler(responseHandlers)
     const bridgeClient = { closeHandler, errorHandler, responseHandlers, socketClient }
     activate(bridgeClient)
     return bridgeClient
@@ -57,18 +63,16 @@ export namespace BridgeClient {
   // Use activate only after deactivation (prefer make).
   export function activate<S> (bridgeClient: T<S>): void {
     deactivate(bridgeClient) // Just for sanity.
-    bridgeClient.responseDispatcher = makeResponseDispatcher(bridgeClient)
-    bridgeClient.socketClient.on('message', bridgeClient.responseDispatcher)
-    bridgeClient.socketClient.on('close', bridgeClient.closeHandler)
-    bridgeClient.socketClient.on('error', bridgeClient.errorHandler)
+    bridgeClient.socketClient.onmessage = makeResponseDispatcher(bridgeClient)
+    bridgeClient.socketClient.onclose = bridgeClient.closeHandler
+    bridgeClient.socketClient.onerror = bridgeClient.errorHandler
   }
 
   export function deactivate<S> (bridgeClient: T<S>): void {
     if (bridgeClient.responseDispatcher) {
-      bridgeClient.socketClient.off('error', bridgeClient.errorHandler)
-      bridgeClient.socketClient.off('close', bridgeClient.closeHandler)
-      bridgeClient.socketClient.off('message', bridgeClient.responseDispatcher)
-      bridgeClient.responseDispatcher = undefined
+      bridgeClient.socketClient.onerror = () => undefined
+      bridgeClient.socketClient.onclose = () => undefined
+      bridgeClient.socketClient.onmessage = () => undefined
     }
   }
 }
