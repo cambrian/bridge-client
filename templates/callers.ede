@@ -5,6 +5,7 @@ import { direct, streaming } from '../call'
 
 import { BridgeClient } from '../client'
 import { Stream } from '@most/types'
+import { Tagged } from './types'
 import { map } from '@most/core'
 
 export namespace Server {
@@ -15,10 +16,9 @@ export namespace Server {
 {% endfor %}
 }
 
-export namespace Call {
 {% for serviceItem in services %}
 {% let service = serviceItem.value %}
-  export namespace {{ service.namespace }} {
+export namespace {{ service.namespace }} {
 {% for specItem in service.specs %}
 {% let spec = specItem.value %}
 {% include "function.ede" %}
@@ -27,10 +27,8 @@ export namespace Call {
 {% endif %}
 {% endlet %}
 {% endfor %}
-  }
-{% if !serviceItem.last %}
+}{% if !serviceItem.last %}
 
 {% endif %}
 {% endlet %}
 {% endfor %}
-}

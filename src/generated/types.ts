@@ -1,4 +1,4 @@
-export type V705328 = 'Bridge Typings Version 705328'
+export type V712406 = 'Bridge Typings Version 712406'
 
 export type Tagged<T extends string, K> = { TagDoNotUse: T } | K
 
@@ -73,79 +73,14 @@ export interface IConcatTextAuthResponse {
   result: string
 }
 
-export type Baker = IBaker
-
-export interface IBaker {
-  name: string
-  description: string
-  hash: Tagged<'TzImplicitPkh', string>
-  fee: Tagged<'XTZ', number>
-  bond: Tagged<'XTZ', number>
-  totalDelegations: Tagged<'XTZ', number>
-  overDelegated: boolean
-  cyclesOutstanding: number
-  interestRatesOverTime: TimestampRate[]
-  rewardsOverTime: TimestampSize[]
-}
-
-export type DelegateFraction = IDelegateFraction
-
-export interface IDelegateFraction {
-  delegate: Tagged<'TzImplicitPkh', string>
-  fraction: number
-}
-
-export type DelegateInfo = IDelegateInfo
-
-export interface IDelegateInfo {
-  hash: Tagged<'TzImplicitPkh', string>
-  name: string
-}
-
-export type LedgerOperation = ILedgerOperation
-
-export interface ILedgerOperation {
-  operationType: LedgerOperationType
-  hash: Tagged<'TzOperationHash', string>
-  from?: Tagged<'TzAccountHash', string>
-  size: Tagged<'XTZ', number>
-  blockHash?: Tagged<'TzBlockHash', string>
-  timestamp: string
-}
-
-export type LedgerOperationType = 'Deposit' | 'Reward' | 'Withdrawal'
-
-export type OriginatedAccount = IOriginatedAccount
-
-export interface IOriginatedAccount {
-  hash: Tagged<'TzOriginatedHash', string>
-  delegate: DelegateInfo
-  balance: Tagged<'XTZ', number>
-  ledger: LedgerOperation[]
-}
-
-export type TimestampRate = ITimestampRate
-
-export interface ITimestampRate {
-  timestamp: string
-  rate: number
-}
-
-export type TimestampSize = ITimestampSize
-
-export interface ITimestampSize {
-  timestamp: string
-  size: Tagged<'XTZ', number>
-}
-
 export type OverviewResponse = IOverviewResponse
 
 export interface IOverviewResponse {
   bakerCount: number
   totalRewards: Tagged<'XTZ', number>
-  bondsOverTime: TimestampSize[]
-  totalDelegationsOverTime: TimestampSize[]
-  interestRatesOverTime: TimestampRate[]
+  bondsOverTime: TimeSize[]
+  totalDelegationsOverTime: TimeSize[]
+  interestRatesOverTime: TimeRate[]
   delegateDistribution: DelegateFraction[]
   retrieved: string
 }
@@ -161,7 +96,7 @@ export type ImplicitResponse = IImplicitResponse
 
 export interface IImplicitResponse {
   balance: Tagged<'XTZ', number>
-  originated: OriginatedAccount[]
+  originated: OriginatedAddress[]
   retrieved: string
 }
 
@@ -173,4 +108,69 @@ export interface IOperationResponse {
   confirmations?: number
   blockHash?: Tagged<'TzBlockHash', string>
   retrieved: string
+}
+
+export type Baker = IBaker
+
+export interface IBaker {
+  name: string
+  description: string
+  hash: Tagged<'Implicit', Tagged<'TzAddress', string>>
+  fee: Tagged<'XTZ', number>
+  bond: Tagged<'XTZ', number>
+  totalDelegations: Tagged<'XTZ', number>
+  overDelegated: boolean
+  cyclesOutstanding: number
+  interestRatesOverTime: TimeRate[]
+  rewardsOverTime: TimeSize[]
+}
+
+export type DelegateFraction = IDelegateFraction
+
+export interface IDelegateFraction {
+  delegate: Tagged<'Implicit', Tagged<'TzAddress', string>>
+  fraction: number
+}
+
+export type DelegateInfo = IDelegateInfo
+
+export interface IDelegateInfo {
+  hash: Tagged<'Implicit', Tagged<'TzAddress', string>>
+  name: string
+}
+
+export type LedgerOperation = ILedgerOperation
+
+export interface ILedgerOperation {
+  operationType: LedgerOperationType
+  hash: Tagged<'TzOperationHash', string>
+  from?: Tagged<'TzAddress', string>
+  size: Tagged<'XTZ', number>
+  blockHash?: Tagged<'TzBlockHash', string>
+  time: string
+}
+
+export type LedgerOperationType = 'Deposit' | 'Reward' | 'Withdrawal'
+
+export type OriginatedAddress = IOriginatedAddress
+
+export interface IOriginatedAddress {
+  hash: Tagged<'Originated', Tagged<'TzAddress', string>>
+  delegate: DelegateInfo
+  balance: Tagged<'XTZ', number>
+  ledger: LedgerOperation[]
+}
+
+export type TimeRate = ITimeRate
+
+export interface ITimeRate {
+  time: string
+  rate: number
+}
+
+export type TimeSize = ITimeSize
+
+export interface ITimeSize {
+  time: string
+  size: Tagged<'XTZ', number>
 }

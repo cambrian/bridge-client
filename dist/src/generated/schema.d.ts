@@ -1,4 +1,4 @@
-export declare type SchemaRef = 'AddIntsRequest' | 'Baker' | 'BakersResponse' | 'Boolean' | 'ConcatTextAuthRequest' | 'ConcatTextAuthResponse' | 'DelegateFraction' | 'DelegateInfo' | 'IAddIntsRequest' | 'IBaker' | 'IBakersResponse' | 'IConcatTextAuthRequest' | 'IConcatTextAuthResponse' | 'IDelegateFraction' | 'IDelegateInfo' | 'IEndOfResults' | 'IHeartbeat' | 'IImplicitResponse' | 'ILedgerOperation' | 'IOperationResponse' | 'IOriginatedAccount' | 'IOverviewResponse' | 'IRequestMessage' | 'IResponseMessage' | 'IResult' | 'IResult<T>' | 'IRpcResponse' | 'IRpcResponse<T>' | 'IRpcResponseClientException' | 'IRpcResponseServerException' | 'ITimestampRate' | 'ITimestampSize' | 'ImplicitResponse' | 'K' | 'LedgerOperation' | 'LedgerOperationType' | 'OperationResponse' | 'OriginatedAccount' | 'OverviewResponse' | 'RequestMessage' | 'ResponseMessage' | 'RpcResponse' | 'StreamingResponse' | 'T' | 'T_1' | 'T_2' | 'T_3' | 'Tagged' | 'Text' | 'TimestampRate' | 'TimestampSize' | 'Unit' | 'V705328' | 'string' | 'number' | 'boolean' | 'symbol';
+export declare type SchemaRef = 'AddIntsRequest' | 'Baker' | 'BakersResponse' | 'Boolean' | 'ConcatTextAuthRequest' | 'ConcatTextAuthResponse' | 'DelegateFraction' | 'DelegateInfo' | 'IAddIntsRequest' | 'IBaker' | 'IBakersResponse' | 'IConcatTextAuthRequest' | 'IConcatTextAuthResponse' | 'IDelegateFraction' | 'IDelegateInfo' | 'IEndOfResults' | 'IHeartbeat' | 'IImplicitResponse' | 'ILedgerOperation' | 'IOperationResponse' | 'IOriginatedAddress' | 'IOverviewResponse' | 'IRequestMessage' | 'IResponseMessage' | 'IResult' | 'IResult<T>' | 'IRpcResponse' | 'IRpcResponse<T>' | 'IRpcResponseClientException' | 'IRpcResponseServerException' | 'ITimeRate' | 'ITimeSize' | 'ImplicitResponse' | 'K' | 'LedgerOperation' | 'LedgerOperationType' | 'OperationResponse' | 'OriginatedAddress' | 'OverviewResponse' | 'RequestMessage' | 'ResponseMessage' | 'RpcResponse' | 'StreamingResponse' | 'T' | 'T_1' | 'T_2' | 'T_3' | 'Tagged' | 'Text' | 'TimeRate' | 'TimeSize' | 'Unit' | 'V712406' | 'string' | 'number' | 'boolean' | 'symbol';
 export declare const Schemas: {
     '$schema': string;
     'definitions': {
@@ -507,7 +507,7 @@ export declare const Schemas: {
                         'required'?: undefined;
                     })[];
                 };
-                'timestamp': {
+                'time': {
                     'type': string;
                 };
             };
@@ -548,7 +548,7 @@ export declare const Schemas: {
             'required': string[];
             'type': string;
         };
-        'IOriginatedAccount': {
+        'IOriginatedAddress': {
             'properties': {
                 'balance': {
                     'anyOf': ({
@@ -820,19 +820,19 @@ export declare const Schemas: {
             'required': string[];
             'type': string;
         };
-        'ITimestampRate': {
+        'ITimeRate': {
             'properties': {
                 'rate': {
                     'type': string;
                 };
-                'timestamp': {
+                'time': {
                     'type': string;
                 };
             };
             'required': string[];
             'type': string;
         };
-        'ITimestampSize': {
+        'ITimeSize': {
             'properties': {
                 'size': {
                     'anyOf': ({
@@ -850,7 +850,7 @@ export declare const Schemas: {
                         'required'?: undefined;
                     })[];
                 };
-                'timestamp': {
+                'time': {
                     'type': string;
                 };
             };
@@ -958,7 +958,7 @@ export declare const Schemas: {
                         'required'?: undefined;
                     })[];
                 };
-                'timestamp': {
+                'time': {
                     'type': string;
                 };
             };
@@ -1003,7 +1003,7 @@ export declare const Schemas: {
             'required': string[];
             'type': string;
         };
-        'OriginatedAccount': {
+        'OriginatedAddress': {
             'properties': {
                 'balance': {
                     'anyOf': ({
@@ -1252,19 +1252,19 @@ export declare const Schemas: {
                 'required'?: undefined;
             })[];
         };
-        'TimestampRate': {
+        'TimeRate': {
             'properties': {
                 'rate': {
                     'type': string;
                 };
-                'timestamp': {
+                'time': {
                     'type': string;
                 };
             };
             'required': string[];
             'type': string;
         };
-        'TimestampSize': {
+        'TimeSize': {
             'properties': {
                 'size': {
                     'anyOf': ({
@@ -1282,7 +1282,7 @@ export declare const Schemas: {
                         'required'?: undefined;
                     })[];
                 };
-                'timestamp': {
+                'time': {
                     'type': string;
                 };
             };
@@ -1295,7 +1295,7 @@ export declare const Schemas: {
             };
             'type': string;
         };
-        'V705328': {
+        'V712406': {
             'enum': string[];
             'type': string;
         };

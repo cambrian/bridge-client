@@ -34,4 +34,4 @@ After we generate this module, it will contain these three functions (roughly):
 - `bar (webSocket: WebSocket, request: BarRequest): Promise<BarResponse>`
 - `baz (webSocket: WebSocket, request: BazRequest): Stream<BazResponse>`
 
-This module exports a namespace `Call` with our actual generated functions.
+This module exports namespaces like `ServerNameX` with our actual generated functions.

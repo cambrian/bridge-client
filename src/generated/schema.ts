@@ -18,7 +18,7 @@ export type SchemaRef = 'AddIntsRequest'
   | 'IImplicitResponse'
   | 'ILedgerOperation'
   | 'IOperationResponse'
-  | 'IOriginatedAccount'
+  | 'IOriginatedAddress'
   | 'IOverviewResponse'
   | 'IRequestMessage'
   | 'IResponseMessage'
@@ -28,14 +28,14 @@ export type SchemaRef = 'AddIntsRequest'
   | 'IRpcResponse<T>'
   | 'IRpcResponseClientException'
   | 'IRpcResponseServerException'
-  | 'ITimestampRate'
-  | 'ITimestampSize'
+  | 'ITimeRate'
+  | 'ITimeSize'
   | 'ImplicitResponse'
   | 'K'
   | 'LedgerOperation'
   | 'LedgerOperationType'
   | 'OperationResponse'
-  | 'OriginatedAccount'
+  | 'OriginatedAddress'
   | 'OverviewResponse'
   | 'RequestMessage'
   | 'ResponseMessage'
@@ -47,10 +47,10 @@ export type SchemaRef = 'AddIntsRequest'
   | 'T_3'
   | 'Tagged'
   | 'Text'
-  | 'TimestampRate'
-  | 'TimestampSize'
+  | 'TimeRate'
+  | 'TimeSize'
   | 'Unit'
-  | 'V705328'
+  | 'V712406'
   | 'string'
   | 'number'
   | 'boolean'
@@ -129,7 +129,21 @@ export const Schemas = {
               'properties': {
                 'TagDoNotUse': {
                   'enum': [
-                    'TzImplicitPkh'
+                    'TzAddress'
+                  ],
+                  'type': 'string'
+                }
+              },
+              'required': [
+                'TagDoNotUse'
+              ],
+              'type': 'object'
+            },
+            {
+              'properties': {
+                'TagDoNotUse': {
+                  'enum': [
+                    'Implicit'
                   ],
                   'type': 'string'
                 }
@@ -146,7 +160,7 @@ export const Schemas = {
         },
         'interestRatesOverTime': {
           'items': {
-            '$ref': '#/definitions/ITimestampRate'
+            '$ref': '#/definitions/ITimeRate'
           },
           'type': 'array'
         },
@@ -158,7 +172,7 @@ export const Schemas = {
         },
         'rewardsOverTime': {
           'items': {
-            '$ref': '#/definitions/ITimestampSize'
+            '$ref': '#/definitions/ITimeSize'
           },
           'type': 'array'
         },
@@ -251,7 +265,21 @@ export const Schemas = {
               'properties': {
                 'TagDoNotUse': {
                   'enum': [
-                    'TzImplicitPkh'
+                    'TzAddress'
+                  ],
+                  'type': 'string'
+                }
+              },
+              'required': [
+                'TagDoNotUse'
+              ],
+              'type': 'object'
+            },
+            {
+              'properties': {
+                'TagDoNotUse': {
+                  'enum': [
+                    'Implicit'
                   ],
                   'type': 'string'
                 }
@@ -284,7 +312,21 @@ export const Schemas = {
               'properties': {
                 'TagDoNotUse': {
                   'enum': [
-                    'TzImplicitPkh'
+                    'TzAddress'
+                  ],
+                  'type': 'string'
+                }
+              },
+              'required': [
+                'TagDoNotUse'
+              ],
+              'type': 'object'
+            },
+            {
+              'properties': {
+                'TagDoNotUse': {
+                  'enum': [
+                    'Implicit'
                   ],
                   'type': 'string'
                 }
@@ -380,7 +422,21 @@ export const Schemas = {
               'properties': {
                 'TagDoNotUse': {
                   'enum': [
-                    'TzImplicitPkh'
+                    'TzAddress'
+                  ],
+                  'type': 'string'
+                }
+              },
+              'required': [
+                'TagDoNotUse'
+              ],
+              'type': 'object'
+            },
+            {
+              'properties': {
+                'TagDoNotUse': {
+                  'enum': [
+                    'Implicit'
                   ],
                   'type': 'string'
                 }
@@ -397,7 +453,7 @@ export const Schemas = {
         },
         'interestRatesOverTime': {
           'items': {
-            '$ref': '#/definitions/ITimestampRate'
+            '$ref': '#/definitions/ITimeRate'
           },
           'type': 'array'
         },
@@ -409,7 +465,7 @@ export const Schemas = {
         },
         'rewardsOverTime': {
           'items': {
-            '$ref': '#/definitions/ITimestampSize'
+            '$ref': '#/definitions/ITimeSize'
           },
           'type': 'array'
         },
@@ -501,7 +557,21 @@ export const Schemas = {
               'properties': {
                 'TagDoNotUse': {
                   'enum': [
-                    'TzImplicitPkh'
+                    'TzAddress'
+                  ],
+                  'type': 'string'
+                }
+              },
+              'required': [
+                'TagDoNotUse'
+              ],
+              'type': 'object'
+            },
+            {
+              'properties': {
+                'TagDoNotUse': {
+                  'enum': [
+                    'Implicit'
                   ],
                   'type': 'string'
                 }
@@ -534,7 +604,21 @@ export const Schemas = {
               'properties': {
                 'TagDoNotUse': {
                   'enum': [
-                    'TzImplicitPkh'
+                    'TzAddress'
+                  ],
+                  'type': 'string'
+                }
+              },
+              'required': [
+                'TagDoNotUse'
+              ],
+              'type': 'object'
+            },
+            {
+              'properties': {
+                'TagDoNotUse': {
+                  'enum': [
+                    'Implicit'
                   ],
                   'type': 'string'
                 }
@@ -612,7 +696,7 @@ export const Schemas = {
         },
         'originated': {
           'items': {
-            '$ref': '#/definitions/IOriginatedAccount'
+            '$ref': '#/definitions/IOriginatedAddress'
           },
           'type': 'array'
         },
@@ -656,7 +740,7 @@ export const Schemas = {
               'properties': {
                 'TagDoNotUse': {
                   'enum': [
-                    'TzAccountHash'
+                    'TzAddress'
                   ],
                   'type': 'string'
                 }
@@ -716,7 +800,7 @@ export const Schemas = {
             }
           ]
         },
-        'timestamp': {
+        'time': {
           'type': 'string'
         }
       },
@@ -724,7 +808,7 @@ export const Schemas = {
         'hash',
         'operationType',
         'size',
-        'timestamp'
+        'time'
       ],
       'type': 'object'
     },
@@ -771,7 +855,7 @@ export const Schemas = {
       ],
       'type': 'object'
     },
-    'IOriginatedAccount': {
+    'IOriginatedAddress': {
       'properties': {
         'balance': {
           'anyOf': [
@@ -803,7 +887,21 @@ export const Schemas = {
               'properties': {
                 'TagDoNotUse': {
                   'enum': [
-                    'TzOriginatedHash'
+                    'TzAddress'
+                  ],
+                  'type': 'string'
+                }
+              },
+              'required': [
+                'TagDoNotUse'
+              ],
+              'type': 'object'
+            },
+            {
+              'properties': {
+                'TagDoNotUse': {
+                  'enum': [
+                    'Originated'
                   ],
                   'type': 'string'
                 }
@@ -840,7 +938,7 @@ export const Schemas = {
         },
         'bondsOverTime': {
           'items': {
-            '$ref': '#/definitions/ITimestampSize'
+            '$ref': '#/definitions/ITimeSize'
           },
           'type': 'array'
         },
@@ -852,7 +950,7 @@ export const Schemas = {
         },
         'interestRatesOverTime': {
           'items': {
-            '$ref': '#/definitions/ITimestampRate'
+            '$ref': '#/definitions/ITimeRate'
           },
           'type': 'array'
         },
@@ -861,7 +959,7 @@ export const Schemas = {
         },
         'totalDelegationsOverTime': {
           'items': {
-            '$ref': '#/definitions/ITimestampSize'
+            '$ref': '#/definitions/ITimeSize'
           },
           'type': 'array'
         },
@@ -1133,22 +1231,22 @@ export const Schemas = {
       ],
       'type': 'object'
     },
-    'ITimestampRate': {
+    'ITimeRate': {
       'properties': {
         'rate': {
           'type': 'number'
         },
-        'timestamp': {
+        'time': {
           'type': 'string'
         }
       },
       'required': [
         'rate',
-        'timestamp'
+        'time'
       ],
       'type': 'object'
     },
-    'ITimestampSize': {
+    'ITimeSize': {
       'properties': {
         'size': {
           'anyOf': [
@@ -1171,13 +1269,13 @@ export const Schemas = {
             }
           ]
         },
-        'timestamp': {
+        'time': {
           'type': 'string'
         }
       },
       'required': [
         'size',
-        'timestamp'
+        'time'
       ],
       'type': 'object'
     },
@@ -1206,7 +1304,7 @@ export const Schemas = {
         },
         'originated': {
           'items': {
-            '$ref': '#/definitions/IOriginatedAccount'
+            '$ref': '#/definitions/IOriginatedAddress'
           },
           'type': 'array'
         },
@@ -1251,7 +1349,7 @@ export const Schemas = {
               'properties': {
                 'TagDoNotUse': {
                   'enum': [
-                    'TzAccountHash'
+                    'TzAddress'
                   ],
                   'type': 'string'
                 }
@@ -1311,7 +1409,7 @@ export const Schemas = {
             }
           ]
         },
-        'timestamp': {
+        'time': {
           'type': 'string'
         }
       },
@@ -1319,7 +1417,7 @@ export const Schemas = {
         'hash',
         'operationType',
         'size',
-        'timestamp'
+        'time'
       ],
       'type': 'object'
     },
@@ -1374,7 +1472,7 @@ export const Schemas = {
       ],
       'type': 'object'
     },
-    'OriginatedAccount': {
+    'OriginatedAddress': {
       'properties': {
         'balance': {
           'anyOf': [
@@ -1406,7 +1504,21 @@ export const Schemas = {
               'properties': {
                 'TagDoNotUse': {
                   'enum': [
-                    'TzOriginatedHash'
+                    'TzAddress'
+                  ],
+                  'type': 'string'
+                }
+              },
+              'required': [
+                'TagDoNotUse'
+              ],
+              'type': 'object'
+            },
+            {
+              'properties': {
+                'TagDoNotUse': {
+                  'enum': [
+                    'Originated'
                   ],
                   'type': 'string'
                 }
@@ -1443,7 +1555,7 @@ export const Schemas = {
         },
         'bondsOverTime': {
           'items': {
-            '$ref': '#/definitions/ITimestampSize'
+            '$ref': '#/definitions/ITimeSize'
           },
           'type': 'array'
         },
@@ -1455,7 +1567,7 @@ export const Schemas = {
         },
         'interestRatesOverTime': {
           'items': {
-            '$ref': '#/definitions/ITimestampRate'
+            '$ref': '#/definitions/ITimeRate'
           },
           'type': 'array'
         },
@@ -1464,7 +1576,7 @@ export const Schemas = {
         },
         'totalDelegationsOverTime': {
           'items': {
-            '$ref': '#/definitions/ITimestampSize'
+            '$ref': '#/definitions/ITimeSize'
           },
           'type': 'array'
         },
@@ -1704,22 +1816,22 @@ export const Schemas = {
         }
       ]
     },
-    'TimestampRate': {
+    'TimeRate': {
       'properties': {
         'rate': {
           'type': 'number'
         },
-        'timestamp': {
+        'time': {
           'type': 'string'
         }
       },
       'required': [
         'rate',
-        'timestamp'
+        'time'
       ],
       'type': 'object'
     },
-    'TimestampSize': {
+    'TimeSize': {
       'properties': {
         'size': {
           'anyOf': [
@@ -1742,13 +1854,13 @@ export const Schemas = {
             }
           ]
         },
-        'timestamp': {
+        'time': {
           'type': 'string'
         }
       },
       'required': [
         'size',
-        'timestamp'
+        'time'
       ],
       'type': 'object'
     },
@@ -1758,9 +1870,9 @@ export const Schemas = {
       },
       'type': 'array'
     },
-    'V705328': {
+    'V712406': {
       'enum': [
-        'Bridge Typings Version 705328'
+        'Bridge Typings Version 712406'
       ],
       'type': 'string'
     }
