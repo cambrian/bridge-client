@@ -27,6 +27,7 @@ export namespace DummyManager {
       'number'
     )
   }
+
   export function addIntsBad (
     bridgeClient: BridgeClient.T<Server.DummyManager>,
     request: T.AddIntsRequest
@@ -39,6 +40,7 @@ export namespace DummyManager {
       'number'
     )
   }
+
   export function echoThrice (
     bridgeClient: BridgeClient.T<Server.DummyManager>,
     request: number
@@ -51,6 +53,7 @@ export namespace DummyManager {
       'number'
     )
   }
+
   export function echoThriceBad (
     bridgeClient: BridgeClient.T<Server.DummyManager>,
     request: number
@@ -63,6 +66,7 @@ export namespace DummyManager {
       'number'
     )
   }
+
   export function concatTextAuth (
     bridgeClient: BridgeClient.T<Server.DummyManager>,
     token: T.Text<'AuthToken'>,
@@ -77,6 +81,7 @@ export namespace DummyManager {
       token
     )
   }
+
   export function echoThriceAuth (
     bridgeClient: BridgeClient.T<Server.DummyManager>,
     token: T.Text<'AuthToken'>,
@@ -91,6 +96,7 @@ export namespace DummyManager {
       token
     )
   }
+
   export function getVoid (
     bridgeClient: BridgeClient.T<Server.DummyManager>
   ): Promise<void> {
@@ -102,6 +108,7 @@ export namespace DummyManager {
       'Unit'
     ).then(_ => undefined)
   }
+
   export function getVoidStream (
     bridgeClient: BridgeClient.T<Server.DummyManager>
   ): Stream<void> {
@@ -112,7 +119,8 @@ export namespace DummyManager {
       [],
       'Unit'
     ))
-  }}
+  }
+}
 
 export namespace TezosOperationQueue {
   export function inject (
@@ -126,7 +134,8 @@ export namespace TezosOperationQueue {
       request,
       'Unit'
     ).then(_ => undefined)
-  }}
+  }
+}
 
 export namespace TezosStats {
   export function overview (
@@ -140,6 +149,7 @@ export namespace TezosStats {
       'OverviewResponse'
     )
   }
+
   export function bakers (
     bridgeClient: BridgeClient.T<Server.TezosStats>
   ): Promise<T.BakersResponse> {
@@ -151,6 +161,7 @@ export namespace TezosStats {
       'BakersResponse'
     )
   }
+
   export function implicit (
     bridgeClient: BridgeClient.T<Server.TezosStats>,
     request: Tagged<'Implicit', Tagged<'TzAddress', string>>
@@ -163,6 +174,7 @@ export namespace TezosStats {
       'ImplicitResponse'
     )
   }
+
   export function operation (
     bridgeClient: BridgeClient.T<Server.TezosStats>,
     request: Tagged<'TzOperationHash', string>
@@ -174,4 +186,5 @@ export namespace TezosStats {
       request,
       'OperationResponse'
     )
-  }}
+  }
+}

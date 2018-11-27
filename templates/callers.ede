@@ -22,6 +22,7 @@ export namespace {{ service.namespace }} {
 {% for specItem in service.specs %}
 {% let spec = specItem.value %}
 {% include "function.ede" %}
+
 {% if !specItem.last %}
 
 {% endif %}
