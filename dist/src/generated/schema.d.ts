@@ -1,4 +1,4 @@
-export declare type SchemaRef = 'AddIntsRequest' | 'Baker' | 'BakersResponse' | 'Boolean' | 'ConcatTextAuthRequest' | 'ConcatTextAuthResponse' | 'DelegateFraction' | 'DelegateInfo' | 'IAddIntsRequest' | 'IBaker' | 'IBakersResponse' | 'IConcatTextAuthRequest' | 'IConcatTextAuthResponse' | 'IDelegateFraction' | 'IDelegateInfo' | 'IEndOfResults' | 'IHeartbeat' | 'IImplicitResponse' | 'ILedgerOperation' | 'IOperationResponse' | 'IOriginatedAddress' | 'IOverviewResponse' | 'IRequestMessage' | 'IResponseMessage' | 'IResult' | 'IResult<T>' | 'IRpcResponse' | 'IRpcResponse<T>' | 'IRpcResponseClientException' | 'IRpcResponseServerException' | 'ITimeRate' | 'ITimeSize' | 'ImplicitResponse' | 'K' | 'LedgerOperation' | 'LedgerOperationType' | 'OperationResponse' | 'OriginatedAddress' | 'OverviewResponse' | 'RequestMessage' | 'ResponseMessage' | 'RpcResponse' | 'StreamingResponse' | 'T' | 'T_1' | 'T_2' | 'T_3' | 'Tagged' | 'Text' | 'TimeRate' | 'TimeSize' | 'Unit' | 'V712406' | 'string' | 'number' | 'boolean' | 'symbol';
+export declare type SchemaRef = 'AddIntsRequest' | 'Baker' | 'BakersResponse' | 'Boolean' | 'ConcatTextAuthRequest' | 'ConcatTextAuthResponse' | 'DelegateFraction' | 'DelegateInfo' | 'Either' | 'IAddIntsRequest' | 'IBaker' | 'IBakersResponse' | 'IConcatTextAuthRequest' | 'IConcatTextAuthResponse' | 'IDelegateFraction' | 'IDelegateInfo' | 'IEndOfResults' | 'IHeartbeat' | 'IImplicitResponse' | 'ILedgerOperation' | 'IOperationResponse' | 'IOriginatedAddress' | 'IOverviewResponse' | 'IRequestMessage' | 'IResponseMessage' | 'IResult' | 'IResult<T>' | 'IRpcClientException' | 'IRpcServerException' | 'ITimeRate' | 'ITimeSize' | 'ImplicitResponse' | 'K' | 'LedgerOperation' | 'LedgerOperationType' | 'Left' | 'Left<RpcException>' | 'Left<T1>' | 'OperationResponse' | 'OriginatedAddress' | 'OverviewResponse' | 'RequestMessage' | 'ResponseMessage' | 'Right' | 'Right<T2>' | 'Right<T>' | 'RpcException' | 'RpcResponse' | 'StreamingResponse' | 'T' | 'T1' | 'T2' | 'T_1' | 'T_2' | 'T_3' | 'T_4' | 'Tagged' | 'Text' | 'TimeRate' | 'TimeSize' | 'Unit' | 'V552418' | 'string' | 'number' | 'boolean' | 'symbol';
 export declare const Schemas: {
     '$schema': string;
     'definitions': {
@@ -194,6 +194,11 @@ export declare const Schemas: {
             };
             'required': string[];
             'type': string;
+        };
+        'Either': {
+            'anyOf': {
+                '$ref': string;
+            }[];
         };
         'IAddIntsRequest': {
             'properties': {
@@ -771,33 +776,7 @@ export declare const Schemas: {
             'required': string[];
             'type': string;
         };
-        'IRpcResponse': {
-            'properties': {
-                'contents': {
-                    '$ref': string;
-                };
-                'tag': {
-                    'enum': string[];
-                    'type': string;
-                };
-            };
-            'required': string[];
-            'type': string;
-        };
-        'IRpcResponse<T>': {
-            'properties': {
-                'contents': {
-                    '$ref': string;
-                };
-                'tag': {
-                    'enum': string[];
-                    'type': string;
-                };
-            };
-            'required': string[];
-            'type': string;
-        };
-        'IRpcResponseClientException': {
+        'IRpcClientException': {
             'properties': {
                 'contents': {
                     'type': string;
@@ -810,7 +789,7 @@ export declare const Schemas: {
             'required': string[];
             'type': string;
         };
-        'IRpcResponseServerException': {
+        'IRpcServerException': {
             'properties': {
                 'tag': {
                     'enum': string[];
@@ -967,6 +946,35 @@ export declare const Schemas: {
         };
         'LedgerOperationType': {
             'enum': string[];
+            'type': string;
+        };
+        'Left': {
+            'properties': {
+                'Left': {
+                    '$ref': string;
+                };
+            };
+            'required': string[];
+            'type': string;
+        };
+        'Left<RpcException>': {
+            'properties': {
+                'Left': {
+                    'anyOf': {
+                        '$ref': string;
+                    }[];
+                };
+            };
+            'required': string[];
+            'type': string;
+        };
+        'Left<T1>': {
+            'properties': {
+                'Left': {
+                    '$ref': string;
+                };
+            };
+            'required': string[];
             'type': string;
         };
         'OperationResponse': {
@@ -1200,6 +1208,38 @@ export declare const Schemas: {
             'required': string[];
             'type': string;
         };
+        'Right': {
+            'properties': {
+                'Right': {
+                    '$ref': string;
+                };
+            };
+            'required': string[];
+            'type': string;
+        };
+        'Right<T2>': {
+            'properties': {
+                'Right': {
+                    '$ref': string;
+                };
+            };
+            'required': string[];
+            'type': string;
+        };
+        'Right<T>': {
+            'properties': {
+                'Right': {
+                    '$ref': string;
+                };
+            };
+            'required': string[];
+            'type': string;
+        };
+        'RpcException': {
+            'anyOf': {
+                '$ref': string;
+            }[];
+        };
         'RpcResponse': {
             'anyOf': {
                 '$ref': string;
@@ -1211,9 +1251,12 @@ export declare const Schemas: {
             }[];
         };
         'T': {};
+        'T1': {};
+        'T2': {};
         'T_1': {};
         'T_2': {};
         'T_3': {};
+        'T_4': {};
         'Tagged': {
             'anyOf': ({
                 'properties': {
@@ -1295,7 +1338,7 @@ export declare const Schemas: {
             };
             'type': string;
         };
-        'V712406': {
+        'V552418': {
             'enum': string[];
             'type': string;
         };

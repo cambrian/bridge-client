@@ -6,6 +6,7 @@ export type SchemaRef = 'AddIntsRequest'
   | 'ConcatTextAuthResponse'
   | 'DelegateFraction'
   | 'DelegateInfo'
+  | 'Either'
   | 'IAddIntsRequest'
   | 'IBaker'
   | 'IBakersResponse'
@@ -24,33 +25,41 @@ export type SchemaRef = 'AddIntsRequest'
   | 'IResponseMessage'
   | 'IResult'
   | 'IResult<T>'
-  | 'IRpcResponse'
-  | 'IRpcResponse<T>'
-  | 'IRpcResponseClientException'
-  | 'IRpcResponseServerException'
+  | 'IRpcClientException'
+  | 'IRpcServerException'
   | 'ITimeRate'
   | 'ITimeSize'
   | 'ImplicitResponse'
   | 'K'
   | 'LedgerOperation'
   | 'LedgerOperationType'
+  | 'Left'
+  | 'Left<RpcException>'
+  | 'Left<T1>'
   | 'OperationResponse'
   | 'OriginatedAddress'
   | 'OverviewResponse'
   | 'RequestMessage'
   | 'ResponseMessage'
+  | 'Right'
+  | 'Right<T2>'
+  | 'Right<T>'
+  | 'RpcException'
   | 'RpcResponse'
   | 'StreamingResponse'
   | 'T'
+  | 'T1'
+  | 'T2'
   | 'T_1'
   | 'T_2'
   | 'T_3'
+  | 'T_4'
   | 'Tagged'
   | 'Text'
   | 'TimeRate'
   | 'TimeSize'
   | 'Unit'
-  | 'V712406'
+  | 'V552418'
   | 'string'
   | 'number'
   | 'boolean'
@@ -350,6 +359,16 @@ export const Schemas = {
         'name'
       ],
       'type': 'object'
+    },
+    'Either': {
+      'anyOf': [
+        {
+          '$ref': '#/definitions/Left<T1>'
+        },
+        {
+          '$ref': '#/definitions/Right<T2>'
+        }
+      ]
     },
     'IAddIntsRequest': {
       'properties': {
@@ -1130,7 +1149,7 @@ export const Schemas = {
     'IResult': {
       'properties': {
         'contents': {
-          '$ref': '#/definitions/T_3'
+          '$ref': '#/definitions/T_4'
         },
         'tag': {
           'enum': [
@@ -1148,7 +1167,7 @@ export const Schemas = {
     'IResult<T>': {
       'properties': {
         'contents': {
-          '$ref': '#/definitions/T_2'
+          '$ref': '#/definitions/T_3'
         },
         'tag': {
           'enum': [
@@ -1163,14 +1182,14 @@ export const Schemas = {
       ],
       'type': 'object'
     },
-    'IRpcResponse': {
+    'IRpcClientException': {
       'properties': {
         'contents': {
-          '$ref': '#/definitions/T_1'
+          'type': 'string'
         },
         'tag': {
           'enum': [
-            'RpcResponse'
+            'RpcClientException'
           ],
           'type': 'string'
         }
@@ -1181,47 +1200,11 @@ export const Schemas = {
       ],
       'type': 'object'
     },
-    'IRpcResponse<T>': {
-      'properties': {
-        'contents': {
-          '$ref': '#/definitions/T'
-        },
-        'tag': {
-          'enum': [
-            'RpcResponse'
-          ],
-          'type': 'string'
-        }
-      },
-      'required': [
-        'contents',
-        'tag'
-      ],
-      'type': 'object'
-    },
-    'IRpcResponseClientException': {
-      'properties': {
-        'contents': {
-          'type': 'string'
-        },
-        'tag': {
-          'enum': [
-            'RpcResponseClientException'
-          ],
-          'type': 'string'
-        }
-      },
-      'required': [
-        'contents',
-        'tag'
-      ],
-      'type': 'object'
-    },
-    'IRpcResponseServerException': {
+    'IRpcServerException': {
       'properties': {
         'tag': {
           'enum': [
-            'RpcResponseServerException'
+            'RpcServerException'
           ],
           'type': 'string'
         }
@@ -1428,6 +1411,46 @@ export const Schemas = {
         'Withdrawal'
       ],
       'type': 'string'
+    },
+    'Left': {
+      'properties': {
+        'Left': {
+          '$ref': '#/definitions/T_1'
+        }
+      },
+      'required': [
+        'Left'
+      ],
+      'type': 'object'
+    },
+    'Left<RpcException>': {
+      'properties': {
+        'Left': {
+          'anyOf': [
+            {
+              '$ref': '#/definitions/IRpcClientException'
+            },
+            {
+              '$ref': '#/definitions/IRpcServerException'
+            }
+          ]
+        }
+      },
+      'required': [
+        'Left'
+      ],
+      'type': 'object'
+    },
+    'Left<T1>': {
+      'properties': {
+        'Left': {
+          '$ref': '#/definitions/T1'
+        }
+      },
+      'required': [
+        'Left'
+      ],
+      'type': 'object'
     },
     'OperationResponse': {
       'properties': {
@@ -1744,16 +1767,56 @@ export const Schemas = {
       ],
       'type': 'object'
     },
+    'Right': {
+      'properties': {
+        'Right': {
+          '$ref': '#/definitions/T_2'
+        }
+      },
+      'required': [
+        'Right'
+      ],
+      'type': 'object'
+    },
+    'Right<T2>': {
+      'properties': {
+        'Right': {
+          '$ref': '#/definitions/T2'
+        }
+      },
+      'required': [
+        'Right'
+      ],
+      'type': 'object'
+    },
+    'Right<T>': {
+      'properties': {
+        'Right': {
+          '$ref': '#/definitions/T'
+        }
+      },
+      'required': [
+        'Right'
+      ],
+      'type': 'object'
+    },
+    'RpcException': {
+      'anyOf': [
+        {
+          '$ref': '#/definitions/IRpcClientException'
+        },
+        {
+          '$ref': '#/definitions/IRpcServerException'
+        }
+      ]
+    },
     'RpcResponse': {
       'anyOf': [
         {
-          '$ref': '#/definitions/IRpcResponseClientException'
+          '$ref': '#/definitions/Left<RpcException>'
         },
         {
-          '$ref': '#/definitions/IRpcResponseServerException'
-        },
-        {
-          '$ref': '#/definitions/IRpcResponse<T>'
+          '$ref': '#/definitions/Right<T>'
         }
       ]
     },
@@ -1771,9 +1834,12 @@ export const Schemas = {
       ]
     },
     'T': {},
+    'T1': {},
+    'T2': {},
     'T_1': {},
     'T_2': {},
     'T_3': {},
+    'T_4': {},
     'Tagged': {
       'anyOf': [
         {
@@ -1870,9 +1936,9 @@ export const Schemas = {
       },
       'type': 'array'
     },
-    'V712406': {
+    'V552418': {
       'enum': [
-        'Bridge Typings Version 712406'
+        'Bridge Typings Version 552418'
       ],
       'type': 'string'
     }

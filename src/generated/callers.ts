@@ -125,9 +125,9 @@ export namespace DummyManager {
 export namespace TezosOperationQueue {
   export function inject (
     bridgeClient: BridgeClient.T<Server.TezosOperationQueue>,
-    request: Tagged<'TzSignedOperationContents', string>
+    request: Tagged<'TzSignedOperation', string>
   ): Promise<void> {
-    return direct<Tagged<'TzSignedOperationContents', string>, T.Unit, Server.TezosOperationQueue>(
+    return direct<Tagged<'TzSignedOperation', string>, T.Unit, Server.TezosOperationQueue>(
       bridgeClient,
       20000,
       'tezos-operation-queue/inject',

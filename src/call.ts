@@ -4,9 +4,12 @@ import { BridgeClient, cancelResponseIfError } from './client'
 import {
   IHeartbeat,
   IResult,
-  IRpcResponseClientException,
-  IRpcResponseServerException,
+  IRpcClientException,
+  IRpcServerException,
+  Left,
   RequestMessage,
+  Right,
+  RpcException,
   RpcResponse,
   StreamingResponse,
   Text
@@ -47,15 +50,17 @@ function installDirectHandler<T, S> (
     const handle = (response: Text<'Response'>) => {
       // Only one result expected.
       responseHandlers.delete(id)
-      const resOrExc = safeParse(response)
-      if (validate<RpcResponse<any>>('RpcResponse', resOrExc)) {
-        if (validate<IRpcResponseClientException>('IRpcResponseClientException', resOrExc)) {
-          reject(clientError(resOrExc.contents))
-        } else if (validate<IRpcResponseServerException>('IRpcResponseServerException', resOrExc)) {
-          reject(internalServerError)
-        }
-        else {
-          const res = resOrExc.contents
+      const eitherExcOrRes = safeParse(response)
+      if (validate<RpcResponse<any>>('RpcResponse', eitherExcOrRes)) {
+        if (validate<Left<RpcException>>('Left<RpcException>', eitherExcOrRes)) {
+          const exc = eitherExcOrRes.Left
+          if (validate<IRpcClientException>('IRpcClientException', exc)) {
+            reject(clientError(exc.contents))
+          } else if (validate<IRpcServerException>('IRpcServerException', exc)) {
+            reject(internalServerError)
+          }
+        } else {
+          const res = eitherExcOrRes.Right
           if (validate<T>(typeTRef, res)) {
             resolve(res)
           }
@@ -78,18 +83,21 @@ function installStreamingHandler<T, S> (
   const [push, error, close, stream] = pushStream<T | IHeartbeat>()
   const handle = (response: Text<'Response'>) => {
     let validated = false
-    const resOrExc = safeParse(response)
-    if (validate<RpcResponse<any>>('RpcResponse', resOrExc)) {
-      if (validate<IRpcResponseClientException>('IRpcResponseClientException', resOrExc)) {
-        responseHandlers.delete(id)
-        error(clientError(resOrExc.contents))
-        validated = true
-      } else if (validate<IRpcResponseServerException>('IRpcResponseServerException', resOrExc)) {
-        responseHandlers.delete(id)
-        error(internalServerError)
-        validated = true
+    const eitherExcOrRes = safeParse(response)
+    if (validate<RpcResponse<any>>('RpcResponse', eitherExcOrRes)) {
+      if (validate<Left<RpcException>>('Left<RpcException>', eitherExcOrRes)) {
+        const exc = eitherExcOrRes.Left
+        if (validate<IRpcClientException>('IRpcClientException', exc)) {
+          responseHandlers.delete(id)
+          error(clientError(exc.contents))
+          validated = true
+        } else if (validate<IRpcServerException>('IRpcServerException', exc)) {
+          responseHandlers.delete(id)
+          error(internalServerError)
+          validated = true
+        }
       } else {
-        const res = resOrExc.contents
+        const res = eitherExcOrRes.Right
         if (validate<StreamingResponse<any>>('StreamingResponse', res)) {
           if (validate<IResult<any>>('IResult', res)) {
             if (validate<T>(typeTRef, res.contents)) {

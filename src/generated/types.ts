@@ -1,4 +1,4 @@
-export type V712406 = 'Bridge Typings Version 712406'
+export type V552418 = 'Bridge Typings Version 552418'
 
 export type Tagged<T extends string, K> = { TagDoNotUse: T } | K
 
@@ -6,20 +6,27 @@ export type Text<T extends string> = Tagged<T, string>
 
 export type Unit = Array<Boolean>
 
-export type RpcResponse<T> = IRpcResponseClientException | IRpcResponseServerException | IRpcResponse<T>
+export type RpcResponse<T> = Either<RpcException, T>
 
-export interface IRpcResponseClientException {
-  tag: 'RpcResponseClientException'
+export type Either<T1, T2> = Left<T1> | Right<T2>
+
+export interface Left<T> {
+  Left: T
+}
+
+export interface Right<T> {
+  Right: T
+}
+
+export type RpcException = IRpcClientException | IRpcServerException
+
+export interface IRpcClientException {
+  tag: 'RpcClientException'
   contents: string
 }
 
-export interface IRpcResponseServerException {
-  tag: 'RpcResponseServerException'
-}
-
-export interface IRpcResponse<T> {
-  tag: 'RpcResponse'
-  contents: T
+export interface IRpcServerException {
+  tag: 'RpcServerException'
 }
 
 export type StreamingResponse<T> = IHeartbeat | IResult<T> | IEndOfResults
